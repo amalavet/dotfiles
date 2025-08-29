@@ -11,16 +11,6 @@ NC='\033[0m' # No Color
 OK='\033[0;32m[OK] '
 INFO='\033[0;34m[INFO] '
 
-# Link zshrc
-# ----------
-# FIX: We can use GNU stow to manage dotfiles https://www.youtube.com/watch?v=06x3ZhwrrwA
-if [ ! -L ~/.zshrc ]; then
-    echo -e "${OK}Linking .zshrc${NC}"
-    ln -s $SETUP_SCRIPT_PATH/.zshrc ~/.zshrc
-fi
-
-source ~/.zshrc
-
 # Use the appropriate package manager based on the OS
 function install_packages_arch() {
     local packages=("$@")
@@ -63,6 +53,13 @@ else
     exit 1
 fi
 
+# GNU Stow for dotfiles management
+# --------------------------------
+install_packages stow
+stow .
+
+source ~/.zshrc
+
 # Git
 # ---
 install_packages git
@@ -80,22 +77,12 @@ source ~/.zshrc
 # ---------
 install_packages alacritty
 
-if [ ! -L ~/.config/alacritty ]; then
-    echo -e "${OK}Linking Alacritty config${NC}"
-    ln -s $SETUP_SCRIPT_PATH/alacritty/ ~/.config/alacritty
-fi
-
 # Powerlevel10k
 # -------------
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
     install_packages zsh-theme-powerlevel10k
 elif [[ "$OSTYPE" == "darwin"* ]]; then
     install_packages powerlevel10k
-fi
-
-if [ ! -L ~/.p10k.zsh ]; then
-    echo -e "${OK}Linking Powerlevel10k config${NC}"
-    ln -s $SETUP_SCRIPT_PATH/.p10k.zsh ~/.p10k.zsh
 fi
 
 # Zsh plugins
@@ -125,49 +112,11 @@ source ~/.zshrc
 # ------
 install_packages neovim ripgrep fzf fd
 
-if [ ! -L ~/.config/nvim ]; then
-    echo -e "${OK}Installing Neovim configuration${NC}"
-    ln -s $SETUP_SCRIPT_PATH/nvim/ ~/.config/nvim
-fi
-
 # Tmux
 # ----
 install_packages tmux
 if [ ! -d ~/.tmux/plugins/tpm ]; then
     git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-fi
-
-if [ ! -L ~/.tmux.conf ]; then
-    echo -e "${OK}Installing Tmux configuration"${NC}
-    ln -s $SETUP_SCRIPT_PATH/.tmux.conf ~/.tmux.conf
-fi
-
-# Custom commands
-# ---------------
-if [ ! -L ~/cmds.zsh ]; then
-    ln -s $SETUP_SCRIPT_PATH/cmds.zsh ~/cmds.zsh
-fi
-
-# Aerospace window manager
-# -----
-echo -e "${WARN}Please install Aerospace yourself${NC}"
-if [ ! -L ~/.config/aerospace/aerospace.toml ]; then
-    echo -e "${OK}Linking Aerospace config${NC}"
-    mkdir -p ~/.config/aerospace
-    ln -s $SETUP_SCRIPT_PATH/aerospace.toml ~/.config/aerospace/aerospace.toml
-fi
-
-# Yabai
-# -----
-echo -e "${WARN}Please install Yabai and skhd yourself${NC}"
-if [ ! -L ~/.yabairc ]; then
-    echo -e "${OK}Linking Yabai config${NC}"
-    ln -s $SETUP_SCRIPT_PATH/.yabairc ~/.yabairc
-fi
-
-if [ ! -L ~/.skhdrc ]; then
-    echo -e "${OK}Linking Skhd config${NC}"
-    ln -s $SETUP_SCRIPT_PATH/.skhdrc ~/.skhdrc
 fi
 
 # Lazygit / Lazydocker
