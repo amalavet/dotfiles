@@ -6,6 +6,7 @@ bc
 bluez-utils
 brave-bin
 docker
+dolphin
 fastfetch
 fd
 fzf
@@ -27,7 +28,6 @@ neovim
 networkmanager
 nvidia-open
 nvm
-ripgrep
 rust
 sddm
 stow
