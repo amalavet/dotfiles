@@ -9,7 +9,7 @@ option_as_alt = "Both"
 
 [font]
 normal.family = "JetBrainsMono Nerd Font"
-size = 25
+size = 15
 
 [colors]
 transparent_background_colors = true
