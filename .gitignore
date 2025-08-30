@@ -1,3 +1,4 @@
 tmux_sessions.txt
 nvim/lazy-lock.json
 .config/tmux/plugins
+.config/nvim/lazy-lock.json
