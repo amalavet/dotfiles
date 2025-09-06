@@ -14,6 +14,7 @@ return {
                 javascriptreact = { "prettierd" },
 				javascript = { "prettierd" },
 				json = { "prettierd" },
+				jsonc = { "prettierd" },
 				css = { "prettierd" },
 				html = { "prettierd" },
 				yaml = { "prettierd" },
