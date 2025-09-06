@@ -15,9 +15,9 @@ INFO='\033[0;34m[INFO] '
 function install_packages_arch() {
     local packages=("$@")
     for package in "${packages[@]}"; do
-        if ! pacman -Qi "$package" &>/dev/null && ! yay -Qi "$package" &>/dev/null; then
+        if ! yay -Qi "$package" &>/dev/null; then
             echo -e "${OK}Installing $package...${NC}"
-            sudo pacman -S --noconfirm "$package" || yay -S --noconfirm "$package"
+            sudo yay -S --noconfirm "$package"
         else
             echo -e "${INFO}$package is already installed${NC}"
         fi
