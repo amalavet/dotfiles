@@ -52,13 +52,16 @@
   "custom/sleep": {
     "on-click": "(sleep 1; systemctl suspend) & hyprlock",
     "format": "󰤄",
+    "tooltip-format": "Sleep",
   },
   "custom/off": {
     "on-click": "systemctl poweroff",
     "format": "⏻",
+    "tooltip-format": "Power Off",
   },
   "custom/lock": {
     "on-click": "hyprlock",
     "format": "󰌾",
+    "tooltip-format": "Lockscreen",
   },
 }
