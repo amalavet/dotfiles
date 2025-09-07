@@ -26,16 +26,18 @@ window#waybar {
   margin-right: 5px;
   padding-left: 20px;
   padding-right: 20px;
+  color: rgb(255, 255, 255);
+  border-bottom: 2px solid rgb(255, 255, 255);
 }
 
 #custom-sleep,
 #custom-off,
 #custom-lock {
-  color: @sky;
   border-radius: 100px;
   padding-left: 12px;
   padding-right: 12px;
   background-color: rgba(0, 0, 0, 0.3);
+  border: none;
 }
 
 #custom-sleep:hover {
@@ -59,35 +61,5 @@ window#waybar {
 }
 
 #workspaces button.urgent {
-  background-color: @maroon;
-}
-
-#clock {
-  color: @maroon;
-  border-bottom: 2px solid @maroon;
-}
-
-#clock.date {
-  color: @mauve;
-  border-bottom: 2px solid @mauve;
-}
-
-#pulseaudio {
-  color: @blue;
-  border-bottom: 2px solid @blue;
-}
-
-#network {
-  color: @mauve;
-  border-bottom: 2px solid @mauve;
-}
-
-#battery {
-  color: @green;
-  border-bottom: 2px solid @green;
-}
-
-#backlight {
-  color: @yellow;
-  border-bottom: 2px solid @yellow;
+  background-color: rgb(255, 255, 220);
 }
