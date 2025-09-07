@@ -3,7 +3,6 @@
 * {
   font-family: "JetBrains Mono";
   font-size: 16px;
-  min-height: 0;
   font-weight: bold;
 }
 
@@ -63,25 +62,22 @@ window#waybar {
 #pulseaudio {
   color: @blue;
   border-bottom: 2px solid @blue;
+  min-width: 80px;
 }
 
 #network {
-  color: @yellow;
-  border-bottom: 2px solid @yellow;
-}
-
-#idle_inhibitor {
-  margin-right: 12px;
-  color: #7cb342;
-}
-
-#idle_inhibitor.activated {
-  color: @red;
+  color: @mauve;
+  border-bottom: 2px solid @mauve;
 }
 
 #battery {
   color: @green;
   border-bottom: 2px solid @green;
+}
+
+#backlight {
+  color: @yellow;
+  border-bottom: 2px solid @yellow;
 }
 
 /* If workspaces is the leftmost module, omit left margin */
