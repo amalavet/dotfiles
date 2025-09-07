@@ -68,6 +68,6 @@
   "custom/logout": {
     "on-click": "loginctl terminate-user $USER",
     "format": "󰍃",
-    "tooltip-format": "Lockscreen",
+    "tooltip-format": "Exit",
   },
 }

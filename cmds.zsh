@@ -90,7 +90,7 @@ function :tmux() {
         fi
     done <"$HOME/tmux_sessions.txt"
     tmux new-session -s Docker -d -n "lazydocker" "lazydocker; zsh"
-    tmux a
+    tmux a -t dotfiles
 }
 
 # Open a project in tmux, fzf to select project
