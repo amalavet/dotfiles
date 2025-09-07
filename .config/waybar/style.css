@@ -2,7 +2,6 @@
 
 * {
   font-family: "JetBrains Mono";
-  font-size: 16px;
   font-weight: bold;
 }
 
@@ -24,6 +23,7 @@ window#waybar {
 #network,
 #mode,
 #scratchpad {
+  font-size: 16px;
   border-radius: 5px;
   background: rgba(0, 0, 0, 0.6);
   margin-top: 10px;
@@ -35,6 +35,7 @@ window#waybar {
 
 #workspaces button {
   background-color: rgba(0, 0, 0, 0.3);
+  font-size: 18px;
 }
 
 #workspaces button.active {
@@ -42,7 +43,7 @@ window#waybar {
 }
 
 #workspaces button.urgent {
-  background-color: #eb4d4b;
+  background-color: @maroon;
 }
 
 /* This is for the window description */
@@ -62,7 +63,6 @@ window#waybar {
 #pulseaudio {
   color: @blue;
   border-bottom: 2px solid @blue;
-  min-width: 80px;
 }
 
 #network {

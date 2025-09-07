@@ -45,6 +45,26 @@ return {
 			},
 		})
 
+		lspconfig.cssls.setup({
+			settings = {
+				css = {
+					lint = {
+						unknownAtRules = "ignore",
+					},
+				},
+				scss = {
+					lint = {
+						unknownAtRules = "ignore",
+					},
+				},
+				less = {
+					lint = {
+						unknownAtRules = "ignore",
+					},
+				},
+			},
+		})
+
 		vim.api.nvim_create_autocmd("LspAttach", {
 			callback = function(ev)
 				vim.keymap.set("n", "<leader>R", "<cmd>LspRestart<CR>", { buffer = ev.buf, desc = "LSP: Restart LSP" })
