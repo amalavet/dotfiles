@@ -9,9 +9,10 @@
     "backlight",
     "battery",
     "clock",
+    "custom/lock",
+    "custom/logout",
     "custom/sleep",
     "custom/off",
-    "custom/lock",
   ],
   "clock": {
     "format": "  {:%a %D %I:%M %p}",
@@ -62,6 +63,11 @@
   "custom/lock": {
     "on-click": "hyprlock",
     "format": "󰌾",
+    "tooltip-format": "Lockscreen",
+  },
+  "custom/logout": {
+    "on-click": "loginctl terminate-user $USER",
+    "format": "󰍃",
     "tooltip-format": "Lockscreen",
   },
 }
