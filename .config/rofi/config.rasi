@@ -1,3 +1,6 @@
 configuration {
     modi: "drun,filebrowser";
+    show-icons: true;
 }
+
+@theme "theme.rasi"
