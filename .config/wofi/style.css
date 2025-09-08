@@ -3,7 +3,7 @@
 * {
   font-family: "JetBrains Mono";
   font-size: 16px;
-  border: 0px solid black;
+  border: none;
 }
 
 /* Window */
@@ -14,6 +14,7 @@ window {
 
 /* Inner Box */
 #inner-box {
+  border-radius: 8px;
   background-color: rgba(0, 0, 0, 0.4);
 }
 
@@ -27,6 +28,7 @@ window {
   margin-bottom: 5px;
   padding: 5px;
   background-color: rgba(0, 0, 0, 0.6);
+  border-radius: 8px;
 }
 
 #text {
@@ -36,6 +38,7 @@ window {
 
 #entry {
   background-color: rgba(0, 0, 0, 0.4);
+  border-radius: 8px;
 }
 
 /* Selected Entry */
