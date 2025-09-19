@@ -1,16 +1,15 @@
 return {
 	"neovim/nvim-lspconfig",
 	dependencies = {
-		"williamboman/mason.nvim",
-		"williamboman/mason-lspconfig.nvim",
+		"mason-org/mason.nvim",
+		"mason-org/mason-lspconfig.nvim",
 		"ibhagwan/fzf-lua",
 		"folke/lazydev.nvim",
 	},
 
 	config = function()
-		local lspconfig = require("lspconfig")
-		local mason_lspconfig = require("mason-lspconfig")
 		local fzf = require("fzf-lua")
+		local mason_lspconfig = require("mason-lspconfig")
 
 		-- Hydrate the lua lsp with vim apis
 		require("lazydev").setup({
@@ -21,18 +20,14 @@ return {
 			},
 		})
 
-		-- setup any lsps that are installed
 		mason_lspconfig.setup()
 
 		-- Apply bashls to sh and zsh files
-		lspconfig.bashls.setup({
+		vim.lsp.config("bashls", {
 			filetypes = { "sh", "zsh" },
 		})
 
-		lspconfig.regols.setup({})
-		lspconfig.buf_ls.setup({})
-
-		lspconfig.pylsp.setup({
+		vim.lsp.config("pylsp", {
 			settings = {
 				pylsp = {
 					plugins = {
@@ -45,7 +40,7 @@ return {
 			},
 		})
 
-		lspconfig.cssls.setup({
+		vim.lsp.config("cssls", {
 			settings = {
 				css = {
 					lint = {
