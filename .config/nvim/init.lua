@@ -1,3 +1,4 @@
-require("alejandro.core.opts")
-require("alejandro.core.remap")
-require("alejandro.lazy")
+require("core.opts")
+require("core.remap")
+require("core.lsp")
+require("core.lazy")
