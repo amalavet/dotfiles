@@ -108,6 +108,13 @@ install_packages goenv
 goenv global latest
 source ~/.zshrc
 
+# Python
+# ------
+install_packages pyenv
+pyenv install 3.12.0
+pyenv global 3.12.0
+source ~/.zshrc
+
 # NeoVim
 # ------
 install_packages neovim ripgrep fzf fd
