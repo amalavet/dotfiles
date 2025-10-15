@@ -96,7 +96,7 @@ function :tmux() {
 # Open a project in tmux, fzf to select project
 function :ta() {
     local dir
-    dir=$(find ~/GitHub/Coinbase ~/GitHub/Personal ~/GitHub -type d -maxdepth 1 2>/dev/null | fzf)
+    dir=$(find ~/Github/Grafana ~/GitHub/Personal ~/GitHub -type d -maxdepth 1 2>/dev/null | fzf)
     dir_name=$(basename "$dir")
 
     if tmux has-session -t $dir_name 2>/dev/null; then

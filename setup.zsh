@@ -111,8 +111,8 @@ source ~/.zshrc
 # Python
 # ------
 install_packages pyenv
-pyenv install 3.12.0
-pyenv global 3.12.0
+pyenv install 3.13
+pyenv global 3.13
 source ~/.zshrc
 
 # NeoVim
