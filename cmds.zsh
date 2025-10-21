@@ -146,3 +146,44 @@ function :rmbr() {
     
     echo "\nDone!"
 }
+
+# Fork a GitHub repository, clone it, and set upstream
+function :fork() {
+    if [[ -z "$1" ]]; then
+        echo "Usage: :fork <github-url-or-owner/repo>"
+
+        return 1
+    fi
+
+    local input="$1"
+    local owner_repo
+    local hostname="github.com"
+
+    if [[ $input == *"://"* ]]; then
+        hostname=$(echo "$input" | sed -E 's|.*://([^/]+).*|\1|')
+        owner_repo=$(echo "$input" | sed -E 's|.*://[^/]+/([^/]+/[^/]+).*|\1|' | sed 's|\.git$||')
+    else
+        owner_repo="$input"
+    fi
+
+    echo "Forking $owner_repo from $hostname..."
+    gh repo fork "$owner_repo" --clone --default-branch-only || {
+        echo "Failed to fork repository"
+
+        return 1
+    }
+
+    local repo_name=$(basename "$owner_repo")
+    cd "$repo_name" || {
+        echo "Failed to cd into $repo_name"
+
+        return 1
+    }
+
+    echo "Setting upstream remote..."
+    git remote add upstream "https://${hostname}/${owner_repo}.git"
+
+    echo "Fork complete! Repository cloned to $(pwd)"
+    echo "Remotes configured:"
+    git remote -v
+}
