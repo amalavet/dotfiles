@@ -95,12 +95,16 @@ install_packages zsh-vi-mode
 # -----
 # https://www.nerdfonts.com/cheat-sheet
 # https://www.nerdfonts.com
-install_packages ttf-jetbrains-mono-nerd
-fc-cache -fv >/dev/null
+if [[ "$OSTYPE" == "darwin"* ]]; then
+    install_packages font-jetbrains-mono-nerd-font
+elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
+    install_packages ttf-jetbrains-mono-nerd
+    fc-cache -fv >/dev/null
+fi
 
-# Node.js / NPM
+# Node.js / NPM / Yarn
 # -------
-install_packages nodejs npm
+install_packages nvm yarn
 
 # Go
 # --
@@ -111,7 +115,7 @@ source ~/.zshrc
 # Python
 # ------
 install_packages pyenv
-pyenv install 3.13
+pyenv install 3.13 -s
 pyenv global 3.13
 source ~/.zshrc
 
