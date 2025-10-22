@@ -2,7 +2,7 @@ return {
 	"mason-org/mason.nvim",
 	dependencies = {
 		"neovim/nvim-lspconfig",
-		"williamboman/mason-lspconfig.nvim",
+		"mason-org/mason-lspconfig.nvim",
 	},
 	config = function()
 		require("mason").setup()
