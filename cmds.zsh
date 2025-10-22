@@ -112,6 +112,7 @@ function :ta() {
         tmux select-pane -t 0
         tmux resize-pane -x 120
         tmux resize-pane -Z
+        tmux new-window -n "opencode" "cd $dir && opencode; zsh"
         tmux attach-session -t $dir_name
     fi
 }
