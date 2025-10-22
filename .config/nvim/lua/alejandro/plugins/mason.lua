@@ -1,11 +1,13 @@
 return {
-	"williamboman/mason-lspconfig.nvim",
+	"mason-org/mason.nvim",
 	dependencies = {
-		"mason-org/mason.nvim",
 		"neovim/nvim-lspconfig",
+		"williamboman/mason-lspconfig.nvim",
 	},
 	config = function()
 		require("mason").setup()
+		require("mason-lspconfig").setup()
+
 		vim.api.nvim_create_autocmd({ "VimEnter" }, {
 			callback = function()
 				local ensure_installed = {
