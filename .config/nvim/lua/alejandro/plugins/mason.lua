@@ -1,37 +1,64 @@
 return {
 	"williamboman/mason-lspconfig.nvim",
 	dependencies = {
-		{
-			"mason-org/mason.nvim",
-			opts = {},
-		},
+		"mason-org/mason.nvim",
 		"neovim/nvim-lspconfig",
 	},
-	opts = {
-		ensure_installed = {
-			"lua_ls",
-			"pylsp",
-			"buf_ls",
-			"bashls",
-			"cssls",
-			"css_variables",
-			"css_modules_ls",
-			"cuelsp",
-			"docker_compose_language_service",
-			"docker_language_server",
-			"dockerls",
-			"golangci_lint_ls",
-			"gopls",
-			"html",
-			"htmx",
-			"jsonls",
-			"marksman",
-			"rust_analyzer",
-			"svelte",
-			"terraformls",
-			"ts_ls",
-			"typos_lsp",
-			"yamlls",
-		},
-	},
+	config = function()
+		require("mason").setup()
+		vim.api.nvim_create_autocmd({ "VimEnter" }, {
+			callback = function()
+				local ensure_installed = {
+					-- Yaml
+					"yamlfmt",
+					"yaml-language-server",
+					-- Frontend
+					"svelte-language-server",
+					"typescript-language-server",
+					"prettierd",
+					"prettier",
+					"html-lsp",
+					"css-lsp",
+					"json-lsp",
+					"css-variables-language-server",
+					-- Python
+					"python-lsp-server",
+					"black",
+					"isort",
+					-- Rust
+					"rustfmt",
+					"rust-analyzer",
+					-- Protobuf
+					"buf",
+					-- Lua
+					"lua-language-server",
+					"stylua",
+					-- Go
+					"gopls",
+					"goimports",
+					"gofumpt",
+					"golangci-lint-langserver",
+					-- Docker
+					"dockerfile-language-server",
+					"docker-compose-language-service",
+					-- Bash
+					"bash-language-server",
+					"shfmt",
+					-- Terraform
+					"terraform-ls",
+				}
+				for _, tool in ipairs(ensure_installed) do
+					local tool_name = type(tool) == "string" and tool or tool[1]
+					local installed = require("mason-registry").is_installed(tool_name)
+					if not installed then
+						if type(tool) == "string" then
+							vim.cmd("MasonInstall " .. tool)
+						else
+							vim.cmd(string.format("MasonInstall %s@%s", tool[1], tool.version))
+						end
+					end
+				end
+			end,
+		})
+	end,
 }
