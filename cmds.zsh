@@ -88,6 +88,8 @@ function :tmux() {
         else
             tmux new-window -n "zsh" "cd $dir; zsh"
         fi
+
+        tmux new-window -n "opencode" "cd $dir && opencode; zsh"
     done <"$HOME/tmux_sessions.txt"
     tmux new-session -s Docker -d -n "lazydocker" "lazydocker; zsh"
     tmux a -t dotfiles
@@ -122,10 +124,10 @@ function :kill() {
 # Delete all remote Git branches that don't have a local branch
 function :rmbr() {
     local prefix="$1"
-    
+
     echo "Fetching latest remote information..."
     git fetch --prune
-    
+
     echo "\nIdentifying remote branches without local counterparts..."
     # Get all remote branches (excluding HEAD), strip "origin/" prefix
     git branch -r | grep -v "HEAD" | sed 's/origin\///' | while read -r remote_branch; do
@@ -133,16 +135,16 @@ function :rmbr() {
         if [[ -n "$prefix" && ! "$remote_branch" == "$prefix"* ]]; then
             continue
         fi
-        
+
         # Check if there's a local branch with the same name
         if ! git show-ref --verify --quiet refs/heads/"$remote_branch"; then
             echo "Deleting remote branch: $remote_branch"
             git push origin --delete "$remote_branch"
         fi
     done
-    
+
     echo "\nCleaning untracked files from local repository..."
     git clean -fd
-    
+
     echo "\nDone!"
 }

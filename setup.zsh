@@ -138,4 +138,9 @@ install_packages lazygit lazydocker
 # ---------
 install_packages fastfetch
 
+
+# Opencode
+# ---------
+install_packages opencode
+
 source ~/.zshrc
