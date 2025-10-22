@@ -1,18 +1,54 @@
 return {
 	"neovim/nvim-lspconfig",
 	dependencies = {
-		{
-			"hrsh7th/cmp-nvim-lsp",
-			config = function()
-				local cmp_nvim_lsp = require("cmp_nvim_lsp")
-				vim.lsp.config("*", {
-					capabilities = cmp_nvim_lsp.default_capabilities(),
-				})
-			end,
-		},
-		{
-			"folke/lazydev.nvim",
-			opts = {},
-		},
+		"hrsh7th/cmp-nvim-lsp",
+		"folke/lazydev.nvim",
+		"ibhagwan/fzf-lua",
 	},
+
+	config = function()
+		local cmp = require("cmp_nvim_lsp")
+		vim.lsp.config("*", {
+			capabilities = cmp.default_capabilities(),
+		})
+
+        require("lazydev").setup()
+
+		vim.api.nvim_create_autocmd("LspAttach", {
+			group = vim.api.nvim_create_augroup("UserLspConfig", {}),
+			callback = function(ev)
+				local fzf = require("fzf-lua")
+				local keymap = vim.keymap
+				local opts = { buffer = ev.buf, silent = true }
+				local lsp = vim.lsp.buf
+
+				opts.desc = "LSP: Restart LSP"
+				keymap.set("n", "<leader>R", "<cmd>LspRestart<CR>", opts)
+
+				opts.desc = "LSP: Rename symbol"
+				keymap.set("n", "<leader>r", lsp.rename, opts)
+
+				opts.desc = "LSP: Type definitions"
+				keymap.set("n", "gt", fzf.lsp_typedefs, opts)
+
+				opts.desc = "LSP: Go to definition"
+				keymap.set("n", "gd", fzf.lsp_definitions, opts)
+
+				opts.desc = "LSP: Go to implementations"
+				keymap.set("n", "gi", fzf.lsp_implementations, opts)
+
+				opts.desc = "LSP: Show references"
+				keymap.set("n", "gr", fzf.lsp_references, opts)
+
+				opts.desc = "LSP: Show declarations"
+				keymap.set("n", "gD", fzf.lsp_declarations, opts)
+
+				opts.desc = "LSP: Show hover documentation"
+				keymap.set("n", "K", lsp.hover, opts)
+
+				opts.desc = "LSP: Code actions"
+				keymap.set({ "n", "v" }, "<leader>ca", lsp.code_action, opts)
+			end,
+		})
+	end,
 }
