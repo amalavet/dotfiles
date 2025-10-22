@@ -148,3 +148,36 @@ function :rmbr() {
 
     echo "\nDone!"
 }
+
+# Fork a GitHub repository and set upstream
+function :fork() {
+    local repo="$1"
+
+    if [[ -z "$repo" ]]; then
+        echo "Error: Please provide a repository path (e.g., grafana/terraform-provider-grafana)"
+        return 1
+    fi
+
+    # Extract owner/repo from URL if provided
+    if [[ "$repo" =~ ^https?:// ]]; then
+        repo=$(echo "$repo" | sed -E 's|^https?://[^/]+/||' | sed 's|\.git$||')
+    fi
+
+    echo "Forking $repo..."
+    gh repo fork "$repo" --clone=true
+
+    local repo_name="${repo##*/}"
+    cd "$repo_name" || return 1
+
+    echo "Setting upstream remote..."
+    git remote add upstream "https://github.com/$repo.git"
+
+    echo "Configuring fetch to pull from upstream..."
+    git config remote.upstream.fetch "+refs/heads/*:refs/remotes/upstream/*"
+
+    echo "Fetching from upstream..."
+    git fetch upstream
+
+    echo "\nDone! Repository forked and upstream configured."
+    echo "You can now fetch upstream changes with: git fetch upstream"
+}
