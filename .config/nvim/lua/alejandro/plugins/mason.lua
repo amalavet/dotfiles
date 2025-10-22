@@ -1,0 +1,37 @@
+return {
+	"williamboman/mason-lspconfig.nvim",
+	dependencies = {
+		{
+			"mason-org/mason.nvim",
+			opts = {},
+		},
+		"neovim/nvim-lspconfig",
+	},
+	opts = {
+		ensure_installed = {
+			"lua_ls",
+			"pylsp",
+			"buf_ls",
+			"bashls",
+			"cssls",
+			"css_variables",
+			"css_modules_ls",
+			"cuelsp",
+			"docker_compose_language_service",
+			"docker_language_server",
+			"dockerls",
+			"golangci_lint_ls",
+			"gopls",
+			"html",
+			"htmx",
+			"jsonls",
+			"marksman",
+			"rust_analyzer",
+			"svelte",
+			"terraformls",
+			"ts_ls",
+			"typos_lsp",
+			"yamlls",
+		},
+	},
+}
