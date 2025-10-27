@@ -77,3 +77,5 @@ bindkey '^[[B' history-search-forward
 # Bind accept one word at a time to shift+right
 ZSH_AUTOSUGGEST_PARTIAL_ACCEPT_WIDGETS=(forward-word)
 bindkey '\e[1;2C' forward-word
+
+export GPG_TTY=$(tty)
