@@ -53,6 +53,10 @@ else
     exit 1
 fi
 
+# Create .config directory if it doesn't exist
+# --------------------------------------------
+mkdir -p ~/.config
+
 # GNU Stow for dotfiles management
 # --------------------------------
 install_packages stow
