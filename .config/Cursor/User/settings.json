@@ -3034,7 +3034,6 @@
   ],
   "vim.leader": "<space>",
   "vim.useSystemClipboard": true,
-  "workbench.colorTheme": "Tokyo Night",
   "workbench.editor.showTabs": "single",
   "workbench.editor.enablePreview": false,
   "workbench.editor.limit.enabled": true,
@@ -3065,6 +3064,7 @@
   "vscode-textobjects.vimEnabled": true,
   "terminal.explorerKind": "external",
   "terminal.external.osxExec": "Alacritty.app",
-  "workbench.sideBar.location": "right"
+  "workbench.sideBar.location": "right",
+  "workbench.colorTheme": "Tokyo Night"
 }
 
