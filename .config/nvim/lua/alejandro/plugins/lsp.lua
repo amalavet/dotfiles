@@ -24,8 +24,9 @@ return {
 
 				-- Remove default LSP keymaps that conflict with custom ones
 				pcall(keymap.del, "n", "gri")
+				pcall(keymap.del, "x", "gra")
 				pcall(keymap.del, "n", "gra")
-				pcall(keymap.del, "n", "gra")
+				pcall(keymap.del, "n", "grr")
 				pcall(keymap.del, "n", "grn")
 				pcall(keymap.del, "n", "grt")
 
