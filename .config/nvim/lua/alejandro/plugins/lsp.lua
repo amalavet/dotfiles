@@ -12,7 +12,7 @@ return {
 			capabilities = cmp.default_capabilities(),
 		})
 
-        require("lazydev").setup()
+		require("lazydev").setup()
 
 		vim.api.nvim_create_autocmd("LspAttach", {
 			group = vim.api.nvim_create_augroup("UserLspConfig", {}),
@@ -21,6 +21,13 @@ return {
 				local keymap = vim.keymap
 				local opts = { buffer = ev.buf, silent = true }
 				local lsp = vim.lsp.buf
+
+				-- Remove default LSP keymaps that conflict with custom ones
+				pcall(keymap.del, "n", "gri")
+				pcall(keymap.del, "n", "gra")
+				pcall(keymap.del, "n", "gra")
+				pcall(keymap.del, "n", "grn")
+				pcall(keymap.del, "n", "grt")
 
 				opts.desc = "LSP: Restart LSP"
 				keymap.set("n", "<leader>R", "<cmd>LspRestart<CR>", opts)

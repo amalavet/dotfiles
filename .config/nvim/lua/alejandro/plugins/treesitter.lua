@@ -5,6 +5,7 @@ return {
 		"nvim-treesitter/nvim-treesitter-textobjects",
 		"nvim-treesitter/nvim-treesitter-context",
 		"windwp/nvim-ts-autotag",
+		{ "ngynkvn/gotmpl.nvim", opts = {} },
 	},
 
 	config = function()

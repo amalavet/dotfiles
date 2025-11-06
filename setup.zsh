@@ -116,6 +116,9 @@ install_packages goenv
 goenv global latest
 source ~/.zshrc
 
+# Install Delve (Go Debugger)
+go install github.com/go-delve/delve/cmd/dlv@latest
+
 # Python
 # ------
 install_packages pyenv
@@ -141,7 +144,6 @@ install_packages lazygit lazydocker
 # Fastfetch
 # ---------
 install_packages fastfetch
-
 
 # Opencode
 # ---------
