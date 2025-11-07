@@ -54,42 +54,46 @@ function :y() {
     yabai --restart-service
 }
 
-# Open all projects in tmux, use --nosplit to open without panes
+# Open a project in tmux, creating a new session if needed
+function :to() {
+    dir="$1"
+    dir_name=$(basename "$dir")
+
+    if tmux has-session -t $dir_name 2>/dev/null; then
+        echo "Session $dir_name already exists. Attaching to it."
+        tmux attach-session -t $dir_name
+    else
+        # Create a new tmux session with lazygit
+        tmux new-session -s $dir_name -d -n "git" "cd $dir && lazygit; zsh"
+
+        # Open nvim with two terminals
+        tmux new-window -n "nvim" "cd $dir && nvim; zsh"
+        tmux split-window -hb -t $dir_name:nvim "cd $dir; zsh"
+        tmux split-window -v -t $dir_name:nvim "cd $dir; zsh"
+
+        # Resize panes
+        tmux select-pane -t 2
+        tmux resize-pane -x 500
+
+        # Create opencode AI window
+        tmux new-window -n "opencode" "cd $dir && opencode; zsh"
+
+        # Attach to the new session
+        tmux attach-session -t $dir_name
+    fi
+}
+
+# Open all projects in tmux
 function :tmux() {
     tmux kill-server
 
     GREEN='\033[0;32m'
     NC='\033[0m' # No Color
 
-    with_panes="true"
-
-    # Check if --split flag was passed
-    if [[ $1 == "--nosplit" ]]; then
-        with_panes="false"
-    fi
-
     echo -e "${GREEN}Opening tmux...${NC}"
     # Setup tmux sessions
     while read -r dir; do
-        dir_name=$(basename "$dir")
-
-        # Create a new window for lazygit
-        tmux new-session -s $dir_name -d -n "git" "cd $dir && lazygit; zsh"
-
-        # Create a window for neovim
-        tmux new-window -n "nvim" "cd $dir && nvim; zsh"
-
-        if [[ $with_panes == "true" ]]; then
-            tmux split-window -h -t $dir_name:nvim "cd $dir; zsh"
-            tmux split-window -v -t $dir_name:nvim "cd $dir; zsh"
-            tmux select-pane -t 0
-            tmux resize-pane -x 120
-            tmux resize-pane -Z
-        else
-            tmux new-window -n "zsh" "cd $dir; zsh"
-        fi
-
-        tmux new-window -n "opencode" "cd $dir && opencode; zsh"
+        :to "$dir"
     done <"$HOME/tmux_sessions.txt"
     tmux new-session -s Docker -d -n "lazydocker" "lazydocker; zsh"
     tmux a -t dotfiles
@@ -99,22 +103,7 @@ function :tmux() {
 function :ta() {
     local dir
     dir=$(find ~/Github/Grafana ~/GitHub/Personal ~/GitHub -type d -maxdepth 1 2>/dev/null | fzf)
-    dir_name=$(basename "$dir")
-
-    if tmux has-session -t $dir_name 2>/dev/null; then
-        echo "Session $dir_name already exists. Attaching to it."
-        tmux attach-session -t $dir_name
-    else
-        tmux new-session -s $dir_name -d -n "git" "cd $dir && lazygit; zsh"
-        tmux new-window -n "nvim" "cd $dir && nvim; zsh"
-        tmux split-window -h -t $dir_name:nvim "cd $dir; zsh"
-        tmux split-window -v -t $dir_name:nvim "cd $dir; zsh"
-        tmux select-pane -t 0
-        tmux resize-pane -x 120
-        tmux resize-pane -Z
-        tmux new-window -n "opencode" "cd $dir && opencode; zsh"
-        tmux attach-session -t $dir_name
-    fi
+    :newtmux "$dir"
 }
 
 # Search and kill a process
