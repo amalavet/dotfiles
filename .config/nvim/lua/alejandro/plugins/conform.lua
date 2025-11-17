@@ -10,8 +10,8 @@ return {
 				bash = { "shfmt" },
 				zsh = { "shfmt" },
 				typescript = { "prettierd" },
-                typescriptreact = { "prettierd" },
-                javascriptreact = { "prettierd" },
+				typescriptreact = { "prettierd" },
+				javascriptreact = { "prettierd" },
 				javascript = { "prettierd" },
 				json = { "prettierd" },
 				jsonc = { "prettierd" },
@@ -26,6 +26,7 @@ return {
 				ruby = { "rubyfmt" },
 				vue = { "prettierd" },
 				solidity = { "solidity" },
+				cue = { "cue_fmt" },
 			},
 			formatters = {
 				solidity = {
