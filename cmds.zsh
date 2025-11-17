@@ -103,7 +103,7 @@ function :tmux() {
 function :ta() {
     local dir
     dir=$(find ~/Github/Grafana ~/GitHub/Personal ~/GitHub -type d -maxdepth 1 2>/dev/null | fzf)
-    :newtmux "$dir"
+    :to "$dir"
 }
 
 # Search and kill a process
