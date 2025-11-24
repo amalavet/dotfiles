@@ -19,6 +19,7 @@ vim.opt.signcolumn = "yes"
 vim.opt.wrap = true
 vim.opt.breakindent = true
 vim.opt.linebreak = true
+vim.o.winborder = "single"
 
 -- Set cursor in command mode to a vertical bar
 vim.opt.guicursor:append("c:ver25")
@@ -34,5 +35,5 @@ vim.o.tabstop = 4
 vim.o.shiftwidth = 4
 vim.api.nvim_create_autocmd({ "BufEnter", "BufNewFile" }, {
 	command = "setlocal shiftwidth=2 tabstop=2",
-	pattern = { "*.tf", "*.json"},
+	pattern = { "*.tf", "*.json" },
 })
