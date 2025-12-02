@@ -15,10 +15,12 @@ export PATH="$GOROOT/bin:$PATH"
 export PATH="$PATH:$GOPATH/bin"
 
 # Node.js
-# -------
+# ------
 export NVM_DIR="$HOME/.nvm"
-source $(brew --prefix nvm)/nvm.sh
-source $(brew --prefix nvm)/etc/bash_completion.d/nvm
+if [[ "$OSTYPE" == "darwin"* ]]; then
+    source $(brew --prefix nvm)/nvm.sh
+    source $(brew --prefix nvm)/etc/bash_completion.d/nvm
+fi
 
 # Python
 # ------
