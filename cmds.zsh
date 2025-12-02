@@ -102,7 +102,7 @@ function :tmux() {
 # Open a project in tmux, fzf to select project
 function :ta() {
     local dir
-    dir=$(find ~/Github/Grafana ~/GitHub/Personal ~/GitHub -type d -maxdepth 1 2>/dev/null | fzf)
+    dir=$(find ~/GitHub/Personal ~/GitHub -type d -maxdepth 1 2>/dev/null | fzf)
     :to "$dir"
 }
 
