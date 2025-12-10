@@ -25,6 +25,11 @@ function :n() {
     nvim "$@"
 }
 
+# kubectl
+function :k() {
+    kubectl "$@"
+}
+
 # Source zshrc
 function :s() {
     source ~/.zshrc

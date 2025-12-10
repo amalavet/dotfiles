@@ -27,6 +27,7 @@ return {
 				vue = { "prettierd" },
 				solidity = { "solidity" },
 				cue = { "cue_fmt" },
+				jsonnet = { "jsonnetfmt" },
 			},
 			formatters = {
 				solidity = {
