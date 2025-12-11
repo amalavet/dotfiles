@@ -3,4 +3,8 @@
   "theme": "tokyonight",
   "model": "anthropic/claude-sonnet-4-20250514",
   "autoupdate": true,
+  "permission": {
+    "edit": "ask",
+    "bash": "ask"
+  }
 }

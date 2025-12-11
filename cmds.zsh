@@ -80,9 +80,6 @@ function :to() {
         tmux select-pane -t 2
         tmux resize-pane -x 500
 
-        # Create opencode AI window
-        tmux new-window -n "opencode" "cd $dir && opencode; zsh"
-
         # Attach to the new session
         tmux attach-session -t $dir_name
     fi
