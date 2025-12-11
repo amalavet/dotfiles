@@ -148,5 +148,6 @@ install_packages fastfetch
 # Opencode
 # ---------
 install_packages opencode
+opencode github install
 
 source ~/.zshrc
