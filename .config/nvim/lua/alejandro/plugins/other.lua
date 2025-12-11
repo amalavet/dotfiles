@@ -7,7 +7,7 @@ return {
 	},
 	{
 		"norcalli/nvim-colorizer.lua",
-		opts = { css = { css = true }, rasi = { rgb_fn = true } },
+		opts = { css = { css = true }, rasi = { rgb_fn = true }, lua = { lua = true } },
 	},
 	{
 		"folke/todo-comments.nvim",
