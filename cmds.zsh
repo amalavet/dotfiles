@@ -98,6 +98,7 @@ function :tmux() {
         :to "$dir"
     done <"$HOME/tmux_sessions.txt"
     tmux new-session -s Docker -d -n "lazydocker" "lazydocker; zsh"
+    tmux new-session -s AI -d -n "opencode" "opencode; zsh"
     tmux a -t dotfiles
 }
 
