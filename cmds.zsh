@@ -46,12 +46,12 @@ function :dlv() {
     second_arg=$2
     shift
     shift
-    CGO_ENABLED=0 dlv $first_arg --headless --listen=:12345 --api-version=2 $second_arg -- "$@"
+    CGO_ENABLED=0 dlv $first_arg --headless --listen=:2345 --api-version=2 $second_arg -- "$@"
 }
 
 # Start a debug server for a python project
 function :dbpy() {
-    python -m debugpy --listen :12345 --wait-for-client $@
+    python -m debugpy --listen :2345 --wait-for-client $@
 }
 
 # Restart yabai

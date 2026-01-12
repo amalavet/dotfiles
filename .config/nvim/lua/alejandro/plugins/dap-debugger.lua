@@ -15,7 +15,7 @@ return {
 		dap.adapters.remote = {
 			type = "server",
 			host = "127.0.0.1",
-			port = 12345,
+			port = 2345,
 			options = {
 				initialize_timeout_sec = 20,
 			},
