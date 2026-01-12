@@ -4,6 +4,7 @@ export TERM="alacritty"
 # --------
 if [[ "$OSTYPE" == "darwin"* ]]; then
     eval "$(/opt/homebrew/bin/brew shellenv)"
+    export PATH="/opt/homebrew/opt/curl/bin:$PATH" # Use Homebrew's curl on macOS
 fi
 
 # Go
@@ -18,8 +19,8 @@ export PATH="$PATH:$GOPATH/bin"
 # ------
 export NVM_DIR="$HOME/.nvm"
 if [[ "$OSTYPE" == "darwin"* ]]; then
-    source $(brew --prefix nvm)/nvm.sh
-    source $(brew --prefix nvm)/etc/bash_completion.d/nvm
+    source "$(brew --prefix nvm)/nvm.sh"
+    source "$(brew --prefix nvm)/etc/bash_completion.d/nvm"
 fi
 
 # Python

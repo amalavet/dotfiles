@@ -77,6 +77,12 @@ git config --global core.editor "nvim"
 
 source ~/.zshrc
 
+# Curl
+# ----
+install_packages curl
+
+source ~/.zshrc
+
 # Alacritty
 # ---------
 install_packages alacritty
