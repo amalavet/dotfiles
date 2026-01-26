@@ -20,7 +20,6 @@ return {
 					".dot",
 					"node_modules/",
 					".DS_Store",
-					"env/",
 					".svelte-kit",
 				},
 			})
