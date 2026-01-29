@@ -118,25 +118,18 @@ function :kill() {
 function :dbr() {
     local prefix="$1"
 
-    # Sync with remote to ensure local refs are up-to-date
     echo "\033[0;34mSyncing with remote...\033[0m"
     git fetch --prune origin > /dev/null 2>&1
 
-    # Get all remote branches (without the origin/ prefix)
     local remote_branches=$(git branch -r | sed "s|  origin/||" | grep -v "HEAD")
-
-    # Get all local branches
     local local_branches=$(git branch | sed 's/^[* ]*//')
-
-    # Find remote branches that don't have a local counterpart
     local branches_to_delete=()
+
     for remote_branch in ${(f)remote_branches}; do
-        # Skip if prefix is specified and branch doesn't match
         if [[ -n "$prefix" && ! "$remote_branch" =~ ^"$prefix" ]]; then
             continue
         fi
 
-        # Check if local branch exists
         if ! echo "$local_branches" | grep -q "^${remote_branch}$"; then
             branches_to_delete+=("$remote_branch")
         fi
@@ -147,27 +140,20 @@ function :dbr() {
         return 0
     fi
 
-    # Display branches that will be deleted
     echo "\033[0;33mThe following remote branches will be deleted:\033[0m"
     for branch in "${branches_to_delete[@]}"; do
-        echo "  \033[0;31m$branch\033[0m"
+        echo " * \033[0;31m$branch\033[0m"
     done
 
-    # Confirm deletion
     echo -n "\n\033[0;33mProceed with deletion? (y/N): \033[0m"
     read confirm
 
     if [[ "$confirm" != "y" && "$confirm" != "Y" ]]; then
-        echo "Aborted."
         return 1
     fi
 
-    # Delete branches
-    for branch in "${branches_to_delete[@]}"; do
-        git push "origin" --delete "$branch"
-    done
-
-    echo "\n\033[0;32mDone!\033[0m"
+    git push origin --delete "${branches_to_delete[@]}"
+    git fetch --prune origin > /dev/null 2>&1
 }
 
 # Fork a GitHub repository and set upstream
