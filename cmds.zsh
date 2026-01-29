@@ -164,7 +164,6 @@ function :dbr() {
 
     # Delete branches
     for branch in "${branches_to_delete[@]}"; do
-        echo "Deleting origin/$branch..."
         git push "origin" --delete "$branch"
     done
 
