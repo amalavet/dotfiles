@@ -10,7 +10,7 @@ return {
 				"<leader>ai",
 				function()
 					require("sidekick.cli").toggle({
-						focus = false,
+						focus = true,
 					})
 				end,
 				desc = "Sidekick Toggle CLI",
