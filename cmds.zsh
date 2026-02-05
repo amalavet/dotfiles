@@ -114,9 +114,23 @@ function :kill() {
     ps aux | fzf | awk '{print $2}' | xargs kill -9
 }
 
-# Delete all remote Git branches that don't have a local branch, optional argument to specify a prefix of a branch
+# Delete all remote Git branches that don't have a local branch, defaults to "ale/" prefix, pass "all" to delete all branches
 function :dbr() {
     local prefix="$1"
+
+    # Set default prefix to "ale/" if none provided
+    if [[ -z "$prefix" ]]; then
+        prefix="ale/"
+    # If "all" is passed, use no prefix
+    elif [[ "$prefix" == "all" ]]; then
+        echo "\033[0;31mWARNING: You are about to delete ALL remote branches without a local counterpart!\033[0m"
+        echo -n "\033[0;33mAre you sure you want to proceed? (y/N): \033[0m"
+        read confirm_all
+        if [[ "$confirm_all" != "y" && "$confirm_all" != "Y" ]]; then
+            return 1
+        fi
+        prefix=""
+    fi
 
     echo "\033[0;34mSyncing with remote...\033[0m"
     git fetch --prune origin > /dev/null 2>&1
@@ -145,11 +159,22 @@ function :dbr() {
         echo " * \033[0;31m$branch\033[0m"
     done
 
+
     echo -n "\n\033[0;33mProceed with deletion? (y/N): \033[0m"
     read confirm
 
     if [[ "$confirm" != "y" && "$confirm" != "Y" ]]; then
         return 1
+    fi
+
+    # Double confirmation if more than 10 branches
+    if [[ ${#branches_to_delete[@]} -gt 10 ]]; then
+        echo "\n\033[0;31mWARNING: You are about to delete ${#branches_to_delete[@]} branches!\033[0m"
+        echo -n "\033[0;33mAre you absolutely sure? (y/N): \033[0m"
+        read confirm_many
+        if [[ "$confirm_many" != "y" && "$confirm_many" != "Y" ]]; then
+            return 1
+        fi
     fi
 
     git push origin --delete "${branches_to_delete[@]}"
