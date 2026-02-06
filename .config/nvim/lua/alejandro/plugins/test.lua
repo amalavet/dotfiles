@@ -26,7 +26,7 @@ return {
 					if file_path and test_name then
 						-- Construct dlv debug command
 						local dlv_cmd = string.format(
-							"clear;CGO_ENABLED=0 dlv test --headless --listen=:12345 --api-version=2 %s -- -test.run %s$",
+							"clear;CGO_ENABLED=0 dlv test --headless --listen=:2345 --api-version=2 %s -- -test.run %s$",
 							file_path,
 							test_name
 						)
