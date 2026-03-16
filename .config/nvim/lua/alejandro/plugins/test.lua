@@ -8,6 +8,7 @@ return {
 		local dap = require("dap")
 
 		vim.g["test#strategy"] = "tslime"
+		vim.g["test#go#gotest#options"] = "-v"
 		vim.g.tslime_always_current_session = 1
 		vim.g.tslime_always_current_window = 1
 		vim.g.tslime_autoset_pane = 1
