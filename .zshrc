@@ -36,6 +36,7 @@ export KUBE_EDITOR="nvim"
 # Aliases
 alias vim="nvim"
 alias vi="nvim"
+export EDITOR="nvim"
 
 # Set default git editor to nvim
 git config --global core.editor "nvim"
