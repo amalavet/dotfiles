@@ -59,30 +59,28 @@ function :y() {
     yabai --restart-service
 }
 
-# Open a project in tmux, creating a new session if needed
-function :to() {
+# Starts a new tmux session for the given directory
+function :ts() {
     dir="$1"
-    dir_name=$(basename "$dir")
+    session=$(basename "$dir")
+    session=${session//[^a-zA-Z0-9_-]/-}
 
-    if tmux has-session -t "=$dir_name" 2>/dev/null; then
-        echo "Session $dir_name already exists. Attaching to it."
-        tmux attach-session -t $dir_name
-    else
-        # Create a new tmux session with lazygit
-        tmux new-session -s $dir_name -d -n "git" "cd $dir && lazygit; zsh"
-
-        # Open nvim with two terminals
-        tmux new-window -n "nvim" "cd $dir && nvim; zsh"
-        tmux split-window -hb -t $dir_name:nvim "cd $dir; zsh"
-        tmux split-window -v -t $dir_name:nvim "cd $dir; zsh"
-
-        # Resize panes
-        tmux select-pane -t 2
-        tmux resize-pane -x 500
-
-        # Attach to the new session
-        tmux attach-session -t $dir_name
+    if tmux has-session -t "=$session" 2>/dev/null; then
+        echo "Session '$session' already exists."
+        return
     fi
+
+    # Create a new tmux session with lazygit
+    tmux new-session -s $session -d -n "git" "cd $dir && lazygit; zsh"
+
+    # Open nvim with two terminals
+    tmux new-window -n "nvim" "cd $dir && nvim; zsh"
+    tmux split-window -hb -t $session:nvim "cd $dir; zsh"
+    tmux split-window -v -t $session:nvim "cd $dir; zsh"
+
+    # Resize panes
+    tmux select-pane -t 2
+    tmux resize-pane -x 500
 }
 
 # Open all projects in tmux
@@ -95,10 +93,9 @@ function :tmux() {
     echo -e "${GREEN}Opening tmux...${NC}"
     # Setup tmux sessions
     while read -r dir; do
-        :to "$dir"
+        :ts "$dir"
     done <"$HOME/tmux_sessions.txt"
     tmux new-session -s Docker -d -n "lazydocker" "lazydocker; zsh"
-    tmux new-session -s AI -d -n "opencode" "opencode; zsh"
     tmux a -t dotfiles
 }
 
@@ -106,7 +103,8 @@ function :tmux() {
 function :ta() {
     local dir
     dir=$(find ~/GitHub/Personal ~/GitHub -type d -maxdepth 1 2>/dev/null | fzf)
-    :to "$dir"
+    :ts "$dir" # This writes the tmux session to $session
+    tmux a -t "$session"
 }
 
 # Search and kill a process
@@ -133,7 +131,7 @@ function :dbr() {
     fi
 
     echo "\033[0;34mSyncing with remote...\033[0m"
-    git fetch --prune origin > /dev/null 2>&1
+    git fetch --prune origin >/dev/null 2>&1
 
     local remote_branches=$(git branch -r | sed "s|  origin/||" | grep -v "HEAD")
     local local_branches=$(git branch | sed 's/^[* ]*//')
@@ -159,7 +157,6 @@ function :dbr() {
         echo " * \033[0;31m$branch\033[0m"
     done
 
-
     echo -n "\n\033[0;33mProceed with deletion? (y/N): \033[0m"
     read confirm
 
@@ -178,7 +175,7 @@ function :dbr() {
     fi
 
     git push origin --delete "${branches_to_delete[@]}"
-    git fetch --prune origin > /dev/null 2>&1
+    git fetch --prune origin >/dev/null 2>&1
 }
 
 # Setup AI agent markdown file for all subdirectories one level deep
