@@ -181,6 +181,27 @@ function :dbr() {
     git fetch --prune origin > /dev/null 2>&1
 }
 
+# Setup AI agent markdown file for all subdirectories one level deep
+# Usage: :ai [FILENAME.md] (default: CLAUDE.md)
+function :ai() {
+    local target="${1:-CLAUDE.md}"
+    for dir in */; do
+        [[ -d "$dir" ]] || continue
+        if [[ -f "${dir}${target}" ]]; then
+            echo "$dir: $target already exists."
+        elif [[ -f "${dir}AGENTS.md" ]]; then
+            ln -s "AGENTS.md" "${dir}${target}"
+            echo "$dir: Created symlink: $target -> AGENTS.md"
+        elif [[ -f "${dir}AGENT.md" ]]; then
+            ln -s "AGENT.md" "${dir}${target}"
+            echo "$dir: Created symlink: $target -> AGENT.md"
+        else
+            touch "${dir}${target}"
+            echo "$dir: Created $target"
+        fi
+    done
+}
+
 # Fork a GitHub repository and set upstream
 function :fork() {
     local repo="$1"
