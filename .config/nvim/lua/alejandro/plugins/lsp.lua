@@ -56,6 +56,17 @@ return {
 
 				opts.desc = "LSP: Code actions"
 				keymap.set({ "n", "v" }, "<leader>ca", lsp.code_action, opts)
+
+				vim.lsp.inline_completion.enable(true)
+				vim.keymap.set("i", "<Right>", function()
+					if not vim.lsp.inline_completion.get() then
+						return "<Right>"
+					end
+				end, {
+					expr = true,
+					replace_keycodes = true,
+					desc = "Get the current inline completion",
+				})
 			end,
 		})
 	end,

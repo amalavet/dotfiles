@@ -48,6 +48,8 @@ return {
 					"shfmt",
 					-- Terraform
 					"terraform-ls",
+                    -- Copilot
+                   "copilot-language-server"
 				}
 				for _, tool in ipairs(ensure_installed) do
 					local tool_name = type(tool) == "string" and tool or tool[1]

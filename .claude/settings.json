@@ -1,6 +1,20 @@
 {
   "enabledPlugins": {
-    "gopls-lsp@claude-plugins-official": true
+    "example-skills@anthropic-agent-skills": true,
+    "grafana-tech-writing@grafana-ai-kit": true,
+    "grafana-core@grafana-ai-kit": true,
+    "grafana-delegator@grafana-ai-kit": true,
+    "grafana-docker-migration@grafana-ai-kit": true,
+    "grafana-enghub@grafana-ai-kit": true,
+    "grafana-engineering@grafana-ai-kit": true,
+    "grafana-gtd@grafana-ai-kit": true,
+    "grafana-k6@grafana-ai-kit": true,
+    "grafana-mobile@grafana-ai-kit": true,
+    "grafana-o11y@grafana-ai-kit": true,
+    "grafana-o11y-pm@grafana-ai-kit": true,
+    "grafana-product@grafana-ai-kit": true,
+    "document-skills@anthropic-agent-skills": true,
+    "claude-api@anthropic-agent-skills": true
   },
   "extraKnownMarketplaces": {
     "anthropic-agent-skills": {

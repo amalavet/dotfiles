@@ -37,6 +37,7 @@ export KUBE_EDITOR="nvim"
 alias vim="nvim"
 alias vi="nvim"
 export EDITOR="nvim"
+export PATH="$HOME/.local/bin/nvim-macos-arm64/bin:$PATH"
 
 # Set default git editor to nvim
 git config --global core.editor "nvim"
