@@ -69,31 +69,24 @@ return {
 				})
 
 				-- Only accept first word
-				--
-				-- This is a bit hacky,
 				vim.keymap.set("i", "<S-Right>", function()
 					if
 						not vim.lsp.inline_completion.get({
 							on_accept = function(item)
-								if type(item.insert_text) == "string" then
-									local text = item.insert_text
-									local prefix_len = 0
-									if item.range then
-										local cursor = vim.api.nvim_win_get_cursor(0)
-										local cursor_col = cursor[2] -- 0-indexed
-										local cursor_row = cursor[1] - 1 -- 0-indexed
-										if cursor_row == item.range.start.row then
-											prefix_len = math.max(0, cursor_col - item.range.start.col)
-										end
-									end
-									local prefix = text:sub(1, prefix_len)
-									local rest = text:sub(prefix_len + 1)
-									local first_word = rest:match("^([ \t]*%S+)")
-									if not first_word then
-										return nil
-									end
-									item.insert_text = prefix .. first_word
+								if type(item.insert_text) ~= "string" then
+									return item
 								end
+								local cursor = vim.api.nvim_win_get_cursor(0)
+								local prefix_len = item.range
+									and item.range.start.row == cursor[1] - 1
+									and math.max(0, cursor[2] - item.range.start.col)
+									or 0
+								local prefix = item.insert_text:sub(1, prefix_len)
+								local first_word = item.insert_text:sub(prefix_len + 1):match("^([ \t]*%S+)")
+								if not first_word then
+									return nil
+								end
+								item.insert_text = prefix .. first_word
 								return item
 							end,
 						})
