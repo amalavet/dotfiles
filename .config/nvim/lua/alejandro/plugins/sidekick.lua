@@ -4,6 +4,12 @@ return {
 		lazy = false,
 		opts = {
 			nes = { enabled = false },
+			-- cli = {
+			-- 	mux = {
+			-- 		backend = "zellij",
+			-- 		enabled = true,
+			-- 	},
+			-- },
 		},
 		keys = {
 			{
