@@ -10,18 +10,16 @@ return {
 		vim.keymap.set("n", "<leader>go", "<cmd>GBrowse<CR>", { desc = "Git: Open in browser" })
 
 		local signs = {
-			add = { text = "" },
+			add = { text = "" },
 			change = { text = "󰜥" },
-			delete = { text = "" },
-			topdelete = { text = "‾" },
-			changedelete = { text = "~" },
-			untracked = { text = "┆" },
+			delete = { text = "" },
+			topdelete = { text = "" },
+			changedelete = { text = "󰜥" },
+			untracked = { text = "" },
 		}
 
 		require("gitsigns").setup({
 			signs = signs,
-			signs_staged = signs,
-			signs_staged_enable = true,
 		})
 	end,
 }
