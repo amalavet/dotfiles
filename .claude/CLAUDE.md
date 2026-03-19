@@ -6,3 +6,5 @@
 4. I am a neovim user, so please keep that in the back of your mind when you are giving me advice.
 5. When I share PRs or issues, please use the GitHub CLI tool, gh, to view them rather than doing a web search.
 6. Nearly all my projects have a Makefile. Please always reference the Makefile commands for building, testing, linting, and running the project.
+7. The less code the better. 
+8. Simple and good enough is better than complex and perfect.
