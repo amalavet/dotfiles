@@ -1,5 +1,8 @@
 export TERM="alacritty"
 
+# Local bin
+export PATH="$HOME/.local/bin:$PATH"
+
 # Homebrew
 # --------
 if [[ "$OSTYPE" == "darwin"* ]]; then
@@ -37,7 +40,7 @@ export KUBE_EDITOR="nvim"
 alias vim="nvim"
 alias vi="nvim"
 export EDITOR="nvim"
-export PATH="$HOME/.local/bin/nvim-macos-arm64/bin:$PATH"
+# export PATH="$HOME/.local/bin/nvim-macos-arm64/bin:$PATH" # Uncomment if you have a custom nvim installation on macOS
 
 # Set default git editor to nvim
 git config --global core.editor "nvim"
