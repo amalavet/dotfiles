@@ -1,4 +1,32 @@
 {
+  "permissions": {
+    "allow": [
+      "Bash(gh issue view:*)",
+      "Bash(gh pr view:*)",
+      "Bash(gh pr diff:*)",
+      "Read(*)",
+      "Bash(ls:*)",
+      "Bash(git status:*)",
+      "Bash(git diff:*)",
+      "Bash(git log:*)",
+      "Bash(npm run lint:*)",
+      "Bash(npm run test:*)",
+      "Bash(cat:*)",
+      "Bash(grep:*)",
+      "Bash(rg:*)",
+      "Bash(find:*)",
+      "Write(./src/*)",
+      "Write(./tests/*)"
+    ],
+    "deny": [
+      "Bash(rm -rf:*)",
+      "Bash(git push:*)",
+      "Bash(sudo:*)",
+      "Bash(chmod:*)",
+      "Read(./.env)"
+    ]
+  },
+  "model": "sonnet[1m]",
   "enabledPlugins": {
     "example-skills@anthropic-agent-skills": true,
     "grafana-tech-writing@grafana-ai-kit": true,
@@ -24,13 +52,5 @@
         "repo": "anthropics/skills"
       }
     }
-  },
-  "model": "opus[1m]",
-  "permissions": {
-    "allow": [
-      "Bash(gh issue view:*)",
-      "Bash(gh pr view:*)",
-      "Bash(gh pr diff:*)"
-    ]
   }
 }
