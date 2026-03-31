@@ -85,7 +85,10 @@ function :ts() {
 
 # Open all projects in tmux
 function :tmux() {
-    tmux kill-server
+    if tmux list-sessions 2>/dev/null; then
+        echo "\033[0;31mTmux is already running.\033[0m"
+        return 1
+    fi
 
     GREEN='\033[0;32m'
     NC='\033[0m' # No Color
