@@ -83,23 +83,37 @@ function :ts() {
     tmux resize-pane -x 500
 }
 
-# Open all projects in tmux
+# Open selected projects in tmux using fzf
 function :tmux() {
     if tmux list-sessions 2>/dev/null; then
         echo "\033[0;31mTmux is already running.\033[0m"
         return 1
     fi
 
+    local selected
+    selected=$(cat "$HOME/tmux_sessions.txt" | fzf --multi \
+        --prompt="Select sessions > " \
+        --header="TAB to select multiple, ENTER to open" \
+        --bind "ctrl-a:select-all")
+
+    if [[ -z "$selected" ]]; then
+        echo "No sessions selected."
+        return 1
+    fi
+
     GREEN='\033[0;32m'
-    NC='\033[0m' # No Color
+    NC='\033[0m'
 
     echo -e "${GREEN}Opening tmux...${NC}"
-    # Setup tmux sessions
-    while read -r dir; do
+    while IFS= read -r dir; do
         :ts "$dir"
-    done <"$HOME/tmux_sessions.txt"
+    done <<< "$selected"
     tmux new-session -s Docker -d -n "lazydocker" "lazydocker; zsh"
-    tmux a -t dotfiles
+
+    local first
+    first=$(basename "$(echo "$selected" | head -1)")
+    first=${first//[^a-zA-Z0-9_-]/-}
+    tmux a -t "$first"
 }
 
 # Open a project in tmux, fzf to select project
