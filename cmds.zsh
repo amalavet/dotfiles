@@ -5,7 +5,7 @@ function :h() {
     while IFS= read -r line; do
         if [[ $line == "# "* ]]; then
             description="${line:2}"
-        elif [[ $line == "function "* ]]; then
+        elif [[ $line == "function :"* ]]; then
             cmd="${line:9}"
             cmd=${cmd%%\(*}
             cmd=$(printf "  %-8s" "$cmd")
@@ -83,6 +83,28 @@ function :ts() {
     tmux resize-pane -x 500
 }
 
+# List all project dirs (tmux_sessions.txt + GitHub dirs), optionally excluding those with active sessions
+function _tmux_pick_dirs() {
+    local exclude_active="${1:-false}"
+    local existing_sessions=""
+    [[ "$exclude_active" == "true" ]] && existing_sessions=$(tmux list-sessions -F '#S' 2>/dev/null)
+
+    { [[ -f ~/tmux_sessions.txt ]] && cat ~/tmux_sessions.txt;
+      find ~/GitHub/Personal ~/GitHub -type d -maxdepth 1 2>/dev/null; } \
+    | sort -u \
+    | while IFS= read -r d; do
+        if [[ "$exclude_active" == "true" ]]; then
+            local name=${${d:t}//[^a-zA-Z0-9_-]/-}
+            echo "$existing_sessions" | grep -qx "$name" && continue
+        fi
+        echo "$d"
+      done \
+    | fzf --multi \
+        --prompt="Select sessions > " \
+        --header="TAB to select multiple, ENTER to open" \
+        --bind "ctrl-a:select-all"
+}
+
 # Open selected projects in tmux using fzf
 function :tmux() {
     if tmux list-sessions 2>/dev/null; then
@@ -91,20 +113,10 @@ function :tmux() {
     fi
 
     local selected
-    selected=$(cat "$HOME/tmux_sessions.txt" | fzf --multi \
-        --prompt="Select sessions > " \
-        --header="TAB to select multiple, ENTER to open" \
-        --bind "ctrl-a:select-all")
+    selected=$(_tmux_pick_dirs)
+    [[ -z "$selected" ]] && return 0
 
-    if [[ -z "$selected" ]]; then
-        echo "No sessions selected."
-        return 1
-    fi
-
-    GREEN='\033[0;32m'
-    NC='\033[0m'
-
-    echo -e "${GREEN}Opening tmux...${NC}"
+    echo -e "\033[0;32mOpening tmux...\033[0m"
     while IFS= read -r dir; do
         :ts "$dir"
     done <<< "$selected"
@@ -116,11 +128,20 @@ function :tmux() {
     tmux a -t "$first"
 }
 
-# Open a project in tmux, fzf to select project
+# Attach to (or create) a project tmux session, skipping dirs that already have a session
 function :ta() {
-    local dir
-    dir=$(find ~/GitHub/Personal ~/GitHub -type d -maxdepth 1 2>/dev/null | fzf)
-    :ts "$dir" # This writes the tmux session to $session
+    local selected
+    selected=$(_tmux_pick_dirs true)
+    [[ -z "$selected" ]] && return 0
+
+    local first session
+    while IFS= read -r dir; do
+        :ts "$dir"
+        first=${first:-$dir}
+    done <<< "$selected"
+
+    session=$(basename "$first")
+    session=${session//[^a-zA-Z0-9_-]/-}
     tmux a -t "$session"
 }
 
