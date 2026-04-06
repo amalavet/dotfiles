@@ -1,0 +1,11 @@
+[keys.general]
+quit = "esc"
+show_help_menu = "C-g"
+
+[editor_open]
+command = "nvim --server $NVIM --remote-send '<cmd>lua EditLineFromScooter(\"%file\", %line)<CR>'"
+
+# Commands available on the search screen, when the search results are focussed
+[keys.search.results]
+trigger_replacement = "e"
+open_in_editor = "enter" 
