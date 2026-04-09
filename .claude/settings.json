@@ -26,7 +26,7 @@
       "Read(./.env)"
     ]
   },
-  "model": "sonnet[1m]",
+  "model": "opus[1m]",
   "enabledPlugins": {
     "example-skills@anthropic-agent-skills": true,
     "grafana-tech-writing@grafana-ai-kit": true,

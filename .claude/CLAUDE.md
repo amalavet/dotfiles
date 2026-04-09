@@ -8,6 +8,7 @@
 6. Nearly all my projects have a Makefile. Please always reference the Makefile commands for building, testing, linting, and running the project.
 7. The less code the better.
 8. Simple and good enough is better than complex and perfect.
+9. Always look for README.md files alongside any files you're changing. They often include helpful information that will help you run/build/understand the code.
 
 ### Tips for PRs
 

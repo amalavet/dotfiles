@@ -105,7 +105,7 @@ function _tmux_pick_dirs() {
         --bind "ctrl-a:select-all"
 }
 
-# Open selected projects in tmux using fzf
+# Open projects in tmux. Use ":tmux list" to pick with fzf, otherwise opens dirs from tmux_sessions.txt.
 function :tmux() {
     if tmux list-sessions 2>/dev/null; then
         echo "\033[0;31mTmux is already running.\033[0m"
@@ -113,7 +113,11 @@ function :tmux() {
     fi
 
     local selected
-    selected=$(_tmux_pick_dirs)
+    if [[ "$1" == "list" ]]; then
+        selected=$(_tmux_pick_dirs)
+    else
+        [[ -f ~/tmux_sessions.txt ]] && selected=$(cat ~/tmux_sessions.txt)
+    fi
     [[ -z "$selected" ]] && return 0
 
     echo -e "\033[0;32mOpening tmux...\033[0m"
