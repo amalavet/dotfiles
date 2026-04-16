@@ -69,16 +69,17 @@ return {
 						if
 							not vim.lsp.inline_completion.get({
 								on_accept = function(item)
-									if type(item.insert_text) ~= "string" then
+									local insert_text = item.insert_text
+									if type(insert_text) ~= "string" then
 										return item
 									end
 									local cursor = vim.api.nvim_win_get_cursor(0)
 									local prefix_len = item.range
-										and item.range.start.row == cursor[1] - 1
-										and math.max(0, cursor[2] - item.range.start.col)
+											and item.range.start_row == cursor[1] - 1
+											and math.max(0, cursor[2] - item.range.start_col)
 										or 0
-									local prefix = item.insert_text:sub(1, prefix_len)
-									local first_word = item.insert_text:sub(prefix_len + 1):match("^([ \t]*%S+)")
+									local prefix = insert_text:sub(1, prefix_len)
+									local first_word = insert_text:sub(prefix_len + 1):match("^([ \t]*%S+)")
 									if not first_word then
 										return nil
 									end
