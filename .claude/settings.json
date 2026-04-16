@@ -43,13 +43,20 @@
     "grafana-product@grafana-ai-kit": true,
     "document-skills@anthropic-agent-skills": true,
     "claude-api@anthropic-agent-skills": true,
-    "grafana-app-sdk@grafana-ai-kit": true
+    "grafana-app-sdk@grafana-ai-kit": true,
+    "caveman@caveman": true
   },
   "extraKnownMarketplaces": {
     "anthropic-agent-skills": {
       "source": {
         "source": "github",
         "repo": "anthropics/skills"
+      }
+    },
+    "caveman": {
+      "source": {
+        "source": "github",
+        "repo": "JuliusBrussee/caveman"
       }
     }
   }

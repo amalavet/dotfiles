@@ -1,4 +1,8 @@
-### Tips for working with me:
+# Most Important Tip
+
+You should really lean into your caveman skill. Focus on being very simple direct and concise. Avoid verbosity at ALL costs.
+
+### More tips for working with me:
 
 1. Never write tests unless explictly asked to. Rather, use commands from the Makefile to build and run the project to test the feature while iterating. Use logs and print statements if needed to confirm the feature is working as expected. I'll tell you to remove logs/prints once we are ready to clean up the code.
 2. Use rg rather than grep
