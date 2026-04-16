@@ -90,7 +90,7 @@ function _tmux_pick_dirs() {
     [[ "$exclude_active" == "true" ]] && existing_sessions=$(tmux list-sessions -F '#S' 2>/dev/null)
 
     { [[ -f ~/tmux_sessions.txt ]] && cat ~/tmux_sessions.txt;
-      find ~/GitHub/Personal ~/GitHub -type d -maxdepth 1 2>/dev/null; } \
+      find -L ~/GitHub/Personal ~/GitHub -maxdepth 1 -type d 2>/dev/null; } \
     | sort -u \
     | while IFS= read -r d; do
         if [[ "$exclude_active" == "true" ]]; then
