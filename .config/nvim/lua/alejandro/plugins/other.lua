@@ -1,19 +1,22 @@
 return {
-	"tpope/vim-surround",
+	{ src = "https://github.com/tpope/vim-surround" },
 	{
-		"windwp/nvim-autopairs",
+		src = "https://github.com/windwp/nvim-autopairs",
 		event = "InsertEnter",
-		opts = {},
+		config = function()
+			require("nvim-autopairs").setup()
+		end,
 	},
 	{
-		"norcalli/nvim-colorizer.lua",
-		opts = { css = { css = true }, rasi = { rgb_fn = true }, lua = { lua = true } },
+		src = "https://github.com/norcalli/nvim-colorizer.lua",
+		config = function()
+			require("colorizer").setup({ css = { css = true }, rasi = { rgb_fn = true }, lua = { lua = true } })
+		end,
 	},
 	{
-		"folke/todo-comments.nvim",
-		dependencies = { "nvim-lua/plenary.nvim" },
-		opts = {
-			signs = false,
-		},
+		src = "https://github.com/folke/todo-comments.nvim",
+		config = function()
+			require("todo-comments").setup({ signs = false })
+		end,
 	},
 }

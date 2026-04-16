@@ -1,16 +1,11 @@
 return {
-	"lukas-reineke/indent-blankline.nvim",
-	main = "ibl",
-	config = function()
-		local ibl = require("ibl")
-		ibl.setup({
-			indent = {
-				char = "│",
-			},
-			scope = {
-				show_start = false,
-				show_end = false,
-			},
-		})
-	end,
+	{
+		src = "https://github.com/lukas-reineke/indent-blankline.nvim",
+		config = function()
+			require("ibl").setup({
+				indent = { char = "│" },
+				scope = { show_start = false, show_end = false },
+			})
+		end,
+	},
 }

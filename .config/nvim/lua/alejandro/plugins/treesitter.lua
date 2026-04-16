@@ -1,57 +1,113 @@
 return {
-	"nvim-treesitter/nvim-treesitter",
-	build = ":TSUpdate",
-	dependencies = {
-		"nvim-treesitter/nvim-treesitter-textobjects",
-		"nvim-treesitter/nvim-treesitter-context",
-		"windwp/nvim-ts-autotag",
-		{ "ngynkvn/gotmpl.nvim", opts = {} },
+	{ src = "https://github.com/nvim-treesitter/nvim-treesitter-textobjects", version = "main" },
+	{ src = "https://github.com/nvim-treesitter/nvim-treesitter-context" },
+	{ src = "https://github.com/windwp/nvim-ts-autotag" },
+	{
+		src = "https://github.com/ngynkvn/gotmpl.nvim",
+		config = function()
+			require("gotmpl").setup()
+		end,
 	},
+	{
+		src = "https://github.com/nvim-treesitter/nvim-treesitter",
+		version = "main",
+		config = function()
+			require("nvim-ts-autotag").setup()
+			require("nvim-treesitter").setup()
 
-	config = function()
-		local autotag = require("nvim-ts-autotag")
-		autotag.setup()
-		local configs = require("nvim-treesitter.configs")
-		configs.setup({
-			auto_install = true,
-			ensure_installed = { "lua" },
-			sync_install = false,
-			ignore_install = {},
-			textobjects = {
-				move = {
-					enable = true,
-					set_jumps = true, -- whether to set jumps in the jumplist
-					goto_next_start = {
-						["]]"] = { query = "@function.outer", desc = "Goto next function start" },
-						["]m"] = { query = "@class.outer", desc = "Goto next class start" },
-					},
-					goto_next_end = {
-						["]["] = { query = "@function.outer", desc = "Goto next function end" },
-						["]M"] = { query = "@class.outer", desc = "Goto next class end" },
-					},
-					goto_previous_start = {
-						["[["] = { query = "@function.outer", desc = "Goto previous function start" },
-						["[m"] = { query = "@class.outer", desc = "Goto previous class start" },
-					},
-					goto_previous_end = {
-						["[]"] = { query = "@function.outer", desc = "Goto previous function end" },
-						["[M"] = { query = "@class.outer", desc = "Goto previous class end" },
-					},
-				},
-				select = {
-					enable = true,
-					lookahead = true,
-					keymaps = {
-						["af"] = { query = "@function.outer", desc = "Select around function" },
-						["if"] = { query = "@function.inner", desc = "Select inside function" },
-						["ac"] = { query = "@class.outer", desc = "Select around class" },
-						["ic"] = { query = "@class.inner", desc = "Select inside class" },
-					},
-				},
-			},
-			modules = {},
-			highlight = { enable = true },
-			indent = { enable = true },
-		})
-	end,
+			local parsers = {
+				"bash",
+				"c",
+				"cpp",
+				"css",
+				"cue",
+				"dockerfile",
+				"go",
+				"gomod",
+				"gosum",
+				"gotmpl",
+				"html",
+				"javascript",
+				"json",
+				"jsonnet",
+				"lua",
+				"luadoc",
+				"markdown",
+				"markdown_inline",
+				"proto",
+				"python",
+				"query",
+				"ruby",
+				"rust",
+				"solidity",
+				"svelte",
+				"terraform",
+				"toml",
+				"tsx",
+				"typescript",
+				"vim",
+				"vimdoc",
+				"yaml",
+			}
+			require("nvim-treesitter").install(parsers)
+
+			vim.api.nvim_create_autocmd("FileType", {
+				callback = function(ev)
+					local ok = pcall(vim.treesitter.start, ev.buf)
+					if ok then
+						vim.bo[ev.buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+					end
+				end,
+			})
+
+			require("nvim-treesitter-textobjects").setup({
+				select = { lookahead = true },
+				move = { set_jumps = true },
+			})
+
+			local sel = require("nvim-treesitter-textobjects.select")
+			local mv = require("nvim-treesitter-textobjects.move")
+			local function map(modes, lhs, fn, desc)
+				vim.keymap.set(modes, lhs, fn, { desc = desc, silent = true })
+			end
+
+			map({ "x", "o" }, "af", function()
+				sel.select_textobject("@function.outer", "textobjects")
+			end, "Select around function")
+			map({ "x", "o" }, "if", function()
+				sel.select_textobject("@function.inner", "textobjects")
+			end, "Select inside function")
+			map({ "x", "o" }, "ac", function()
+				sel.select_textobject("@class.outer", "textobjects")
+			end, "Select around class")
+			map({ "x", "o" }, "ic", function()
+				sel.select_textobject("@class.inner", "textobjects")
+			end, "Select inside class")
+
+			map("n", "]]", function()
+				mv.goto_next_start("@function.outer", "textobjects")
+			end, "Goto next function start")
+			map("n", "]m", function()
+				mv.goto_next_start("@class.outer", "textobjects")
+			end, "Goto next class start")
+			map("n", "][", function()
+				mv.goto_next_end("@function.outer", "textobjects")
+			end, "Goto next function end")
+			map("n", "]M", function()
+				mv.goto_next_end("@class.outer", "textobjects")
+			end, "Goto next class end")
+			map("n", "[[", function()
+				mv.goto_previous_start("@function.outer", "textobjects")
+			end, "Goto prev function start")
+			map("n", "[m", function()
+				mv.goto_previous_start("@class.outer", "textobjects")
+			end, "Goto prev class start")
+			map("n", "[]", function()
+				mv.goto_previous_end("@function.outer", "textobjects")
+			end, "Goto prev function end")
+			map("n", "[M", function()
+				mv.goto_previous_end("@class.outer", "textobjects")
+			end, "Goto prev class end")
+		end,
+	},
 }
