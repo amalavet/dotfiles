@@ -25,3 +25,6 @@ You should really lean into your caveman skill. Focus on being very simple direc
 ### Where to find things
 
 1. I have a bunch of repos locally stored in ~/GitHub, which you should reference for context, espeically if they're grafana repos.
+
+### Working in Go
+1. Avoid doing any form of type casting unless ABSOLUTELY necessary.
