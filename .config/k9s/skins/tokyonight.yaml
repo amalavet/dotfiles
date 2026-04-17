@@ -1,0 +1,83 @@
+k9s:
+  body:
+    fgColor: "#c0caf5"
+    bgColor: default
+    logoColor: "#7aa2f7"
+  prompt:
+    fgColor: "#c0caf5"
+    bgColor: default
+    suggestColor: "#7dcfff"
+  info:
+    fgColor: "#7dcfff"
+    sectionColor: "#c0caf5"
+  dialog:
+    fgColor: "#c0caf5"
+    bgColor: default
+    buttonFgColor: "#1a1b26"
+    buttonBgColor: "#7aa2f7"
+    buttonFocusFgColor: "#1a1b26"
+    buttonFocusBgColor: "#bb9af7"
+    labelFgColor: "#e0af68"
+    fieldFgColor: "#c0caf5"
+  frame:
+    border:
+      fgColor: "#565f89"
+      focusColor: "#7aa2f7"
+    menu:
+      fgColor: "#c0caf5"
+      keyColor: "#bb9af7"
+      numKeyColor: "#bb9af7"
+    crumbs:
+      fgColor: "#1a1b26"
+      bgColor: "#7aa2f7"
+      activeColor: "#bb9af7"
+    status:
+      newColor: "#7dcfff"
+      modifyColor: "#bb9af7"
+      addColor: "#9ece6a"
+      errorColor: "#f7768e"
+      highlightColor: "#ff9e64"
+      killColor: "#565f89"
+      completedColor: "#565f89"
+    title:
+      fgColor: "#c0caf5"
+      bgColor: default
+      highlightColor: "#ff9e64"
+      counterColor: "#bb9af7"
+      filterColor: "#7aa2f7"
+  views:
+    charts:
+      bgColor: default
+      defaultDialColors:
+        - "#7aa2f7"
+        - "#f7768e"
+      defaultChartColors:
+        - "#7aa2f7"
+        - "#f7768e"
+    table:
+      fgColor: "#c0caf5"
+      bgColor: default
+      cursorFgColor: "#1a1b26"
+      cursorBgColor: "#7aa2f7"
+      header:
+        fgColor: "#7aa2f7"
+        bgColor: default
+        sorterColor: "#bb9af7"
+    xray:
+      fgColor: "#c0caf5"
+      bgColor: default
+      cursorColor: "#7aa2f7"
+      graphicColor: "#bb9af7"
+      showIcons: false
+    yaml:
+      keyColor: "#7aa2f7"
+      colonColor: "#bb9af7"
+      valueColor: "#c0caf5"
+    logs:
+      fgColor: "#c0caf5"
+      bgColor: default
+      indicator:
+        fgColor: "#c0caf5"
+        bgColor: default
+        toggleOnColor: "#9ece6a"
+        toggleOffColor: "#565f89"

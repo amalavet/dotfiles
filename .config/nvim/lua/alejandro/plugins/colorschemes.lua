@@ -4,6 +4,7 @@ return {
 		config = function()
 			local colorscheme = require("tokyonight")
 			colorscheme.setup({
+				on_colors = function() end,
 				transparent = true,
 				on_highlights = function(hl)
 					-- Dim inactive windows by setting NormalNC to a darker background

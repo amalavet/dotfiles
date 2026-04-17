@@ -32,9 +32,11 @@ export PYENV_ROOT="$HOME/.pyenv"
 [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init - zsh)"
 
-# Kubectl
+# Kubernetes
 # -------
 export KUBE_EDITOR="nvim"
+export K9S_CONFIG_DIR="$HOME/.config/k9s"
+export K9S_SKIN_DIR="$HOME/.config/k9s/skins"
 
 # Aliases
 alias vim="nvim"

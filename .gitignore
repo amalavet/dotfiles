@@ -4,3 +4,4 @@ nvim/lazy-lock.json
 .config/nvim/lazy-lock.json
 /.claude/settings.local.json
 /.config/nvim/nvim-pack-lock.json
+/.config/k9s/clusters/
