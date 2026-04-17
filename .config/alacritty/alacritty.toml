@@ -8,7 +8,9 @@ blur = true
 option_as_alt = "Both"
 
 [font]
-normal.family = "JetBrainsMono Nerd Font"
+normal.family = "Maple Mono NF"
+# normal.family = "Iosevka Nerd Font"
+# normal.family = "JetBrainsMono Nerd Font"
 size = 15
 
 [colors]

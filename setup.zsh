@@ -107,8 +107,12 @@ install_packages zsh-vi-mode
 # https://www.nerdfonts.com
 if [[ "$OSTYPE" == "darwin"* ]]; then
     install_packages font-jetbrains-mono-nerd-font
+    install_packages font-iosevka-nerd-font
+    install_packages font-maple-mono-nf
 elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
     install_packages ttf-jetbrains-mono-nerd
+    install_packages ttf-iosevka-nerd
+    install_packages ttf-maple-mono-nf
     fc-cache -fv >/dev/null
 fi
 
