@@ -14,6 +14,7 @@ You should really lean into your caveman skill. Focus on being very simple direc
 8. Simple and good enough is better than complex and perfect.
 9. Always look for README.md files alongside any files you're changing. They often include helpful information that will help you run/build/understand the code.
 10. If you don't have permission to do something, print out the command for me to run on my own
+11. Be conservative with comments, only add them if they clarify something that the code itself doesn't make clear.
 
 ### Tips for PRs
 

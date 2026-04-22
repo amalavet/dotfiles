@@ -38,6 +38,9 @@ export KUBE_EDITOR="nvim"
 export K9S_CONFIG_DIR="$HOME/.config/k9s"
 export K9S_SKIN_DIR="$HOME/.config/k9s/skins"
 
+# Lazygit (mac default is ~/Library/Application Support/lazygit)
+export LG_CONFIG_FILE="$HOME/.config/lazygit/config.yml"
+
 # Aliases
 alias vim="nvim"
 alias vi="nvim"
