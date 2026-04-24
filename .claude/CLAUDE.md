@@ -15,6 +15,7 @@ You should really lean into your caveman skill. Focus on being very simple direc
 9. Always look for README.md files alongside any files you're changing. They often include helpful information that will help you run/build/understand the code.
 10. If you don't have permission to do something, print out the command for me to run on my own
 11. Be conservative with comments, only add them if they clarify something that the code itself doesn't make clear.
+12. If I undo some code/logic, don't add comments about what I undid or changed, the comments should only describe the current state of the code, not the history of how it got there.
 
 ### Tips for PRs
 
@@ -28,4 +29,5 @@ You should really lean into your caveman skill. Focus on being very simple direc
 1. I have a bunch of repos locally stored in ~/GitHub, which you should reference for context, espeically if they're grafana repos.
 
 ### Working in Go
+
 1. Avoid doing any form of type casting unless ABSOLUTELY necessary.
