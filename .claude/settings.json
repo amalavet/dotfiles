@@ -59,5 +59,7 @@
         "repo": "JuliusBrussee/caveman"
       }
     }
-  }
+  },
+  "effortLevel": "high",
+  "editorMode": "vim"
 }
