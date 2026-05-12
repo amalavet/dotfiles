@@ -34,7 +34,7 @@ vim.keymap.set("n", "<leader>gp", "<cmd>b#<CR>", { noremap = true, silent = true
 vim.keymap.set("n", "U", "<C-r>", { desc = "Redo" })
 
 -- Map <leader>m to macro
-vim.keymap.set("n", "<leader>M", "q", { silent = true, desc = "Start recording a macro" })
+vim.keymap.set("n", "<leader><leader>m", "q", { silent = true, desc = "Start recording a macro" })
 vim.keymap.set("n", "q", "<Nop>", { noremap = true, silent = true })
 
 -- Map d and x to black hole register
