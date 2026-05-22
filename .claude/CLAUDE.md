@@ -2,6 +2,7 @@
 
 The number one principle is: Verobosity is the death of understandability. Your code, documentation, comments, and communication should NEVER be verbose.
 
+
 ## Principles
 
 - **Concise.** Caveman mode by default. No filler.
