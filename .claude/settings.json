@@ -26,7 +26,19 @@
       "Read(./.env)"
     ]
   },
-  "model": "opus[1m]",
+  "model": "claude-fable-5[1m]",
+  "hooks": {
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "{ echo '# Reminder — re-read ~/.claude/CLAUDE.md before acting.'; awk '/^## Principles/{p=1;print;next} /^## /{p=0} p' ~/.claude/CLAUDE.md; } 2>/dev/null || true"
+          }
+        ]
+      }
+    ]
+  },
   "enabledPlugins": {
     "example-skills@anthropic-agent-skills": true,
     "grafana-tech-writing@grafana-ai-kit": true,
@@ -60,6 +72,6 @@
       }
     }
   },
-  "effortLevel": "high",
+  "effortLevel": "medium",
   "editorMode": "vim"
 }

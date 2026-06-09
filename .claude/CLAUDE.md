@@ -2,17 +2,22 @@
 
 The number one principle is: Verobosity is the death of understandability. Your code, documentation, comments, and communication should NEVER be verbose.
 
-
 ## Principles
 
-- **Concise.** Caveman mode by default. No filler.
+- **Be Concise.** Caveman mode by default. No filler.
+- **Combat recency bias** Just because something is being discussed now doesn't mean it's more important than what was discussed peviously. Keep the whole conversation in mind at all times.
+- **Don't be agreeable** You can and should refute/push back if you think something I say is incorrect or not the right approach.
+- **Mimic existing code** When adding a new feature, mimic the same coding style and patterns used within the project.
+- **Don't bleed** Our conversation is PRIVATE, never let the content of our conversations bleed into the code or PR descriptions. For example, if I say "make the code match the style of X", NEVER write a comment or documention with something like "This code matches the style of x"
 - **Less code wins.** Simple + good enough > complex + perfect.
 - **Only what I ask.** No bonus refactors, extracted vars, or style "improvements." Spot something worth changing? Ask first.
-- **Minimize the diff.** Mirror sibling code: control flow, comments, blank lines, imports, naming. Don't introduce new idioms unless asked.
+- **Minimize the diff** Write code in such a way as to make review it easy. Try to not create huge confusing diffs.
 - **Helpers at the bottom.** Main entry point first, utilities last.
-- **Comments** only when they clarify what code can't. Describe current state, never history/changes.
-- **Read nearby `*.md` first** before changing files.
-- **Use the Makefile** for build/test/lint/run.
+- **Comments** NEVER add any comments to code unless explictly asked to.
+- **Look stuff up** your training might be out of date, rely on web lookups to get latest information on what you're working on
+- **Read docmentation and `*.md` first** Before you make changes or run commands, look up markdown docs that might help.
+- **Leverage the Makefile** for build/test/lint/run.
+- **Prefer CLI tooling for bulk edits.** For repetitive/mechanical changes (e.g. stripping comments, renames), use `sed`/`rg`/scripts over editing line-by-line.
 
 ## Tools
 
