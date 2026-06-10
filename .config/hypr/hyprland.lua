@@ -8,6 +8,14 @@ local mainMod = "SUPER"
 ------------
 hl.monitor({ output = "", mode = "preferred", position = "auto", scale = 1.5 })
 
+------------
+-- ENV VARS
+------------
+hl.env("XCURSOR_THEME", "Adwaita")
+hl.env("XCURSOR_SIZE", "24")
+hl.env("HYPRCURSOR_THEME", "Adwaita")
+hl.env("HYPRCURSOR_SIZE", "24")
+
 ------------------
 -- AUTOSTART
 ------------------
@@ -23,16 +31,11 @@ end)
 -- CONFIG
 ----------
 hl.config({
-    env = {
-        XCURSOR_SIZE = "24",
-        HYPRCURSOR_SIZE = "24",
-    },
-
     general = {
         gaps_in = 0,
         gaps_out = 0,
         border_size = 0,
-        ["col.active_border"] = "rgba(255255554d)",
+        ["col.active_border"] = "rgba(ffffff4d)",
         ["col.inactive_border"] = "rgba(0000004d)",
         resize_on_border = false,
         allow_tearing = false,
@@ -57,7 +60,6 @@ hl.config({
     },
 
     dwindle = {
-        pseudotile = true,
         preserve_split = true,
     },
 
@@ -83,17 +85,17 @@ hl.config({
         },
     },
 
-    gestures = {
-        workspace_swipe = false,
-    },
-
     xwayland = {
         force_zero_scaling = true,
+    },
+
+    cursor = {
+        no_hardware_cursors = true,
     },
 })
 
 -- Layer rule for waybar blur
-hl.layer_rule({ namespace = "waybar", blur = true })
+hl.layer_rule({ match = { namespace = "waybar" }, blur = true })
 
 -----------------
 -- WINDOW RULES
