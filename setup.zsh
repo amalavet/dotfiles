@@ -93,6 +93,13 @@ source ~/.zshrc
 # ---------
 install_packages alacritty
 
+# Symlink OS-specific alacritty overrides
+if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+    ln -sf "$SETUP_SCRIPT_PATH/.config/alacritty/linux.toml" ~/.config/alacritty/os.toml
+elif [[ "$OSTYPE" == "darwin"* ]]; then
+    ln -sf "$SETUP_SCRIPT_PATH/.config/alacritty/mac.toml" ~/.config/alacritty/os.toml
+fi
+
 # Powerlevel10k
 # -------------
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then

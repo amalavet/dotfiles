@@ -9,6 +9,7 @@ base-devel
 bc
 bluez
 bluez-utils
+brightnessctl
 btrfs-progs
 cliphist
 cups
@@ -48,7 +49,9 @@ gvfs-nfs
 gvfs-smb
 gvfs-wsdd
 htop
+hypridle
 hyprland
+hyprlock
 hyprpaper
 lazydocker
 lazygit
