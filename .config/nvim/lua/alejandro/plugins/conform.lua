@@ -21,7 +21,6 @@ return {
 					yaml = { "prettierd" },
 					markdown = { "prettierd" },
 					proto = { "buf" },
-					rust = { "rustfmt" },
 					terraform = { "terraform_fmt" },
 					svelte = { "prettier" },
 					ruby = { "rubyfmt" },

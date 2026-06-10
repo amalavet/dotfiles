@@ -13,7 +13,6 @@ return {
 						"yamlfmt",
 						"yaml-language-server",
 						-- Frontend
-						"svelte-language-server",
 						"typescript-language-server",
 						"prettierd",
 						"prettier",
@@ -26,7 +25,6 @@ return {
 						"black",
 						"isort",
 						-- Rust
-						"rustfmt",
 						"rust-analyzer",
 						-- Protobuf
 						"buf",
