@@ -12,7 +12,6 @@ option_as_alt = "Both"
 normal.family = "Maple Mono NF"
 # normal.family = "Iosevka Nerd Font"
 # normal.family = "JetBrainsMono Nerd Font"
-size = 15
 
 [colors]
 transparent_background_colors = true
