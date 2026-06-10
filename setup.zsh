@@ -17,7 +17,7 @@ function install_packages_arch() {
     for package in "${packages[@]}"; do
         if ! yay -Qi "$package" &>/dev/null; then
             echo -e "${OK}Installing $package...${NC}"
-            sudo yay -S --noconfirm "$package"
+            yay -S --noconfirm "$package"
         else
             echo -e "${INFO}$package is already installed${NC}"
         fi
@@ -61,6 +61,12 @@ mkdir -p ~/.config
 # --------------------------------
 install_packages stow
 stow .
+
+# Bulk install Arch packages
+# --------------------------
+if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+    install_packages $(grep -v '^\s*#' "$SETUP_SCRIPT_PATH/packages.txt" | grep -v '^\s*$')
+fi
 
 source ~/.zshrc
 
@@ -123,7 +129,7 @@ install_packages nvm yarn
 # Go
 # --
 install_packages goenv
-goenv global latest
+goenv install latest -s
 source ~/.zshrc
 
 # Install Delve (Go Debugger)
@@ -150,6 +156,10 @@ fi
 # Lazygit / Lazydocker
 # -------
 install_packages lazygit lazydocker
+
+# Scooter
+# -------
+install_packages scooter
 
 # Fastfetch
 # ---------
