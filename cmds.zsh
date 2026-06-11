@@ -76,7 +76,7 @@ function :ts() {
     # Open nvim with two terminals
     tmux new-window -n "nvim" "cd $dir && nvim; zsh"
     if [[ "$session" == "dotfiles" ]]; then
-        tmux split-window -hb -t $session:nvim "cd $dir; sleep 2; echo; echo; fastfetch; zsh"
+        tmux split-window -hb -t $session:nvim "cd $dir; sleep 2; echo; echo; fastfetch -s title:os:kernel:terminal:terminalfont:datetime; echo; echo; zsh"
     else
         tmux split-window -hb -t $session:nvim "cd $dir; zsh"
     fi
