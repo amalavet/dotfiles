@@ -75,7 +75,11 @@ function :ts() {
 
     # Open nvim with two terminals
     tmux new-window -n "nvim" "cd $dir && nvim; zsh"
-    tmux split-window -hb -t $session:nvim "cd $dir; sleep 0.05; echo; echo; fastfetch; zsh"
+    if [[ "$session" == "dotfiles" ]]; then
+        tmux split-window -hb -t $session:nvim "cd $dir; sleep 2; echo; echo; fastfetch; zsh"
+    else
+        tmux split-window -hb -t $session:nvim "cd $dir; zsh"
+    fi
     tmux split-window -v -t $session:nvim "cd $dir; zsh"
 
     # Resize panes

@@ -9,3 +9,4 @@ nvim/lazy-lock.json
 /.config/opencode/plugins
 /.github/workflows/opencode.yml
 /.github/workflows/opencode.yml
+/.config/alacritty/os.toml
