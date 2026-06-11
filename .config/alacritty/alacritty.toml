@@ -9,9 +9,9 @@ decorations = "none"
 option_as_alt = "Both"
 
 [font]
-normal.family = "Maple Mono NF"
+# normal.family = "Maple Mono NF"
 # normal.family = "Iosevka Nerd Font"
-# normal.family = "JetBrainsMono Nerd Font"
+normal.family = "JetBrainsMono Nerd Font"
 
 [colors]
 transparent_background_colors = true
