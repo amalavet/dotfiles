@@ -125,7 +125,7 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
 elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
     install_packages ttf-jetbrains-mono-nerd
     install_packages ttf-iosevka-nerd
-    install_packages ttf-maple-mono-nf
+    install_packages maplemono-nf
     fc-cache -fv >/dev/null
 fi
 
