@@ -18,6 +18,10 @@ hl.env("QT_QPA_PLATFORMTHEME", "qt6ct")
 ----------
 local cursor_theme = "catppuccin-mocha-red-cursors"
 local cursor_size = 32
+hl.env("HYPRCURSOR_THEME", cursor_theme)
+hl.env("HYPRCURSOR_SIZE", tostring(cursor_size))
+hl.env("XCURSOR_THEME", cursor_theme)
+hl.env("XCURSOR_SIZE", tostring(cursor_size))
 hl.exec_cmd("hyprctl setcursor " .. cursor_theme .. " " .. cursor_size)
 
 ------------------
