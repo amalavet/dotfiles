@@ -13,6 +13,7 @@ bluez-utils
 brightnessctl
 btop
 btrfs-progs
+catppuccin-cursors-mocha
 cliphist
 cups
 cups-pk-helper

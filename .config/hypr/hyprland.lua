@@ -11,11 +11,14 @@ hl.monitor({ output = "", mode = "preferred", position = "auto", scale = 1.5 })
 ------------
 -- ENV VARS
 ------------
-hl.env("XCURSOR_THEME", "Adwaita")
-hl.env("XCURSOR_SIZE", "24")
-hl.env("HYPRCURSOR_THEME", "Adwaita")
-hl.env("HYPRCURSOR_SIZE", "24")
 hl.env("QT_QPA_PLATFORMTHEME", "qt6ct")
+
+----------
+-- CURSOR
+----------
+local cursor_theme = "catppuccin-mocha-red-cursors"
+local cursor_size = 32
+hl.exec_cmd("hyprctl setcursor " .. cursor_theme .. " " .. cursor_size)
 
 ------------------
 -- AUTOSTART
@@ -82,7 +85,7 @@ hl.config({
 		follow_mouse = 1,
 		repeat_delay = 200,
 		repeat_rate = 50,
-		sensitivity = 0,
+		sensitivity = -0.8,
 		touchpad = {
 			scroll_factor = 0.2,
 			natural_scroll = false,
@@ -95,8 +98,12 @@ hl.config({
 
 	cursor = {
 		no_hardware_cursors = true,
+		use_cpu_buffer = 1,
 	},
 })
+
+-- Per-device input overrides
+hl.device({ name = "asce1206:00-04f3:3315-touchpad", sensitivity = 0 })
 
 -- Layer rule for waybar blur
 hl.layer_rule({ match = { namespace = "waybar" }, blur = true })
