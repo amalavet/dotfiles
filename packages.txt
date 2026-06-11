@@ -59,6 +59,7 @@ hyprland
 hyprlock
 hyprpaper
 inotify-tools
+input-remapper-git
 lazydocker
 lazygit
 lib32-vulkan-radeon
@@ -73,6 +74,7 @@ linux-headers
 linux-lts
 linux-lts-headers
 loupe
+mako
 maplemono-nf
 mesa-utils
 mpv

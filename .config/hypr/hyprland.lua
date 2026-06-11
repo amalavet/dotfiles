@@ -30,6 +30,7 @@ hl.on("hyprland.start", function()
 	hl.exec_cmd("waybar")
 	hl.exec_cmd("hyprpaper")
 	hl.exec_cmd("hypridle")
+	hl.exec_cmd("mako")
 	hl.exec_cmd("[workspace 2 silent] google-chrome-stable")
 	hl.exec_cmd("[workspace 3 silent] alacritty -e zsh -lc 'tmux a || (source ~/.zshrc && :tmux); zsh'")
 end)
@@ -107,6 +108,7 @@ hl.device({ name = "asce1206:00-04f3:3315-touchpad", sensitivity = 0 })
 
 -- Layer rule for waybar blur
 hl.layer_rule({ match = { namespace = "waybar" }, blur = true })
+hl.layer_rule({ match = { namespace = "notifications" }, blur = true })
 
 -----------------
 -- WINDOW RULES
