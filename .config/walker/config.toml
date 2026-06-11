@@ -1,0 +1,8 @@
+theme = "default"
+
+[providers]
+default = ["desktopapplications", "calc", "websearch", "windows"]
+empty = ["desktopapplications"]
+
+[placeholders]
+"default" = { input = "Search…", list = "No results" }

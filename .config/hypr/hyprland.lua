@@ -32,6 +32,9 @@ hl.on("hyprland.start", function()
 	hl.exec_cmd("hypridle")
 	hl.exec_cmd("mako")
 	hl.exec_cmd("poweralertd -s")
+	hl.exec_cmd("nm-sidebar --background")
+	hl.exec_cmd("elephant")
+	hl.exec_cmd("walker --gapplication-service")
 	hl.exec_cmd("[workspace 2 silent] google-chrome-stable")
 	hl.exec_cmd("[workspace 3 silent] alacritty -e zsh -lc 'tmux a || (source ~/.zshrc && :tmux); zsh'")
 end)
@@ -125,7 +128,7 @@ hl.window_rule({
 ----------
 hl.bind(mainMod .. " + return", hl.dsp.exec_cmd("alacritty -e zsh -lc 'tmux a || (source ~/.zshrc && :tmux); zsh'"))
 hl.bind(mainMod .. " + C", hl.dsp.window.close())
-hl.bind(mainMod .. " + space", hl.dsp.exec_cmd("wofi --show drun"))
+hl.bind(mainMod .. " + space", hl.dsp.exec_cmd("walker"))
 hl.bind(mainMod .. " + F", hl.dsp.window.fullscreen({ action = "toggle" }))
 
 -- Move focus

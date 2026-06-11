@@ -1,0 +1,32 @@
+[[entries]]
+default = true
+name = "Google"
+url = "https://www.google.com/search?q=%TERM%"
+
+[[entries]]
+name = "DuckDuckGo"
+url = "https://duckduckgo.com/?q=%TERM%"
+
+[[entries]]
+name = "GitHub"
+url = "https://github.com/search?q=%TERM%"
+
+[[entries]]
+name = "YouTube"
+url = "https://www.youtube.com/results?search_query=%TERM%"
+
+[[entries]]
+name = "Wikipedia"
+url = "https://en.wikipedia.org/w/index.php?search=%TERM%"
+
+[[entries]]
+name = "Stack Overflow"
+url = "https://stackoverflow.com/search?q=%TERM%"
+
+[[entries]]
+name = "Arch Wiki"
+url = "https://wiki.archlinux.org/index.php?search=%TERM%"
+
+[[entries]]
+name = "AUR"
+url = "https://aur.archlinux.org/packages?K=%TERM%"
