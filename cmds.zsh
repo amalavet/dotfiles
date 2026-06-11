@@ -74,12 +74,12 @@ function :ts() {
     tmux new-session -s $session -d -n "git" "cd $dir && lazygit; zsh"
 
     # Open nvim with two terminals
-    tmux new-window -n "nvim" "cd $dir && nvim; zsh"
     if [[ "$session" == "dotfiles" ]]; then
-        tmux split-window -hb -t $session:nvim "cd $dir; sleep 2; echo; echo; fastfetch -s title:os:kernel:terminal:terminalfont:datetime; echo; echo; zsh"
+        tmux new-window -n "nvim" "cd $dir; sleep 2; echo; echo; fastfetch; echo; echo; zsh"
     else
-        tmux split-window -hb -t $session:nvim "cd $dir; zsh"
+        tmux new-window -n "nvim" "cd $dir && nvim; zsh"
     fi
+    tmux split-window -hb -t $session:nvim "cd $dir; zsh"
     tmux split-window -v -t $session:nvim "cd $dir; zsh"
 
     # Resize panes

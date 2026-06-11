@@ -77,7 +77,11 @@ fi
 # Bulk install Arch packages
 # --------------------------
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
-    install_packages $(grep -v '^\s*#' "$SETUP_SCRIPT_PATH/packages.txt" | grep -v '^\s*$')
+    echo -n "${INFO}Bulk install all packages from packages.txt? (y/N): ${NC}"
+    read bulk_install
+    if [[ "$bulk_install" == "y" || "$bulk_install" == "Y" ]]; then
+        install_packages $(grep -v '^\s*#' "$SETUP_SCRIPT_PATH/packages.txt" | grep -v '^\s*$')
+    fi
 fi
 
 # Git
