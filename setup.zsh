@@ -80,49 +80,6 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
     install_packages $(grep -v '^\s*#' "$SETUP_SCRIPT_PATH/packages.txt" | grep -v '^\s*$')
 fi
 
-# G14 system config (NVIDIA + Plymouth)
-# -------------------------------------
-if [[ "$OSTYPE" == "linux-gnu"* ]]; then
-    local rebuild_initramfs=0
-
-    # NVIDIA modprobe (correct for MUX/Ultimate mode; overrides nvidia-laptop-power-cfg's bad fbdev)
-    local nvidia_conf='/etc/modprobe.d/nvidia.conf'
-    local nvidia_want='options nvidia_drm modeset=1 fbdev=1
-options nvidia NVreg_EnableS0ixPowerManagement=1 NVreg_DynamicPowerManagement=0x02 NVreg_PreserveVideoMemoryAllocations=1'
-    if [[ "$(sudo cat $nvidia_conf 2>/dev/null)" != "$nvidia_want" ]]; then
-        echo -e "${OK}Writing $nvidia_conf...${NC}"
-        echo "$nvidia_want" | sudo tee "$nvidia_conf" >/dev/null
-        rebuild_initramfs=1
-    fi
-    sudo systemctl enable nvidia-suspend.service nvidia-hibernate.service nvidia-resume.service nvidia-powerd.service &>/dev/null
-
-    # Plymouth: insert hook after udev/systemd
-    if ! grep -q '^HOOKS=.*\bplymouth\b' /etc/mkinitcpio.conf; then
-        echo -e "${OK}Adding plymouth to mkinitcpio HOOKS...${NC}"
-        sudo sed -i -E 's/^(HOOKS=\([^)]* (udev|systemd))/\1 plymouth/' /etc/mkinitcpio.conf
-        rebuild_initramfs=1
-    fi
-
-    # Silent boot flags in kernel cmdline
-    local cmdline=$(cat /etc/kernel/cmdline 2>/dev/null)
-    local missing=()
-    for flag in quiet splash loglevel=3 rd.udev.log_level=3 vt.global_cursor_default=0; do
-        [[ $cmdline == *"$flag"* ]] || missing+=("$flag")
-    done
-    if (( ${#missing[@]} > 0 )); then
-        echo -e "${OK}Appending silent boot flags to /etc/kernel/cmdline: ${missing[*]}${NC}"
-        printf '%s %s\n' "$cmdline" "${missing[*]}" | sudo tee /etc/kernel/cmdline >/dev/null
-        rebuild_initramfs=1
-    fi
-
-    if (( rebuild_initramfs )); then
-        echo -e "${OK}Rebuilding initramfs (UKIs)...${NC}"
-        sudo mkinitcpio -P
-    fi
-fi
-
-source ~/.zshrc
-
 # Git
 # ---
 install_packages git
@@ -232,6 +189,5 @@ install_packages fastfetch
 # Opencode
 # ---------
 install_packages opencode
-opencode github install
 
 source ~/.zshrc
