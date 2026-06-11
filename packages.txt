@@ -25,6 +25,7 @@ fd
 fwupd
 fzf
 gdm
+gdm-settings
 git
 github-cli
 gnome-backgrounds
@@ -62,6 +63,7 @@ lazydocker
 lazygit
 lib32-vulkan-radeon
 libpulse
+libratbag
 libva-nvidia-driver
 linux
 linux-firmware
@@ -88,6 +90,7 @@ nvidia-open-dkms
 nvm
 opencode
 papers
+piper
 pipewire
 pipewire-alsa
 pipewire-jack
