@@ -53,8 +53,7 @@ button:hover {
 #pulseaudio,
 #backlight,
 #battery,
-#clock,
-#custom-recording {
+#clock {
   font-size: 16px;
   padding: 0 14px;
   margin: 5px 3px;
@@ -71,9 +70,13 @@ button:hover {
   background: rgba(0, 0, 0, 0.8);
 }
 
-#custom-recording.recording {
+#privacy-item.screenshare,
+#privacy-item.audio-in {
   background: rgba(220, 30, 30, 0.85);
   color: white;
+  border-radius: 5px;
+  padding: 0 14px;
+  margin: 5px 3px;
   animation: blink 1s steps(2, start) infinite;
 }
 

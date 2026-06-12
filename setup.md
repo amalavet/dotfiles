@@ -175,7 +175,9 @@ Chrome to mako (not gnome): portal config above + `chrome://flags/#enable-system
 yay -S hyprshot gpu-screen-recorder
 ```
 
-`Alt+Shift+3` screenshot region → clipboard. `Alt+Shift+4` toggles recording via `~/.config/hypr/scripts/record-toggle.sh` (portal picker, flag file `/tmp/gsr-active`, save callback notifies + clears flag). Waybar `custom/recording` polls the flag.
+`Alt+Shift+3` screenshot region → clipboard. `Alt+Shift+4` toggles recording via `~/.config/hypr/scripts/record-{toggle,saved}.sh` (portal picker, `-sc` save hook fires "Saved" notification with filename).
+
+Waybar `privacy` module shows red blinking pills for active screencast and mic, via PipeWire. Chrome flag `chrome://flags/#enable-webrtc-pipewire-camera` (Firefox: `media.webrtc.camera.allow-pipewire`) routes webcam through the portal so it also trips the screencast pill — no separate webcam module needed.
 
 ## 8. Hardware quirks
 
@@ -251,5 +253,5 @@ ls /usr/share/xdg-desktop-portal/portals/
 - Running `yay` with active pyenv shim — breaks blueprint-compiler builds. Prefix `PATH=/usr/bin:$PATH`.
 - `wl-screenrec` AUR — broken vs current ffmpeg. Use `gpu-screen-recorder`.
 - `pgrep -f gpu-screen-recorder` in a hyprland bind matches its own `sh -c`. Use `pidof` or `pgrep -x gpu-screen-reco` (15-char comm).
-- Waybar custom module `"interval": "once"` + `signal` unreliable in v0.15.0 — poll instead.
 - `systemctl --user start graphical-session.target` refuses manual start. Use uwsm.
+- Waybar `privacy` module's "screenshare" class fires on any PipeWire `VIDEO_INPUT` — not just screen captures. Webcam shows up too once Chrome/Firefox use pipewire-camera. No dedicated webcam type exists.
