@@ -1,0 +1,6 @@
+@define-color bg     rgba(40, 40, 40, 0.85);
+@define-color bg_solid rgba(40, 40, 40, 1);
+@define-color fg     #ebdbb2;
+@define-color accent rgba(80, 73, 69, 0.9);
+@define-color accent_fg #ebdbb2;
+@define-color urgent rgba(251, 73, 52, 0.85);
