@@ -57,7 +57,7 @@ button:hover {
   animation: blink 1s steps(2, start) infinite;
 }
 
-#workspaces button.active,
+#workspaces button.visible.hosting-monitor,
 #custom-lock:hover, #custom-logout:hover, #custom-sleep:hover, #custom-off:hover,
 #network:hover, #pulseaudio:hover, #backlight:hover, #battery:hover, #clock:hover {
   background: rgba(0, 0, 0, 0.8);

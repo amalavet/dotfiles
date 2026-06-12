@@ -13,11 +13,11 @@ hl.monitor({ output = "", mode = "preferred", position = "auto", scale = 1.5 })
 -------------------
 -- WORKSPACE RULES
 -------------------
-for i = 1, 4 do
-	hl.workspace_rule({ workspace = tostring(i), monitor = "eDP-1" })
+for i = 1, 5 do
+	hl.workspace_rule({ workspace = tostring(i), monitor = "eDP-1", persistent = true })
 end
-for i = 5, 10 do
-	hl.workspace_rule({ workspace = tostring(i), monitor = "DP-2" })
+for i = 6, 10 do
+	hl.workspace_rule({ workspace = tostring(i), monitor = "DP-2", persistent = true })
 end
 
 ------------
