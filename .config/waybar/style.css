@@ -29,83 +29,49 @@ button:hover {
   -gtk-icon-shadow: none;
 }
 
-#workspaces button {
-  padding: 0 10px;
-  margin: 5px 3px;
-  border-radius: 5px;
-  background-color: rgba(0, 0, 0, 0.5);
-  color: white;
-}
-
-#workspaces button label {
-  font-size: 18px;
-}
-
-#workspaces button.active {
-  background-color: rgba(0, 0, 0, 0.8);
-}
-
-#workspaces button.urgent {
-  background-color: rgba(255, 0, 0, 0.5);
-}
-
-#network,
-#pulseaudio,
-#backlight,
-#battery,
-#clock {
-  font-size: 16px;
-  padding: 0 14px;
+#workspaces button,
+#custom-lock, #custom-logout, #custom-sleep, #custom-off,
+#network, #pulseaudio, #backlight, #battery, #clock,
+#privacy-item.screenshare, #privacy-item.audio-in {
   margin: 5px 3px;
   border-radius: 5px;
   background: rgba(0, 0, 0, 0.5);
   color: white;
 }
 
-#network:hover,
-#pulseaudio:hover,
-#backlight:hover,
-#battery:hover,
-#clock:hover {
-  background: rgba(0, 0, 0, 0.8);
+#workspaces button,
+#custom-lock, #custom-logout, #custom-sleep, #custom-off {
+  font-size: 18px;
+  padding: 0 10px;
+}
+
+#network, #pulseaudio, #backlight, #battery, #clock {
+  font-size: 16px;
+  padding: 0 14px;
 }
 
 #privacy-item.screenshare,
 #privacy-item.audio-in {
-  background: rgba(220, 30, 30, 0.85);
-  color: white;
-  border-radius: 5px;
   padding: 0 14px;
-  margin: 5px 3px;
+  background: rgba(220, 30, 30, 0.85);
   animation: blink 1s steps(2, start) infinite;
+}
+
+#workspaces button.active,
+#custom-lock:hover, #custom-logout:hover, #custom-sleep:hover, #custom-off:hover,
+#network:hover, #pulseaudio:hover, #backlight:hover, #battery:hover, #clock:hover {
+  background: rgba(0, 0, 0, 0.8);
+}
+
+#workspaces button.urgent {
+  background: rgba(255, 0, 0, 0.5);
+}
+
+#custom-off {
+  padding-left: 8.5px;
+  padding-right: 11.5px;
 }
 
 @keyframes blink {
   to { background: rgba(0, 0, 0, 1); }
-}
-
-#custom-lock,
-#custom-logout,
-#custom-sleep,
-#custom-off {
-  font-size: 16px;
-  min-width: 36px;
-  min-height: 36px;
-  margin: 5px 2px;
-  padding: 0;
-  border-radius: 50%;
-  background-color: rgba(0, 0, 0, 0.5);
-  color: white;
-}
-
-#custom-lock:hover,
-#custom-logout:hover,
-#custom-sleep:hover,
-#custom-off:hover {
-  background-color: rgba(0, 0, 0, 0.8);
-}
-
-#custom-off {
-  min-width: 33px;
-  padding-right: 2px;
 }
