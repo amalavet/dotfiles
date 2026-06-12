@@ -7,7 +7,7 @@ local mainMod = "SUPER"
 -- MONITOR
 ------------
 hl.monitor({ output = "DP-2", mode = "3440x1440@144", position = "0x0", scale = 1.0 })
-hl.monitor({ output = "eDP-1", mode = "2880x1800@120", position = "760x1440", scale = 1.5 })
+hl.monitor({ output = "eDP-1", mode = "2880x1800@120", position = "760x1440", scale = 1.5, bitdepth = 10, cm = "hdr", sdrbrightness = 1.2, sdrsaturation = 1.0 })
 hl.monitor({ output = "", mode = "preferred", position = "auto", scale = 1.5 })
 
 -------------------
