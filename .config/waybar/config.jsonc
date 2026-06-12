@@ -21,11 +21,7 @@
     "tooltip": false,
     "on-click": "hyprctl dispatch focuswindow class:brave-browser && xdg-open https://calendar.google.com",
   },
-  "hyprland/workspaces": {
-    "persistent-workspaces": {
-      "*": 1,
-    },
-  },
+  "hyprland/workspaces": {},
   "battery": {
     "format": "{icon}  {capacity}%",
     "format-charging": " {capacity}%",

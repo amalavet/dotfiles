@@ -1,3 +1,6 @@
+@import url("themes/tokyonight.css");
+/* @import url("themes/grayscale.css"); */
+
 * {
   font-family: "JetBrainsMono Nerd Font";
   font-weight: bold;
@@ -35,8 +38,8 @@ button:hover {
 #privacy-item.screenshare, #privacy-item.audio-in {
   margin: 5px 3px;
   border-radius: 5px;
-  background: rgba(0, 0, 0, 0.5);
-  color: white;
+  background: @bg;
+  color: @fg;
 }
 
 #workspaces button,
@@ -53,18 +56,19 @@ button:hover {
 #privacy-item.screenshare,
 #privacy-item.audio-in {
   padding: 0 14px;
-  background: rgba(220, 30, 30, 0.85);
+  background: @urgent;
   animation: blink 1s steps(2, start) infinite;
 }
 
 #workspaces button.visible.hosting-monitor,
 #custom-lock:hover, #custom-logout:hover, #custom-sleep:hover, #custom-off:hover,
 #network:hover, #pulseaudio:hover, #backlight:hover, #battery:hover, #clock:hover {
-  background: rgba(0, 0, 0, 0.8);
+  background: @accent;
+  color: @accent_fg;
 }
 
 #workspaces button.urgent {
-  background: rgba(255, 0, 0, 0.5);
+  background: @urgent;
 }
 
 #custom-off {
@@ -73,5 +77,5 @@ button:hover {
 }
 
 @keyframes blink {
-  to { background: rgba(0, 0, 0, 1); }
+  to { background: @bg_solid; }
 }
