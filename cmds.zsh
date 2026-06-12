@@ -59,6 +59,17 @@ function :y() {
     yabai --restart-service
 }
 
+# Reload hyprland config and restart waybar (detached)
+function :reload() {
+    echo "\033[0;34mReloading hyprland...\033[0m"
+    hyprctl reload >/dev/null
+    echo "\033[0;34mRestarting waybar...\033[0m"
+    pkill waybar
+    sleep 0.3
+    setsid -f uwsm app -- waybar </dev/null &>/dev/null
+    echo "\033[0;32mDone.\033[0m"
+}
+
 # Starts a new tmux session for the given directory
 function :ts() {
     dir="$1"
@@ -243,6 +254,11 @@ function :ai() {
             echo "$dir: Created $target"
         fi
     done
+}
+
+# Update Arch system (official + AUR packages)
+function :up() {
+    yay -Syu "$@"
 }
 
 # Regenerate dotfiles/packages.txt from currently installed Arch packages

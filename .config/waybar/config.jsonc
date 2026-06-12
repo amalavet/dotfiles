@@ -5,6 +5,7 @@
   "modules-left": ["hyprland/workspaces"],
   // "modules-center": ["hyprland/window"],
   "modules-right": [
+    "custom/recording",
     "network",
     "pulseaudio",
     "backlight",
@@ -47,7 +48,7 @@
       "default": ["", "", " "],
     },
     "tooltip": false,
-    "on-click": "pavucontrol",
+    "on-click": "pwvucontrol",
   },
   "backlight": {
     "format": " {percent}%",
@@ -72,5 +73,12 @@
     "on-click": "loginctl terminate-user $USER",
     "format": "󰍃",
     "tooltip-format": "Exit",
+  },
+  "custom/recording": {
+    "exec": "if [ -f /tmp/gsr-active ]; then echo '{\"text\":\"\\uf03d  REC\",\"class\":\"recording\"}'; else echo '{\"text\":\"\"}'; fi",
+    "return-type": "json",
+    "interval": 1,
+    "on-click": "pkill -INT -x gpu-screen-reco",
+    "tooltip": false,
   },
 }

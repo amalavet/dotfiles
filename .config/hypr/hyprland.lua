@@ -6,7 +6,19 @@ local mainMod = "SUPER"
 ------------
 -- MONITOR
 ------------
+hl.monitor({ output = "DP-2", mode = "3440x1440@144", position = "0x0", scale = 1.0 })
+hl.monitor({ output = "eDP-1", mode = "2880x1800@120", position = "760x1440", scale = 1.5 })
 hl.monitor({ output = "", mode = "preferred", position = "auto", scale = 1.5 })
+
+-------------------
+-- WORKSPACE RULES
+-------------------
+for i = 1, 4 do
+	hl.workspace_rule({ workspace = tostring(i), monitor = "eDP-1" })
+end
+for i = 5, 10 do
+	hl.workspace_rule({ workspace = tostring(i), monitor = "DP-2" })
+end
 
 ------------
 -- ENV VARS
@@ -31,16 +43,16 @@ hl.on("hyprland.start", function()
 	hl.exec_cmd("gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'")
 	hl.exec_cmd("gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark'")
 	hl.exec_cmd("dconf write /org/gnome/desktop/interface/color-scheme \"'prefer-dark'\"")
-	hl.exec_cmd("waybar")
-	hl.exec_cmd("hyprpaper")
-	hl.exec_cmd("hypridle")
-	hl.exec_cmd("mako")
-	hl.exec_cmd("poweralertd -s")
-	hl.exec_cmd("nm-sidebar --background")
-	hl.exec_cmd("elephant")
-	hl.exec_cmd("walker --gapplication-service")
-	hl.exec_cmd("[workspace 2 silent] google-chrome-stable")
-	hl.exec_cmd("[workspace 3 silent] alacritty -e zsh -lc 'tmux a || (source ~/.zshrc && :tmux); zsh'")
+	hl.exec_cmd("uwsm app -- waybar")
+	hl.exec_cmd("uwsm app -- hyprpaper")
+	hl.exec_cmd("uwsm app -- hypridle")
+	hl.exec_cmd("uwsm app -- mako")
+	hl.exec_cmd("uwsm app -- poweralertd -s")
+	hl.exec_cmd("uwsm app -- nm-sidebar --background")
+	hl.exec_cmd("uwsm app -- elephant")
+	hl.exec_cmd("uwsm app -- walker --gapplication-service")
+	hl.exec_cmd("[workspace 2 silent] uwsm app -- google-chrome-stable")
+	hl.exec_cmd("[workspace 3 silent] uwsm app -- alacritty -e zsh -lc 'tmux a || (source ~/.zshrc && :tmux); zsh'")
 end)
 
 ----------
@@ -115,7 +127,6 @@ hl.config({
 hl.device({ name = "asce1206:00-04f3:3315-touchpad", sensitivity = 0 })
 
 -- Layer rule for waybar blur
-hl.layer_rule({ match = { namespace = "waybar" }, blur = true })
 hl.layer_rule({ match = { namespace = "notifications" }, blur = true })
 
 -----------------
@@ -130,9 +141,9 @@ hl.window_rule({
 ----------
 -- BINDS
 ----------
-hl.bind(mainMod .. " + return", hl.dsp.exec_cmd("alacritty -e zsh -lc 'tmux a || (source ~/.zshrc && :tmux); zsh'"))
+hl.bind(mainMod .. " + return", hl.dsp.exec_cmd("uwsm app -- alacritty -e zsh -lc 'tmux a || (source ~/.zshrc && :tmux); zsh'"))
 hl.bind(mainMod .. " + C", hl.dsp.window.close())
-hl.bind(mainMod .. " + space", hl.dsp.exec_cmd("walker"))
+hl.bind(mainMod .. " + space", hl.dsp.exec_cmd("uwsm app -- walker"))
 hl.bind(mainMod .. " + F", hl.dsp.window.fullscreen({ action = "toggle" }))
 
 -- Move focus
@@ -200,6 +211,10 @@ hl.bind(
 	hl.dsp.exec_cmd("brightnessctl -d amdgpu_bl1 -e4 -n2 set 5%-"),
 	{ repeating = true, locked = true }
 )
+
+-- Screenshot / record (mac-style)
+hl.bind("ALT + SHIFT + 3", hl.dsp.exec_cmd("hyprshot -m region --clipboard-only"))
+hl.bind("ALT + SHIFT + 4", hl.dsp.exec_cmd(os.getenv("HOME") .. "/.config/hypr/scripts/record-toggle.sh"))
 
 -- Media
 hl.bind("XF86AudioNext", hl.dsp.exec_cmd("playerctl next"), { locked = true })

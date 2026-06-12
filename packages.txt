@@ -55,6 +55,7 @@ gnome-text-editor
 gnome-tweaks
 goenv
 google-chrome
+gpu-screen-recorder
 grub
 gst-plugin-pipewire
 gst-thumbnailers
@@ -69,6 +70,7 @@ hypridle
 hyprland
 hyprlock
 hyprpaper
+hyprshot
 inotify-tools
 input-remapper-git
 jq
@@ -114,6 +116,7 @@ plymouth
 polkit-gnome
 power-profiles-daemon
 poweralertd
+pwvucontrol
 pyenv
 ripgrep
 rog-control-center
@@ -134,6 +137,7 @@ ttf-iosevka-nerd
 ttf-jetbrains-mono
 ttf-jetbrains-mono-nerd
 ttf-liberation
+uwsm
 vim
 vulkan-radeon
 vulkan-tools

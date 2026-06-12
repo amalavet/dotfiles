@@ -88,9 +88,22 @@ Re-apply after every gnome-shell/gdm update.
 
 ```sh
 sudo pacman -S --needed hyprland hyprlock hypridle hyprpaper \
-  mako poweralertd \
+  mako poweralertd uwsm \
   brightnessctl wl-clipboard cliphist xclip
 ```
+
+### Session via uwsm
+
+Required — without it, xdg portals don't start (no screen sharing/recording).
+
+Pick **"Hyprland (uwsm-managed)"** in GDM.
+
+Wrap GUI app launches in `hyprland.lua`:
+```lua
+hl.exec_cmd("uwsm app -- waybar")
+hl.exec_cmd("[workspace 2 silent] uwsm app -- google-chrome-stable")
+```
+Skip the wrap for one-shots (`hyprctl`, `gsettings`, `wpctl`, etc.).
 
 ### Portal routing
 
@@ -155,6 +168,14 @@ hl.exec_cmd("poweralertd -s")
 Reload config: `makoctl reload`. Test: `notify-send "t" "b"` (`-u critical` sticky).
 
 Chrome to mako (not gnome): portal config above + `chrome://flags/#enable-system-notifications` Enabled.
+
+### Screenshots & recording
+
+```sh
+yay -S hyprshot gpu-screen-recorder
+```
+
+`Alt+Shift+3` screenshot region → clipboard. `Alt+Shift+4` toggles recording via `~/.config/hypr/scripts/record-toggle.sh` (portal picker, flag file `/tmp/gsr-active`, save callback notifies + clears flag). Waybar `custom/recording` polls the flag.
 
 ## 8. Hardware quirks
 
@@ -228,3 +249,7 @@ ls /usr/share/xdg-desktop-portal/portals/
 - `linux-g14` kernel install — not the fix for brightness.
 - Hyprpaper old single-line `wallpaper = ,path` syntax — silently ignored in 0.8.x.
 - Running `yay` with active pyenv shim — breaks blueprint-compiler builds. Prefix `PATH=/usr/bin:$PATH`.
+- `wl-screenrec` AUR — broken vs current ffmpeg. Use `gpu-screen-recorder`.
+- `pgrep -f gpu-screen-recorder` in a hyprland bind matches its own `sh -c`. Use `pidof` or `pgrep -x gpu-screen-reco` (15-char comm).
+- Waybar custom module `"interval": "once"` + `signal` unreliable in v0.15.0 — poll instead.
+- `systemctl --user start graphical-session.target` refuses manual start. Use uwsm.
