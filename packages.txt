@@ -8,6 +8,7 @@ baobab
 base
 base-devel
 bc
+blueman
 bluez
 bluez-utils
 brightnessctl
@@ -32,6 +33,7 @@ elephant-symbols-bin
 elephant-websearch-bin
 elephant-windows-bin
 fastfetch
+faugus-launcher
 fd
 fwupd
 fzf
@@ -65,6 +67,7 @@ gvfs-mtp
 gvfs-nfs
 gvfs-smb
 gvfs-wsdd
+heroic-games-launcher-bin
 htop
 hypridle
 hyprland
@@ -116,6 +119,7 @@ plymouth
 polkit-gnome
 power-profiles-daemon
 poweralertd
+protonplus
 pwvucontrol
 pyenv
 ripgrep
@@ -137,6 +141,7 @@ ttf-iosevka-nerd
 ttf-jetbrains-mono
 ttf-jetbrains-mono-nerd
 ttf-liberation
+umu-launcher
 uwsm
 vim
 vulkan-radeon
@@ -152,9 +157,11 @@ xdg-desktop-portal-gnome
 xdg-desktop-portal-hyprland
 xdg-user-dirs-gtk
 xdg-utils
+xpadneo-dkms
 yarn
 yay
 yay-debug
+yt-dlp
 zram-generator
 zsh
 zsh-autosuggestions

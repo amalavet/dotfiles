@@ -13,11 +13,13 @@ hl.monitor({ output = "", mode = "preferred", position = "auto", scale = 1.5 })
 -------------------
 -- WORKSPACE RULES
 -------------------
+local ext = "HDMI-A-1" -- swap to "DP-2" for the ultrawide
+
 for i = 1, 5 do
 	hl.workspace_rule({ workspace = tostring(i), monitor = "eDP-1", persistent = true })
 end
 for i = 6, 10 do
-	hl.workspace_rule({ workspace = tostring(i), monitor = "DP-2", persistent = true })
+	hl.workspace_rule({ workspace = tostring(i), monitor = ext, persistent = true })
 end
 
 ------------

@@ -35,9 +35,18 @@ button:hover {
 }
 
 #workspaces button,
-#custom-lock, #custom-logout, #custom-sleep, #custom-off,
-#network, #pulseaudio, #backlight, #battery, #clock,
-#privacy-item.screenshare, #privacy-item.audio-in {
+#custom-lock,
+#custom-logout,
+#custom-sleep,
+#custom-off,
+#network,
+#bluetooth,
+#pulseaudio,
+#backlight,
+#battery,
+#clock,
+#privacy-item.screenshare,
+#privacy-item.audio-in {
   margin: 5px 3px;
   border-radius: 5px;
   background: @bg;
@@ -45,12 +54,20 @@ button:hover {
 }
 
 #workspaces button,
-#custom-lock, #custom-logout, #custom-sleep, #custom-off {
+#custom-lock,
+#custom-logout,
+#custom-sleep,
+#custom-off {
   font-size: 18px;
   padding: 0 10px;
 }
 
-#network, #pulseaudio, #backlight, #battery, #clock {
+#network,
+#bluetooth,
+#pulseaudio,
+#backlight,
+#battery,
+#clock {
   font-size: 16px;
   padding: 0 14px;
 }
@@ -63,9 +80,23 @@ button:hover {
 }
 
 #workspaces button.visible.hosting-monitor,
-#custom-lock:hover, #custom-logout:hover, #custom-sleep:hover, #custom-off:hover,
-#network:hover, #pulseaudio:hover, #backlight:hover, #battery:hover, #clock:hover {
+#custom-lock:hover,
+#custom-logout:hover,
+#custom-sleep:hover,
+#custom-off:hover,
+:hover,
+#network:hover,
+#bluetooth:hover,
+#pulseaudio:hover,
+#backlight:hover,
+#battery:hover,
+#clock:hover {
   background: @accent;
+  color: @accent_fg;
+}
+
+.inhibited {
+  background: @urgent;
   color: @accent_fg;
 }
 
@@ -79,5 +110,7 @@ button:hover {
 }
 
 @keyframes blink {
-  to { background: @bg_solid; }
+  to {
+    background: @bg_solid;
+  }
 }
