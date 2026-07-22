@@ -1,24 +1,24 @@
-font=JetBrainsMono Nerd Font Bold 13
-background-color=#00000099
-text-color=#ffffffff
-border-color=#ffffffff
-border-size=2
+font=JetBrainsMono Nerd Font Bold 11
+background-color=#1a1b26d9
+text-color=#c0caf5ff
+border-size=0
 border-radius=5
-padding=20
+padding=14
 margin=5
 default-timeout=5000
 ignore-timeout=1
-max-icon-size=48
+max-icon-size=40
+icon-border-radius=5
 anchor=top-right
 layer=overlay
-width=360
-height=120
+width=370
+height=110
 
 [urgency=low]
-border-color=#ffffff4d
-background-color=#0000004d
+background-color=#1a1b2699
+text-color=#c0caf5cc
 
 [urgency=high]
-border-color=#ff0000ff
-background-color=#00000099
+background-color=#f7768ed9
+text-color=#c0caf5ff
 default-timeout=0
