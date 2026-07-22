@@ -84,7 +84,6 @@ button:hover {
 #custom-logout:hover,
 #custom-sleep:hover,
 #custom-off:hover,
-:hover,
 #network:hover,
 #bluetooth:hover,
 #pulseaudio:hover,
@@ -93,6 +92,11 @@ button:hover {
 #clock:hover {
   background: @accent;
   color: @accent_fg;
+}
+
+#workspaces button:hover {
+  background: @bg;
+  color: @fg;
 }
 
 .inhibited {
