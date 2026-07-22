@@ -33,7 +33,6 @@ elephant-symbols-bin
 elephant-websearch-bin
 elephant-windows-bin
 fastfetch
-faugus-launcher
 fd
 fwupd
 fzf
@@ -72,6 +71,7 @@ htop
 hypridle
 hyprland
 hyprlock
+hyprmon
 hyprpaper
 hyprshot
 inotify-tools
@@ -94,6 +94,7 @@ loupe
 mako
 maplemono-nf
 mesa-utils
+minecraft-launcher
 mpv
 nano
 nautilus
