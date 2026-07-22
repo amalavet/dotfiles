@@ -1,32 +1,68 @@
+always_show_default = true
+command = 'xdg-open'
+engines_as_actions = false
+history = true
+history_when_empty = false
+text_prefix = 'Search: '
+
+[Config]
+hide_from_providerlist = false
+icon = 'applications-internet'
+min_score = 20
+name_pretty = ''
+
 [[entries]]
 default = true
-name = "Google"
-url = "https://www.google.com/search?q=%TERM%"
+icon = ''
+name = 'Google'
+prefix = ''
+url = 'https://www.google.com/search?q=%TERM%'
 
 [[entries]]
-name = "DuckDuckGo"
-url = "https://duckduckgo.com/?q=%TERM%"
+default = false
+icon = ''
+name = 'DuckDuckGo'
+prefix = ''
+url = 'https://duckduckgo.com/?q=%TERM%'
 
 [[entries]]
-name = "GitHub"
-url = "https://github.com/search?q=%TERM%"
+default = false
+icon = ''
+name = 'GitHub'
+prefix = ''
+url = 'https://github.com/search?q=%TERM%'
 
 [[entries]]
-name = "YouTube"
-url = "https://www.youtube.com/results?search_query=%TERM%"
+default = false
+icon = ''
+name = 'YouTube'
+prefix = ''
+url = 'https://www.youtube.com/results?search_query=%TERM%'
 
 [[entries]]
-name = "Wikipedia"
-url = "https://en.wikipedia.org/w/index.php?search=%TERM%"
+default = false
+icon = ''
+name = 'Wikipedia'
+prefix = ''
+url = 'https://en.wikipedia.org/w/index.php?search=%TERM%'
 
 [[entries]]
-name = "Stack Overflow"
-url = "https://stackoverflow.com/search?q=%TERM%"
+default = false
+icon = ''
+name = 'Stack Overflow'
+prefix = ''
+url = 'https://stackoverflow.com/search?q=%TERM%'
 
 [[entries]]
-name = "Arch Wiki"
-url = "https://wiki.archlinux.org/index.php?search=%TERM%"
+default = false
+icon = ''
+name = 'Arch Wiki'
+prefix = ''
+url = 'https://wiki.archlinux.org/index.php?search=%TERM%'
 
 [[entries]]
-name = "AUR"
-url = "https://aur.archlinux.org/packages?K=%TERM%"
+default = false
+icon = ''
+name = 'AUR'
+prefix = ''
+url = 'https://aur.archlinux.org/packages?K=%TERM%'

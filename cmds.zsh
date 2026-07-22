@@ -54,11 +54,6 @@ function :dbpy() {
     python -m debugpy --listen :2345 --wait-for-client $@
 }
 
-# Restart yabai
-function :y() {
-    yabai --restart-service
-}
-
 # Reload hyprland config and restart waybar (detached)
 function :reload() {
     echo "\033[0;34mReloading hyprland...\033[0m"
