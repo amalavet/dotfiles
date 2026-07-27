@@ -10,3 +10,4 @@ nvim/lazy-lock.json
 /.github/workflows/opencode.yml
 /.github/workflows/opencode.yml
 /.config/alacritty/os.toml
+/emailscript.sh

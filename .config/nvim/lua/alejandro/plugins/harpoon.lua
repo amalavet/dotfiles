@@ -5,7 +5,17 @@ return {
 		version = "harpoon2",
 		config = function()
 			local harpoon = require("harpoon")
-			harpoon:setup()
+			harpoon:setup({
+					settings = {
+						key = function()
+							local common = vim.fn.system("git rev-parse --git-common-dir 2>/dev/null"):gsub("%s+$", "")
+							if vim.v.shell_error == 0 then
+								return vim.fn.fnamemodify(common, ":p:h:h")
+							end
+							return vim.uv.cwd()
+						end,
+					},
+				})
 
 			vim.keymap.set("n", "<leader>pa", function()
 				harpoon:list():add()

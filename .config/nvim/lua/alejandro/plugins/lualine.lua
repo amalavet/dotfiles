@@ -14,10 +14,26 @@ return {
 				end
 			end
 
+			local worktree_name = ""
+			local function update_worktree()
+				if vim.fn.findfile(".git", ".;") ~= "" then
+					worktree_name = ""
+				else
+					worktree_name = ""
+				end
+			end
+			update_worktree()
+			vim.api.nvim_create_autocmd("DirChanged", { callback = update_worktree })
+
 			lualine.setup({
 				sections = {
 					lualine_a = { "mode" },
-					lualine_b = { "branch" },
+					lualine_b = {
+						"branch",
+						function()
+							return worktree_name
+						end,
+					},
 					lualine_c = { { "filename", path = 3 }, "diagnostics" },
 					lualine_x = {},
 					lualine_y = {},
