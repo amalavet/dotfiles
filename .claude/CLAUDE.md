@@ -34,6 +34,7 @@ The number one principle is: Verobosity is the death of understandability. Your 
 ## Go
 
 - Avoid type casting unless absolutely necessary.
+- **Mocks over fakes.** Tests stubbing interfaces use generated mocks (e.g. mockery, per project convention), never hand-written fake*/mock* structs.
 
 ## Docs
 
