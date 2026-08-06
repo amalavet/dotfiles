@@ -104,7 +104,6 @@ hl.config({
 
 	input = {
 		kb_layout = "us",
-		kb_options = "caps:swapescape",
 		follow_mouse = 1,
 		repeat_delay = 200,
 		repeat_rate = 50,

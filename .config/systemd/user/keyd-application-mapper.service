@@ -1,0 +1,10 @@
+[Unit]
+Description=keyd application mapper
+After=graphical-session.target
+
+[Service]
+ExecStart=/usr/bin/keyd-application-mapper
+Restart=on-failure
+
+[Install]
+WantedBy=default.target
