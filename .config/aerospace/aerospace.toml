@@ -12,7 +12,13 @@ after-login-command = []
 # You can use it to add commands that run after AeroSpace startup.
 # 'after-startup-command' is run after 'after-login-command'
 # Available commands : https://nikitabobko.github.io/AeroSpace/commands
-after-startup-command = []
+after-startup-command = [
+  'exec-and-forget open -a Slack',
+  'exec-and-forget open -a "Google Chrome"',
+  'exec-and-forget open -a Alacritty',
+  'exec-and-forget open -a DBeaver',
+  'exec-and-forget open -a 1Password',
+]
 
 # Start AeroSpace at login
 start-at-login = true
@@ -59,6 +65,26 @@ outer.left =       0
 outer.bottom =     0
 outer.top =        0
 outer.right =      0
+
+[[on-window-detected]]
+if.app-id = 'com.tinyspeck.slackmacgap'
+run = 'move-node-to-workspace 1'
+
+[[on-window-detected]]
+if.app-id = 'com.google.Chrome'
+run = 'move-node-to-workspace 2'
+
+[[on-window-detected]]
+if.app-id = 'org.alacritty'
+run = 'move-node-to-workspace 3'
+
+[[on-window-detected]]
+if.app-id = 'org.jkiss.dbeaver.core.product'
+run = 'move-node-to-workspace 4'
+
+[[on-window-detected]]
+if.app-id = 'com.1password.1password'
+run = 'move-node-to-workspace 5'
 
 # 'main' binding mode declaration
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
