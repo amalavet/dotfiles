@@ -143,6 +143,12 @@ elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
     fc-cache -fv >/dev/null
 fi
 
+# Karabiner-Elements
+# ------------------
+if [[ "$OSTYPE" == "darwin"* ]]; then
+    install_packages karabiner-elements
+fi
+
 # Node.js / NPM / Yarn
 # -------
 install_packages nvm yarn
