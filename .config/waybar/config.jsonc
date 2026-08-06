@@ -20,7 +20,7 @@
   "clock": {
     "format": "  {:%a %D %I:%M %p}",
     "tooltip": false,
-    "on-click": "hyprctl dispatch focuswindow class:brave-browser && xdg-open https://calendar.google.com",
+    "on-click": "xdg-open https://calendar.google.com",
   },
   "hyprland/workspaces": {},
   "battery": {
