@@ -164,13 +164,14 @@ function :kill() {
     ps aux | fzf | awk '{print $2}' | xargs kill -9
 }
 
-# Delete all remote Git branches that don't have a local branch, defaults to "ale/" prefix, pass "all" to delete all branches
+# Delete my remote Git branches that don't have a local branch or open PR, pass a prefix to filter, or "all" for everyone's branches
 function :dbr() {
     local prefix="$1"
+    local my_email=""
 
-    # Set default prefix to "ale/" if none provided
+    # Default to branches authored by me if no prefix provided
     if [[ -z "$prefix" ]]; then
-        prefix="ale/"
+        my_email=$(git config user.email)
     # If "all" is passed, use no prefix
     elif [[ "$prefix" == "all" ]]; then
         echo "\033[0;31mWARNING: You are about to delete ALL remote branches without a local counterpart!\033[0m"
@@ -187,10 +188,24 @@ function :dbr() {
 
     local remote_branches=$(git branch -r | sed "s|  origin/||" | grep -v "HEAD")
     local local_branches=$(git branch | sed 's/^[* ]*//')
+    local pr_branches=$(gh pr list --state open --limit 200 --json headRefName --jq '.[].headRefName' 2>/dev/null)
+    local my_branches=""
+    if [[ -n "$my_email" ]]; then
+        my_branches=$(git for-each-ref --format='%(refname:short) %(authoremail)' refs/remotes/origin \
+            | awk -v e="<$my_email>" '$2 == e {sub("^origin/", "", $1); print $1}')
+    fi
     local branches_to_delete=()
 
     for remote_branch in ${(f)remote_branches}; do
         if [[ -n "$prefix" && ! "$remote_branch" =~ ^"$prefix" ]]; then
+            continue
+        fi
+
+        if [[ -n "$my_email" ]] && ! echo "$my_branches" | grep -q "^${remote_branch}$"; then
+            continue
+        fi
+
+        if echo "$pr_branches" | grep -q "^${remote_branch}$"; then
             continue
         fi
 
