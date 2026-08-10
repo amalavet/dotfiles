@@ -16,7 +16,7 @@ label = "git"
 
 [[tabs.git.panes]]
 id = "lazygit"
-command = "lazygit"
+command = "herdr tab rename $HERDR_TAB_ID \"$(basename \"$PWD\")\" && lazygit"
 
 [tabs.nvim]
 label = "nvim"

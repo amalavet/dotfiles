@@ -166,7 +166,7 @@ function :herdr() {
     local ws pane
     if ! herdr workspace list 2>/dev/null | jq -e '.result.workspaces[] | select(.label == "dotfiles")' >/dev/null; then
         ws=$(herdr workspace create --cwd ~/dotfiles --label dotfiles --no-focus)
-        herdr tab rename "$(echo "$ws" | jq -r '.result.tab.tab_id')" git >/dev/null
+        herdr tab rename "$(echo "$ws" | jq -r '.result.tab.tab_id')" dotfiles >/dev/null
         herdr pane run "$(echo "$ws" | jq -r '.result.root_pane.pane_id')" lazygit >/dev/null
         pane=$(herdr tab create --workspace "$(echo "$ws" | jq -r '.result.workspace.workspace_id')" --cwd ~/dotfiles --label nvim --no-focus | jq -r '.result.root_pane.pane_id')
         herdr pane run "$(herdr pane split "$pane" --direction right --ratio 0.3 --cwd ~/dotfiles --no-focus | jq -r '.result.pane.pane_id')" fastfetch >/dev/null
