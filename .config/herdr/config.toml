@@ -1,0 +1,122 @@
+onboarding = false
+[theme]
+name = "tokyo-night"
+
+auto_switch = false
+[keys]
+detach = ["prefix+q", "prefix+d"]
+split_horizontal = ["prefix+minus", "prefix+shift+h"]
+zoom = ["prefix+z", "prefix+space"]
+next_tab = ["prefix+n", "prefix+l"]
+previous_tab = ["prefix+p", "prefix+h"]
+last_pane = "ctrl+backslash"
+settings = "prefix+shift+s"
+reload_config = ["prefix+r", "prefix+shift+r"]
+resize_mode = "prefix+alt+r"
+navigate_workspace_up = "k"
+navigate_workspace_down = "j"
+
+[[keys.command]]
+key = "prefix+s"
+type = "plugin_action"
+command = "sessionizer.open"
+
+[[keys.command]]
+key = "prefix+up"
+type = "shell"
+command = "herdr pane resize --direction up --amount 0.05"
+
+[[keys.command]]
+key = "prefix+down"
+type = "shell"
+command = "herdr pane resize --direction down --amount 0.05"
+
+[[keys.command]]
+key = "prefix+left"
+type = "shell"
+command = "herdr pane resize --direction left --amount 0.1"
+
+[[keys.command]]
+key = "prefix+right"
+type = "shell"
+command = "herdr pane resize --direction right --amount 0.1"
+
+[[keys.command]]
+key = "ctrl+h"
+type = "plugin_action"
+command = "willfish.herdr-navigator.left"
+
+[[keys.command]]
+key = "ctrl+j"
+type = "plugin_action"
+command = "willfish.herdr-navigator.down"
+
+[[keys.command]]
+key = "ctrl+k"
+type = "plugin_action"
+command = "willfish.herdr-navigator.up"
+
+[[keys.command]]
+key = "ctrl+l"
+type = "plugin_action"
+command = "willfish.herdr-navigator.right"
+
+[[keys.command]]
+key = "prefix+0"
+type = "shell"
+command = "herdr tab list --workspace $HERDR_ACTIVE_WORKSPACE_ID | jq -r '.result.tabs[0].tab_id' | xargs herdr tab focus"
+
+[[keys.command]]
+key = "prefix+1"
+type = "shell"
+command = "herdr tab list --workspace $HERDR_ACTIVE_WORKSPACE_ID | jq -r '.result.tabs[1].tab_id' | xargs herdr tab focus"
+
+[[keys.command]]
+key = "prefix+2"
+type = "shell"
+command = "herdr tab list --workspace $HERDR_ACTIVE_WORKSPACE_ID | jq -r '.result.tabs[2].tab_id' | xargs herdr tab focus"
+
+[[keys.command]]
+key = "prefix+3"
+type = "shell"
+command = "herdr tab list --workspace $HERDR_ACTIVE_WORKSPACE_ID | jq -r '.result.tabs[3].tab_id' | xargs herdr tab focus"
+
+[[keys.command]]
+key = "prefix+4"
+type = "shell"
+command = "herdr tab list --workspace $HERDR_ACTIVE_WORKSPACE_ID | jq -r '.result.tabs[4].tab_id' | xargs herdr tab focus"
+
+[[keys.command]]
+key = "prefix+5"
+type = "shell"
+command = "herdr tab list --workspace $HERDR_ACTIVE_WORKSPACE_ID | jq -r '.result.tabs[5].tab_id' | xargs herdr tab focus"
+
+[[keys.command]]
+key = "prefix+6"
+type = "shell"
+command = "herdr tab list --workspace $HERDR_ACTIVE_WORKSPACE_ID | jq -r '.result.tabs[6].tab_id' | xargs herdr tab focus"
+
+[[keys.command]]
+key = "prefix+7"
+type = "shell"
+command = "herdr tab list --workspace $HERDR_ACTIVE_WORKSPACE_ID | jq -r '.result.tabs[7].tab_id' | xargs herdr tab focus"
+
+[[keys.command]]
+key = "prefix+8"
+type = "shell"
+command = "herdr tab list --workspace $HERDR_ACTIVE_WORKSPACE_ID | jq -r '.result.tabs[8].tab_id' | xargs herdr tab focus"
+
+[[keys.command]]
+key = "prefix+9"
+type = "shell"
+command = "herdr tab list --workspace $HERDR_ACTIVE_WORKSPACE_ID | jq -r '.result.tabs[9].tab_id' | xargs herdr tab focus"
+
+[ui]
+pane_gaps = false
+
+sidebar_start_collapsed = true
+sidebar_collapsed_mode = "hidden"
+show_agent_labels_on_pane_borders = true
+
+[ui.toast]
+delivery = "system"

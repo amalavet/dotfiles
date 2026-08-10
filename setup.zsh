@@ -180,6 +180,20 @@ if [ ! -d ~/.tmux/plugins/tpm ]; then
     git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 fi
 
+# Rust
+# ----
+install_packages rust
+
+# Herdr
+# -----
+install_packages herdr bun
+herdr plugin install willfish/herdr-navigator --yes
+herdr plugin install andrewchng/herdr-sessionizer --yes
+herdr plugin install ntindle/herdr-resurrect --yes
+herdr integration install claude
+mkdir -p ~/.config/herdr/plugins/config/sessionizer
+ln -sf "$SETUP_SCRIPT_PATH/.config/herdr/sessionizer.toml" ~/.config/herdr/plugins/config/sessionizer/config.toml
+
 # Lazygit / Lazydocker
 # -------
 install_packages lazygit lazydocker

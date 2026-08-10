@@ -13,3 +13,6 @@ nvim/lazy-lock.json
 /emailscript.sh
 /.config/karabiner/assets/
 /.config/karabiner/automatic_backups/
+/.config/herdr/*
+!/.config/herdr/config.toml
+!/.config/herdr/sessionizer.toml

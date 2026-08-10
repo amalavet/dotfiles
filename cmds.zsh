@@ -159,6 +159,44 @@ function :ta() {
     tmux a -t "$session"
 }
 
+# Make sure the default herdr workspaces (dotfiles, Docker) exist, then attach
+function :herdr() {
+    herdr workspace list >/dev/null 2>&1 || { (herdr server >/dev/null 2>&1 &) && sleep 1 }
+
+    local ws pane
+    if ! herdr workspace list 2>/dev/null | jq -e '.result.workspaces[] | select(.label == "dotfiles")' >/dev/null; then
+        ws=$(herdr workspace create --cwd ~/dotfiles --label dotfiles --no-focus)
+        herdr tab rename "$(echo "$ws" | jq -r '.result.tab.tab_id')" git >/dev/null
+        herdr pane run "$(echo "$ws" | jq -r '.result.root_pane.pane_id')" lazygit >/dev/null
+        pane=$(herdr tab create --workspace "$(echo "$ws" | jq -r '.result.workspace.workspace_id')" --cwd ~/dotfiles --label nvim --no-focus | jq -r '.result.root_pane.pane_id')
+        herdr pane run "$(herdr pane split "$pane" --direction right --ratio 0.3 --cwd ~/dotfiles --no-focus | jq -r '.result.pane.pane_id')" fastfetch >/dev/null
+        herdr pane split "$pane" --direction down --cwd ~/dotfiles --no-focus >/dev/null
+    fi
+
+    if ! herdr workspace list 2>/dev/null | jq -e '.result.workspaces[] | select(.label == "Docker")' >/dev/null; then
+        herdr pane run "$(herdr workspace create --cwd ~ --label Docker --no-focus | jq -r '.result.root_pane.pane_id')" lazydocker >/dev/null
+    fi
+
+    herdr
+}
+
+# Stop herdr and wipe all of its state (workspaces, sessions, snapshots)
+function :hpurge() {
+    echo -n "\033[0;33mThis will stop herdr and delete all workspace state. Proceed? (y/N): \033[0m"
+    read confirm
+    if [[ "$confirm" != "y" && "$confirm" != "Y" ]]; then
+        return 1
+    fi
+
+    herdr session list 2>/dev/null | awk 'NR>1 {print $1}' | while IFS= read -r s; do
+        herdr session stop "$s" >/dev/null 2>&1
+    done
+    herdr server stop >/dev/null 2>&1
+    rm -f ~/.config/herdr/session.json ~/.config/herdr/*.log
+    rm -rf ~/.config/herdr/sessions ~/.local/state/herdr
+    echo "\033[0;32mHerdr purged.\033[0m"
+}
+
 # Search and kill a process
 function :kill() {
     ps aux | fzf | awk '{print $2}' | xargs kill -9

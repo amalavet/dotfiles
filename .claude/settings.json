@@ -26,7 +26,6 @@
       "Read(./.env)"
     ]
   },
-  "model": "claude-fable-5",
   "hooks": {
     "UserPromptSubmit": [
       {
@@ -34,6 +33,18 @@
           {
             "type": "command",
             "command": "{ echo '# Reminder — re-read ~/.claude/CLAUDE.md before acting.'; awk '/^## Principles/{p=1;print;next} /^## /{p=0} p' ~/.claude/CLAUDE.md; } 2>/dev/null || true"
+          }
+        ]
+      }
+    ],
+    "SessionStart": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash '/Users/alejandromalavet/.claude/hooks/herdr-agent-state.sh' session",
+            "timeout": 10
           }
         ]
       }

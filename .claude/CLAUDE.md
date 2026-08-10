@@ -14,6 +14,7 @@ The number one principle is: Verobosity is the death of understandability. Your 
 - **Minimize the diff** Write code in such a way as to make review it easy. Try to not create huge confusing diffs.
 - **Helpers at the bottom.** Main entry point first, utilities last.
 - **Comments** NEVER add any comments to code unless explictly asked to.
+- **Comments describe the code, not the journey.** No references to replaced libraries, prior approaches, review feedback, or session decisions. State a constraint only if the reader needs it to safely change the code.
 - **Look stuff up** your training might be out of date, rely on web lookups to get latest information on what you're working on
 - **Read docmentation and `*.md` first** Before you make changes or run commands, look up markdown docs that might help.
 - **Leverage the Makefile** for build/test/lint/run.

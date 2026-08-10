@@ -1,0 +1,29 @@
+[layout]
+focus = "editor"
+
+[tabs.git]
+label = "git"
+
+[[tabs.git.panes]]
+id = "lazygit"
+command = "lazygit"
+
+[tabs.nvim]
+label = "nvim"
+
+[[tabs.nvim.panes]]
+id = "shell_top"
+command = "clear"
+
+[[tabs.nvim.panes]]
+id = "editor"
+from = "shell_top"
+split = "right"
+ratio = 0.3
+command = "clear && fastfetch"
+
+[[tabs.nvim.panes]]
+id = "shell_bottom"
+command = "clear"
+from = "shell_top"
+split = "down"
