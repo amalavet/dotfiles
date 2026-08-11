@@ -186,7 +186,7 @@ install_packages rust
 
 # Herdr
 # -----
-install_packages herdr bun
+install_packages herdr bun terminal-notifier
 herdr plugin install willfish/herdr-navigator --yes
 herdr plugin install andrewchng/herdr-sessionizer --yes
 herdr plugin install ntindle/herdr-resurrect --yes
