@@ -1,4 +1,4 @@
-local ai_pane
+local ai_pane, ai_agent
 
 local function herdr(args)
 	local out = vim.fn.system("herdr " .. args)
@@ -11,12 +11,13 @@ local function find_ai_pane()
 	for _, a in ipairs(agents and agents.result.agents or {}) do
 		if a.tab_id == vim.env.HERDR_TAB_ID and a.pane_id ~= vim.env.HERDR_PANE_ID then
 			ai_pane = a.pane_id
+			ai_agent = a.agent
 		end
 	end
 end
 
 local function stash_ai_pane()
-	return herdr("pane move " .. ai_pane .. " --new-tab --label ai --no-focus")
+	return herdr("pane move " .. ai_pane .. " --new-tab --label " .. (ai_agent or "ai") .. " --no-focus")
 end
 
 local function restore_ai_pane()
