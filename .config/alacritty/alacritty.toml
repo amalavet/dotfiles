@@ -48,3 +48,8 @@ color = '#ff9e64'
 [[colors.indexed_colors]]
 index = 17
 color = '#db4b4b'
+
+[[hints.enabled]]
+regex = "[^ \"'`()\\[\\]{}<>|]+\\.[A-Za-z0-9]+(:\\d+(:\\d+)?)?"
+command = { program = "/Users/alejandromalavet/.config/alacritty/nvim-open" }
+mouse = { enabled = true, mods = "Shift" }

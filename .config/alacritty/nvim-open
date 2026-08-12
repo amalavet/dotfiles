@@ -1,0 +1,51 @@
+#!/usr/bin/env zsh
+set -euo pipefail
+export PATH="/opt/homebrew/bin:$PATH"
+
+match="$1"
+
+if [[ "$match" == http://* || "$match" == https://* ]]; then
+    exec open "$match"
+fi
+
+target="${match%%:*}"
+rest="${match#$target}"
+line=""
+if [[ "$rest" == :* ]]; then
+    line="${rest#:}"
+    line="${line%%:*}"
+fi
+
+current=$(herdr pane current 2>/dev/null)
+cwd=$(echo "$current" | jq -r '.result.pane.cwd')
+ws=$(echo "$current" | jq -r '.result.pane.workspace_id')
+
+if [[ "$target" == "~"* ]]; then
+    target="$HOME${target#\~}"
+elif [[ "$target" != /* ]]; then
+    target="$cwd/$target"
+fi
+
+nvim_pane=""
+for pane_id in $(herdr pane list --workspace "$ws" 2>/dev/null | jq -r '.result.panes[].pane_id'); do
+    name=$(herdr pane process-info --pane "$pane_id" 2>/dev/null | jq -r '.result.process_info.foreground_processes[0].name // ""')
+    if [[ "$name" == "nvim" ]]; then
+        nvim_pane="$pane_id"
+        break
+    fi
+done
+
+if [[ -z "$nvim_pane" ]]; then
+    echo "herdr-open: no nvim pane found in workspace $ws" >&2
+    exit 1
+fi
+
+cmd=":e"
+[[ -n "$line" ]] && cmd="$cmd +$line"
+cmd="$cmd $target"
+
+herdr pane send-text "$nvim_pane" "$cmd" >/dev/null
+herdr pane send-keys "$nvim_pane" enter >/dev/null
+
+tab_id=$(herdr pane get "$nvim_pane" 2>/dev/null | jq -r '.result.pane.tab_id')
+herdr tab focus "$tab_id" >/dev/null
