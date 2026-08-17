@@ -180,6 +180,13 @@ function :herdr() {
     herdr
 }
 
+# Snapshot herdr-resurrect state, then stop the server, so shutdown teardown
+# events can't clobber the snapshot before it's saved
+function :hstop() {
+    herdr plugin action invoke save --plugin ntindle.herdr-resurrect >/dev/null 2>&1
+    herdr server stop
+}
+
 # Stop herdr and wipe all of its state (workspaces, sessions, snapshots)
 function :hpurge() {
     echo -n "\033[0;33mThis will stop herdr and delete all workspace state. Proceed? (y/N): \033[0m"
@@ -284,9 +291,9 @@ function :dbr() {
 }
 
 # Setup AI agent markdown file for all subdirectories one level deep
-# Usage: :ai [FILENAME.md] (default: CLAUDE.md)
+# Usage: :ai [FILENAME.md] (default: AGENTS.md)
 function :ai() {
-    local target="${1:-CLAUDE.md}"
+    local target="${1:-AGENTS.md}"
     for dir in */; do
         [[ -d "$dir" ]] || continue
         if [[ -f "${dir}${target}" ]]; then

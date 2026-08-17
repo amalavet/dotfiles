@@ -193,11 +193,11 @@ yay -S input-remapper-git
 ```
 `piper` for DPI/profiles, `input-remapper-gtk` for keybinds/macros (enable Autoload per device).
 
-## 9. OpenCode
+## 9. Pi
 
-- Transparent bg: theme `system` in `.config/opencode/tui.json`.
-- Vim editing in prompt: install `vimcode` plugin pinned to `v0.12.2`. Full nvim compose via `/editor` (ctrl+x e).
-- Caveman: `npx -y github:JuliusBrussee/caveman -- --only opencode --force`.
+- Run `pi` and use `/login` to authenticate.
+- Global defaults and extensions are stowed from `.pi/agent`.
+- Vim prompt editing is provided by `pi-vimmode`; use Ctrl+G for Neovim.
 
 ## Inspect OS state
 

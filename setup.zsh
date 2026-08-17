@@ -153,6 +153,11 @@ fi
 # -------
 install_packages nvm yarn
 
+# Pi
+# --
+npm install -g --ignore-scripts @earendil-works/pi-coding-agent
+pi update --extensions
+
 # Go
 # --
 install_packages goenv
@@ -190,7 +195,7 @@ install_packages herdr bun terminal-notifier
 herdr plugin install willfish/herdr-navigator --yes
 herdr plugin install andrewchng/herdr-sessionizer --yes
 herdr plugin install ntindle/herdr-resurrect --yes
-herdr integration install claude
+herdr integration install pi
 mkdir -p ~/.config/herdr/plugins/config/sessionizer
 ln -sf "$SETUP_SCRIPT_PATH/.config/herdr/sessionizer.toml" ~/.config/herdr/plugins/config/sessionizer/config.toml
 
@@ -209,9 +214,5 @@ install_packages scooter
 # Fastfetch
 # ---------
 install_packages fastfetch
-
-# Opencode
-# ---------
-install_packages opencode
 
 source ~/.zshrc

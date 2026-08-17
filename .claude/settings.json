@@ -1,5 +1,17 @@
 {
   "permissions": {
+    "deny": [
+      "Read(./.env)",
+      "Read(./.pem)",
+      "Read(~/.ssh/id_*)",
+      "Read(~/.aws/credentials)",
+      "Bash(op read:*)",
+      "Bash(op item get:*)",
+      "Bash(op document get:*)",
+      "Bash(op inject:*)",
+      "Bash(op run:*)",
+      "Bash(op item share:*)"
+    ],
     "ask": [
       "Bash(git push:*)",
       "Bash(chmod:*)",
@@ -90,18 +102,6 @@
       "Bash(curl * | sh:*)",
       "Bash(curl * | bash:*)",
       "Bash(wget * | sh:*)"
-    ],
-    "deny": [
-      "Read(./.env)",
-      "Read(./.pem)",
-      "Read(~/.ssh/id_*)",
-      "Read(~/.aws/credentials)",
-      "Bash(op read:*)",
-      "Bash(op item get:*)",
-      "Bash(op document get:*)",
-      "Bash(op inject:*)",
-      "Bash(op run:*)",
-      "Bash(op item share:*)"
     ]
   },
   "hooks": {
@@ -174,5 +174,6 @@
     }
   },
   "effortLevel": "medium",
-  "editorMode": "vim"
+  "editorMode": "vim",
+  "model": "opus[1m]"
 }
