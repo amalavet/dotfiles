@@ -1,0 +1,16 @@
+{
+  "mcpServers": {
+    "github": {
+      "url": "https://api.githubcopilot.com/mcp",
+      "auth": "oauth",
+      "protocolVersion": "auto"
+    },
+    "chrome-devtools": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "chrome-devtools-mcp@1.6.0"
+      ]
+    }
+  }
+}

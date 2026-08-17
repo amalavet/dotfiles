@@ -48,7 +48,8 @@
       "skills": [],
       "prompts": [],
       "themes": []
-    }
+    },
+    "npm:pi-mcp-adapter"
   ],
   "skills": [
     "git/github.com/grafana/ai-kit/plugins/grafana-app-sdk/skills",
@@ -73,5 +74,6 @@
     "git/github.com/grafana/ai-kit/plugins/grafana-gtd/commands",
     "git/github.com/grafana/ai-kit/plugins/grafana-product/commands",
     "git/github.com/grafana/ai-kit/plugins/grafana-app-sdk/agents/kind-designer.md"
-  ]
+  ],
+  "lastChangelogVersion": "0.84.2"
 }
