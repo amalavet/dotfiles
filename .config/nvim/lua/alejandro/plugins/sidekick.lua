@@ -1,4 +1,4 @@
-local ai_pane, ai_agent
+local ai_pane
 
 local function herdr(args)
 	local out = vim.fn.system("herdr " .. args)
@@ -9,15 +9,14 @@ end
 local function find_ai_pane()
 	local agents = herdr("agent list")
 	for _, a in ipairs(agents and agents.result.agents or {}) do
-		if a.tab_id == vim.env.HERDR_TAB_ID and a.pane_id ~= vim.env.HERDR_PANE_ID then
+		if a.agent == "pi" and a.workspace_id == vim.env.HERDR_WORKSPACE_ID and a.pane_id ~= vim.env.HERDR_PANE_ID then
 			ai_pane = a.pane_id
-			ai_agent = a.agent
 		end
 	end
 end
 
 local function stash_ai_pane()
-	return herdr("pane move " .. ai_pane .. " --new-tab --label " .. (ai_agent or "ai") .. " --no-focus")
+	return herdr("pane move " .. ai_pane .. " --new-tab --label pi --no-focus")
 end
 
 local function restore_ai_pane()
@@ -26,7 +25,7 @@ end
 
 local function toggle_ai_pane()
 	if vim.env.HERDR_ENV ~= "1" then
-		require("sidekick.cli").toggle({ focus = true })
+		require("sidekick.cli").toggle({ name = "pi", focus = true })
 		return
 	end
 
@@ -36,7 +35,7 @@ local function toggle_ai_pane()
 	local info = ai_pane and herdr("pane get " .. ai_pane)
 	if not (info and info.result) then
 		ai_pane = nil
-		require("sidekick.cli").toggle({ focus = true })
+		require("sidekick.cli").toggle({ name = "pi", focus = true })
 		return
 	end
 
@@ -51,6 +50,22 @@ local function toggle_ai_pane()
 	end
 end
 
+local function send_to_pi(opts)
+	if vim.env.HERDR_ENV == "1" then
+		if not ai_pane then
+			find_ai_pane()
+		end
+		if ai_pane then
+			local screen = vim.fn.system({ "herdr", "agent", "read", ai_pane, "--lines", "8" })
+			if screen:find("─ NORMAL ", 1, true) then
+				vim.fn.system({ "herdr", "agent", "send-keys", ai_pane, "i" })
+			end
+		end
+	end
+	opts.name = "pi"
+	require("sidekick.cli").send(opts)
+end
+
 return {
 	{
 		src = "https://github.com/rmarganti/sidekick.nvim",
@@ -60,25 +75,27 @@ return {
 				nes = { enabled = false },
 				cli = {
 					mux = {
-						backend = "herdr",
 						enabled = true,
 						create = "split",
-						split = { vertical = true, size = 0.5 },
 					},
 				},
 			})
 			vim.keymap.set("n", "<leader>ai", toggle_ai_pane, { desc = "Sidekick Toggle CLI" })
 			vim.keymap.set({ "x", "n" }, "<leader>at", function()
-				require("sidekick.cli").send({ msg = "{this}" })
+				send_to_pi({ msg = "{this}" })
 			end, { desc = "Send This" })
 			vim.keymap.set("n", "<leader>af", function()
-				require("sidekick.cli").send({ msg = "{file}" })
+				send_to_pi({ msg = "{file}" })
 			end, { desc = "Send File" })
 			vim.keymap.set("x", "<leader>av", function()
-				require("sidekick.cli").send({ msg = "{selection}" })
+				send_to_pi({ msg = "{selection}" })
 			end, { desc = "Send Visual Selection" })
 			vim.keymap.set({ "n", "x" }, "<leader>ap", function()
-				require("sidekick.cli").prompt()
+				require("sidekick.cli").prompt(function(_, text)
+					if text then
+						send_to_pi({ text = text })
+					end
+				end)
 			end, { desc = "Sidekick Select Prompt" })
 		end,
 	},
