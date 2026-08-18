@@ -18,12 +18,12 @@ const gatedTools = new Set([
 ]);
 
 const gatedCommands = [
-  /\bgit\s+push\b/,
+  /\bgit\b[^;&|\n]*\bpush\b/,
   /\bchmod\b/,
   /\bkill\b/,
-  /\bgit\s+reset\s+--hard\b/,
-  /\bgit\s+clean\s+-f\b/,
-  /\bgit\s+branch\s+-D\b/,
+  /\bgit\b[^;&|\n]*\breset\b[^;&|\n]*--hard\b/,
+  /\bgit\b[^;&|\n]*\bclean\b[^;&|\n]*(?:--force\b|-[a-zA-Z]*f[a-zA-Z]*\b)/,
+  /\bgit\b[^;&|\n]*\bbranch\b[^;&|\n]*(?:-D\b|--delete\b[^;&|\n]*--force\b|--force\b[^;&|\n]*--delete\b)/,
   /\brm\s+-rf\b/,
   /\bsudo\b/,
   /\bkubectl\s+(?:apply|delete)\b/,
