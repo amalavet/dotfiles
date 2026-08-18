@@ -20,6 +20,7 @@ const gatedTools = new Set([
 const gatedCommands = [
   /\bgit\s+push\b/,
   /\bchmod\b/,
+  /\bkill\b/,
   /\bgit\s+reset\s+--hard\b/,
   /\bgit\s+clean\s+-f\b/,
   /\bgit\s+branch\s+-D\b/,
