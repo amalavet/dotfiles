@@ -1,5 +1,5 @@
 import { homedir } from "node:os";
-import { resolve } from "node:path";
+import { basename, resolve } from "node:path";
 import { isToolCallEventType, type ExtensionAPI } from "@earendil-works/pi-coding-agent";
 
 const deniedCommands = [
@@ -73,9 +73,14 @@ export default function (pi: ExtensionAPI) {
 
 function isSensitivePath(path: string, cwd: string) {
   const expanded = path.startsWith("~/") ? resolve(homedir(), path.slice(2)) : resolve(cwd, path);
-  return expanded === resolve(cwd, ".env")
-    || expanded === resolve(cwd, ".pem")
+  const name = basename(expanded);
+  return name === ".env"
+    || name.startsWith(".env.")
+    || [".pem", ".key", ".p12", ".pfx", ".jks", ".keystore"].some((extension) => name.endsWith(extension))
+    || [".netrc", ".npmrc", ".pypirc"].includes(name)
     || expanded === resolve(homedir(), ".aws/credentials")
+    || expanded === resolve(homedir(), ".docker/config.json")
+    || expanded === resolve(homedir(), ".kube/config")
     || expanded.startsWith(resolve(homedir(), ".ssh/id_"));
 }
 
