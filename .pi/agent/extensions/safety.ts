@@ -2,11 +2,10 @@ import { homedir } from "node:os";
 import { basename, resolve } from "node:path";
 import { isToolCallEventType, type ExtensionAPI } from "@earendil-works/pi-coding-agent";
 
-const deniedCommands = [
-  /\bop\s+(?:read|inject|run)\b/,
-  /\bop\s+item\s+(?:get|share)\b/,
-  /\bop\s+document\s+get\b/,
-];
+type CommandRule = {
+  all: string[];
+  any?: string[];
+};
 
 const gatedTools = new Set([
   "mcp__slack__slack_send_message",
@@ -17,30 +16,33 @@ const gatedTools = new Set([
   "mcp__slack__slack_update_canvas",
 ]);
 
-const gatedCommands = [
-  /\bgit\b[^;&|\n]*\bpush\b/,
-  /\bchmod\b/,
-  /\bkill\b/,
-  /\bgit\b[^;&|\n]*\breset\b[^;&|\n]*--hard\b/,
-  /\bgit\b[^;&|\n]*\bclean\b[^;&|\n]*(?:--force\b|-[a-zA-Z]*f[a-zA-Z]*\b)/,
-  /\bgit\b[^;&|\n]*\bbranch\b[^;&|\n]*(?:-D\b|--delete\b[^;&|\n]*--force\b|--force\b[^;&|\n]*--delete\b)/,
-  /\brm\s+-rf\b/,
-  /\bsudo\b/,
-  /\bkubectl\s+(?:apply|delete)\b/,
-  /\bterraform\s+(?:apply|destroy)\b/,
-  /\bnpm\s+publish\b/,
-  /\bdocker\s+push\b/,
-  /\b(?:curl|wget)\b[^|]*\|\s*(?:sh|bash)\b/,
-  /\bgh\s+pr\s+(?:create|close|comment|edit|lock|unlock|merge|ready|reopen|revert|review|update-branch)\b/,
-  /\bgh\s+issue\s+(?:create|close|comment|delete|develop|edit|lock|unlock|pin|unpin|reopen|transfer)\b/,
-  /\bgh\s+repo\s+(?:create|archive|delete|edit|fork|rename|sync|unarchive)\b/,
-  /\bgh\s+release\s+(?:create|delete|delete-asset|edit|upload)\b/,
-  /\bgh\s+gist\s+(?:create|delete|edit|rename)\b/,
-  /\bgh\s+workflow\s+(?:disable|enable|run)\b/,
-  /\bgh\s+(?:secret|variable)\s+(?:set|delete)\b/,
-  /\bgh\s+label\s+(?:create|delete|edit|clone)\b/,
-  /\bgh\s+project\s+(?:create|close|copy|delete|edit|field-create|field-delete|item-add|item-archive|item-create|item-delete|item-edit|link|unlink)\b/,
-  /\bgh\s+cache\s+delete\b/,
+const gatedCommands: CommandRule[] = [
+  { all: ["op"] },
+  { all: ["git", "push"] },
+  { all: ["chmod"] },
+  { all: ["kill"] },
+  { all: ["git", "reset", "--hard"] },
+  { all: ["git", "clean"] },
+  { all: ["git", "branch", "-d"] },
+  { all: ["rm", "-rf"] },
+  { all: ["sudo"] },
+  { all: ["kubectl"], any: ["apply", "delete"] },
+  { all: ["terraform"], any: ["apply", "destroy"] },
+  { all: ["npm", "publish"] },
+  { all: ["docker", "push"] },
+  { all: ["curl", "|"], any: ["sh", "bash"] },
+  { all: ["wget", "|"], any: ["sh", "bash"] },
+  { all: ["gh", "pr"], any: ["create", "close", "comment", "edit", "lock", "unlock", "merge", "ready", "reopen", "revert", "review", "update-branch"] },
+  { all: ["gh", "issue"], any: ["create", "close", "comment", "delete", "develop", "edit", "lock", "unlock", "pin", "unpin", "reopen", "transfer"] },
+  { all: ["gh", "repo"], any: ["create", "archive", "delete", "edit", "fork", "rename", "sync", "unarchive"] },
+  { all: ["gh", "release"], any: ["create", "delete", "delete-asset", "edit", "upload"] },
+  { all: ["gh", "gist"], any: ["create", "delete", "edit", "rename"] },
+  { all: ["gh", "workflow"], any: ["disable", "enable", "run"] },
+  { all: ["gh", "set"], any: ["secret", "variable"] },
+  { all: ["gh", "delete"], any: ["secret", "variable"] },
+  { all: ["gh", "label"], any: ["create", "delete", "edit", "clone"] },
+  { all: ["gh", "project"], any: ["create", "close", "copy", "delete", "edit", "field-create", "field-delete", "item-add", "item-archive", "item-create", "item-delete", "item-edit", "link", "unlink"] },
+  { all: ["gh", "cache", "delete"] },
 ];
 
 export default function (pi: ExtensionAPI) {
@@ -56,13 +58,9 @@ export default function (pi: ExtensionAPI) {
       return;
     }
 
-    if (!isToolCallEventType("bash", event)) return;
+    if (event.toolName !== "bash") return;
 
-    const command = event.input.command;
-    if (deniedCommands.some((pattern) => pattern.test(command))) {
-      return { block: true, reason: "1Password secret-reading commands are blocked" };
-    }
-
+    const command = event.input.command as string;
     if (!isGated(command)) return;
     if (!ctx.hasUI) return { block: true, reason: "Command requires interactive approval" };
 
@@ -85,8 +83,18 @@ function isSensitivePath(path: string, cwd: string) {
 }
 
 function isGated(command: string) {
-  if (/\bgh\s+api\b/.test(command) && /(?:-X|--method)(?:=|\s+)["']?(?:POST|PUT|PATCH|DELETE)\b/i.test(command)) {
+  const normalized = command.toLowerCase();
+  if (normalized.includes("gh") && normalized.includes("api")
+    && ["post", "put", "patch", "delete"].some((method) => normalized.includes(method))) {
     return true;
   }
-  return gatedCommands.some((pattern) => pattern.test(command));
+  return matchesCommand(command, gatedCommands);
+}
+
+function matchesCommand(command: string, rules: CommandRule[]) {
+  const normalized = command.toLowerCase();
+  return rules.some(({ all, any }) =>
+    all.every((part) => normalized.includes(part))
+      && (!any || any.some((part) => normalized.includes(part)))
+  );
 }

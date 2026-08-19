@@ -49,7 +49,8 @@
       "prompts": [],
       "themes": []
     },
-    "npm:pi-mcp-adapter"
+    "npm:pi-mcp-adapter",
+    "npm:@alfonzjanfrithz/pi-websearch"
   ],
   "skills": [
     "git/github.com/grafana/ai-kit/plugins/grafana-app-sdk/skills",
