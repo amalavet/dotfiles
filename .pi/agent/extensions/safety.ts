@@ -83,18 +83,17 @@ function isSensitivePath(path: string, cwd: string) {
 }
 
 function isGated(command: string) {
-  const normalized = command.toLowerCase();
-  if (normalized.includes("gh") && normalized.includes("api")
-    && ["post", "put", "patch", "delete"].some((method) => normalized.includes(method))) {
+  const parts = command.toLowerCase().match(/\||[^\s;&|]+/g) ?? [];
+  if (parts.includes("gh") && parts.includes("api")
+    && ["post", "put", "patch", "delete"].some((method) => parts.includes(method))) {
     return true;
   }
-  return matchesCommand(command, gatedCommands);
+  return matchesCommand(parts, gatedCommands);
 }
 
-function matchesCommand(command: string, rules: CommandRule[]) {
-  const normalized = command.toLowerCase();
+function matchesCommand(parts: string[], rules: CommandRule[]) {
   return rules.some(({ all, any }) =>
-    all.every((part) => normalized.includes(part))
-      && (!any || any.some((part) => normalized.includes(part)))
+    all.every((part) => parts.includes(part))
+      && (!any || any.some((part) => parts.includes(part)))
   );
 }

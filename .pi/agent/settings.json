@@ -1,5 +1,5 @@
 {
-  "theme": "dark",
+  "theme": "tokyonight",
   "defaultProvider": "openai-codex",
   "defaultModel": "gpt-5.6-sol",
   "defaultThinkingLevel": "medium",
@@ -50,7 +50,8 @@
       "themes": []
     },
     "npm:pi-mcp-adapter",
-    "npm:@alfonzjanfrithz/pi-websearch"
+    "npm:@alfonzjanfrithz/pi-websearch",
+    "npm:@juanibiapina/pi-tokyonight@1.1.0"
   ],
   "skills": [
     "git/github.com/grafana/ai-kit/plugins/grafana-app-sdk/skills",
