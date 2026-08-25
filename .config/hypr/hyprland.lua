@@ -54,7 +54,7 @@ hl.on("hyprland.start", function()
 	hl.exec_cmd("uwsm app -- elephant")
 	hl.exec_cmd("uwsm app -- walker --gapplication-service")
 	hl.exec_cmd("[workspace 2 silent] uwsm app -- google-chrome-stable")
-	hl.exec_cmd("[workspace 3 silent] uwsm app -- alacritty -e zsh -lc 'tmux a || (source ~/.zshrc && :tmux); zsh'")
+	hl.exec_cmd("[workspace 3 silent] uwsm app -- alacritty -e zsh -lc 'source ~/.zshrc && :herdr; zsh'")
 end)
 
 ----------

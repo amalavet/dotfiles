@@ -1,11 +1,14 @@
 #!/usr/bin/env zsh
 set -euo pipefail
-export PATH="/opt/homebrew/bin:$PATH"
+export PATH="$HOME/.local/bin:/opt/homebrew/bin:$PATH"
 
 match="$1"
 
 if [[ "$match" == http://* || "$match" == https://* ]]; then
-    exec open "$match"
+    if [[ "$OSTYPE" == darwin* ]]; then
+        exec open "$match"
+    fi
+    exec xdg-open "$match"
 fi
 
 target="${match%%:*}"
@@ -47,5 +50,5 @@ cmd="$cmd $target"
 herdr pane send-text "$nvim_pane" "$cmd" >/dev/null
 herdr pane send-keys "$nvim_pane" enter >/dev/null
 
-tab_id=$(herdr pane get "$nvim_pane" 2>/dev/null | jq -r '.result.pane.tab_id')
-herdr tab focus "$tab_id" >/dev/null
+herdr pane zoom "$nvim_pane" --on >/dev/null
+herdr pane zoom "$nvim_pane" --off >/dev/null
