@@ -51,5 +51,6 @@ color = '#db4b4b'
 
 [[hints.enabled]]
 regex = "[^ \"'`()\\[\\]{}<>|]*/[^ \"'`()\\[\\]{}<>|]+(:\\d+(:\\d+)?)?|[^ \"'`()\\[\\]{}<>|]+\\.[A-Za-z0-9]+(:\\d+(:\\d+)?)?"
+post_processing = true
 command = { program = "/bin/sh", args = ["-c", 'exec "$HOME/.config/alacritty/nvim-open" "$1"', "sh"] }
 mouse = { enabled = true, mods = "Shift" }

@@ -50,5 +50,5 @@ cmd="$cmd $target"
 herdr pane send-text "$nvim_pane" "$cmd" >/dev/null
 herdr pane send-keys "$nvim_pane" enter >/dev/null
 
-herdr pane zoom "$nvim_pane" --on >/dev/null
-herdr pane zoom "$nvim_pane" --off >/dev/null
+tab_id=$(herdr pane get "$nvim_pane" 2>/dev/null | jq -r '.result.pane.tab_id')
+herdr tab focus "$tab_id" >/dev/null
