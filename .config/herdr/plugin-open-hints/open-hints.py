@@ -63,7 +63,7 @@ def start():
 def scan(output, cwd):
     targets = []
     seen = set()
-    for line in output.splitlines():
+    for line in reversed(output.splitlines()):
         for match in PATTERN.finditer(line):
             target = trim(match.group())
             if target and target not in seen and is_openable(target, cwd):
@@ -75,7 +75,7 @@ def scan(output, cwd):
 def is_openable(target, cwd):
     if target.startswith(("http://", "https://")):
         uri = urlparse(target)
-        return bool(uri.hostname and uri.path not in ("", "/"))
+        return bool(uri.hostname)
     path, _ = parse_path(target, cwd)
     return Path(path).is_file()
 
@@ -190,12 +190,31 @@ def open_in_nvim(path, line, workspace):
     if not nvim_pane:
         raise RuntimeError(f"no nvim pane found in workspace {workspace}")
     escaped = path.replace("'", "''")
-    prefix = f"edit +{line} " if line else "edit "
-    command = f":execute '{prefix}' . fnameescape('{escaped}')"
+    command = f":execute 'edit ' . fnameescape('{escaped}')"
+    if line:
+        command += f" | {line}"
     subprocess.run([herdr, "pane", "send-text", nvim_pane, command], check=True)
     subprocess.run([herdr, "pane", "send-keys", nvim_pane, "enter"], check=True)
     pane = run_json([herdr, "pane", "get", nvim_pane])["result"]["pane"]
     subprocess.run([herdr, "tab", "focus", pane["tab_id"]], check=True)
+    focus_pane(herdr, nvim_pane, workspace, pane["tab_id"])
+
+
+def focus_pane(herdr, target, workspace, tab):
+    panes = run_json([herdr, "pane", "list", "--workspace", workspace])["result"]["panes"]
+    if next(pane for pane in panes if pane["pane_id"] == target)["focused"]:
+        return
+    for pane in panes:
+        if pane["tab_id"] != tab or pane["pane_id"] == target:
+            continue
+        for direction in ("left", "right", "up", "down"):
+            result = run_json([herdr, "pane", "neighbor", "--pane", pane["pane_id"], "--direction", direction])
+            if result["result"]["neighbor"].get("neighbor_pane_id") == target:
+                subprocess.run(
+                    [herdr, "pane", "focus", "--pane", pane["pane_id"], "--direction", direction], check=True
+                )
+                return
+    raise RuntimeError(f"could not focus pane {target}")
 
 
 def run_json(command):
