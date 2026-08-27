@@ -12,6 +12,7 @@ from urllib.parse import unquote, urlparse
 
 TOKEN = r'''[^\s"'`()\[\]<>|]'''
 PATTERN = re.compile(rf"{TOKEN}*/{TOKEN}+(?::\d+(?::\d+)?)?|{TOKEN}+\.[A-Za-z0-9]+(?::\d+(?::\d+)?)?")
+URL_PREFIXES = ("http://", "https://")
 
 
 def main():
@@ -33,9 +34,9 @@ def start():
     targets = scan(output, cwd)
     if not targets:
         return
-    fd, data_file = tempfile.mkstemp(prefix="herdr-open-hints-", suffix=".json")
-    with os.fdopen(fd, "w") as data:
+    with tempfile.NamedTemporaryFile("w", prefix="herdr-open-hints-", suffix=".json", delete=False) as data:
         json.dump({"targets": targets, "cwd": cwd, "workspace": workspace}, data)
+        data_file = data.name
     subprocess.run(
         [
             herdr,
@@ -46,12 +47,6 @@ def start():
             "alejandromalavet.open-hints",
             "--entrypoint",
             "picker",
-            "--placement",
-            "popup",
-            "--width",
-            "60%",
-            "--height",
-            "60%",
             "--focus",
             "--env",
             f"HERDR_OPEN_HINTS_DATA={data_file}",
@@ -73,18 +68,14 @@ def scan(output, cwd):
 
 
 def is_openable(target, cwd):
-    if target.startswith(("http://", "https://")):
-        uri = urlparse(target)
-        return bool(uri.hostname)
+    if target.startswith(URL_PREFIXES):
+        return bool(urlparse(target).hostname)
     path, _ = parse_path(target, cwd)
     return Path(path).is_file()
 
 
 def trim(target):
-    target = target.rstrip(".,;!?")
-    while target.endswith(":"):
-        target = target[:-1]
-    return target
+    return target.rstrip(".,;!?").rstrip(":")
 
 
 def pick():
@@ -92,9 +83,7 @@ def pick():
     try:
         with open(data_file) as data:
             payload = json.load(data)
-        preview = " ".join(
-            [shlex.quote(sys.executable), shlex.quote(__file__), "preview", "{}", shlex.quote(payload["cwd"])]
-        )
+        preview = shlex.join([sys.executable, __file__, "preview", "{}", payload["cwd"]])
         result = subprocess.run(
             [
                 "fzf",
@@ -108,14 +97,12 @@ def pick():
             stdout=subprocess.PIPE,
         )
         if result.returncode == 0:
-            target = result.stdout.rstrip("\n")
             subprocess.Popen(
-                [sys.executable, __file__, "open", target, payload["cwd"], payload["workspace"]],
+                [sys.executable, __file__, "open", result.stdout.rstrip("\n"), payload["cwd"], payload["workspace"]],
                 stdin=subprocess.DEVNULL,
                 stdout=subprocess.DEVNULL,
                 stderr=subprocess.DEVNULL,
                 start_new_session=True,
-                env=os.environ,
             )
     finally:
         Path(data_file).unlink(missing_ok=True)
@@ -123,14 +110,14 @@ def pick():
 
 def preview_target():
     target, cwd = sys.argv[2:4]
-    if target.startswith(("http://", "https://")):
+    if target.startswith(URL_PREFIXES):
         print(target, end="")
         return
     path, selected_line = parse_path(target, cwd)
     command = ["bat", "--color=always", "--theme=ansi", "--style=numbers", "--paging=never"]
     if selected_line:
         line = int(selected_line)
-        command.extend(["--highlight-line", str(line), "--line-range", f"{max(1, line - 20)}:{line + 100}"])
+        command += ["--highlight-line", str(line), "--line-range", f"{max(1, line - 20)}:{line + 100}"]
     command.append(path)
     os.execvp(command[0], command)
 
@@ -139,7 +126,7 @@ def open_target():
     time.sleep(0.15)
     target, cwd, workspace = sys.argv[2:5]
     try:
-        if target.startswith(("http://", "https://")):
+        if target.startswith(URL_PREFIXES):
             opener = "open" if sys.platform == "darwin" else "xdg-open"
             subprocess.Popen([opener, target], start_new_session=True)
             return
@@ -154,11 +141,8 @@ def open_target():
 def parse_path(target, cwd):
     if target.startswith("file:"):
         uri = urlparse(target)
-        if uri.netloc and uri.netloc != "localhost":
-            target = f"//{uri.netloc}{uri.path}"
-        else:
-            target = uri.path
-        target = unquote(target)
+        path = f"//{uri.netloc}{uri.path}" if uri.netloc and uri.netloc != "localhost" else uri.path
+        target = unquote(path)
     target = target.replace("${PWD}", cwd).replace("$PWD", cwd)
     target = os.path.expandvars(target)
     line = None
@@ -175,14 +159,13 @@ def parse_path(target, cwd):
 def open_in_nvim(path, line, workspace):
     herdr = os.environ.get("HERDR_BIN_PATH", "herdr")
     panes = run_json([herdr, "pane", "list", "--workspace", workspace])["result"]["panes"]
-    nvim_pane = None
     for pane in panes:
         info = run_json([herdr, "pane", "process-info", "--pane", pane["pane_id"]])
         processes = info["result"]["process_info"].get("foreground_processes", [])
         if processes and processes[0].get("name") == "nvim":
             nvim_pane = pane["pane_id"]
             break
-    if not nvim_pane:
+    else:
         raise RuntimeError(f"no nvim pane found in workspace {workspace}")
     escaped = path.replace("'", "''")
     command = f":execute 'edit ' . fnameescape('{escaped}')"
