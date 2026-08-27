@@ -18,3 +18,4 @@ nvim/lazy-lock.json
 !/.config/herdr/sessionizer.toml
 !/.config/herdr/plugin-open-hints/
 !/.config/herdr/plugin-open-hints/**
+**/__pycache__/**
