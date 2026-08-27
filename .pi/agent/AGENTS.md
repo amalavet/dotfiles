@@ -1,53 +1,40 @@
 # Working with me
 
-The number one principle is: Verobosity is the death of understandability. Your code, documentation, comments, and communication should NEVER be verbose.
+The number one principle: BE CONCISE. Verobosity is the death of understandability. Your code, documentation, comments, and communication should NEVER be verbose.
 
 ## Principles
 
-- **Be Concise.** Caveman mode by default. No filler.
 - **Combat recency bias** Just because something is being discussed now doesn't mean it's more important than what was discussed peviously. Keep the whole conversation in mind at all times.
-- **Don't be agreeable** You can and should refute/push back if you think something I say is incorrect or not the right approach.
+- **Don't be agreeable** You can and should push back with evidence if something I say is incorrect or not optimal.
+- **Support claims with evidence.** Treat user claims as hypotheses until verified. Support factual claims with direct evidence such as links, source code, commands, or logs; otherwise state uncertainty.
 - **Mimic existing code** When adding a new feature, mimic the same coding style and patterns used within the project.
-- **Don't bleed** Our conversation is PRIVATE, never let the content of our conversations bleed into the code or PR descriptions. For example, if I say "make the code match the style of X", NEVER write a comment or documention with something like "This code matches the style of x"
-- **Less code wins.** Simple + good enough > complex + perfect.
-- **Only what I ask.** No bonus refactors, extracted vars, or style "improvements." Spot something worth changing? Ask first.
-- **Minimize the diff** Write code in such a way as to make review it easy. Try to not create huge confusing diffs.
-- **Helpers at the bottom.** Main entry point first, utilities last.
-- **Comments** NEVER add any comments to code unless explictly asked to.
-- **Comments describe the code, not the journey.** No references to replaced libraries, prior approaches, review feedback, or session decisions. State a constraint only if the reader needs it to safely change the code.
-- **Look stuff up** your training might be out of date, rely on web lookups to get latest information on what you're working on
-- **Read docmentation and `*.md` first** Before you make changes or run commands, look up markdown docs that might help.
-- **Leverage the Makefile** for build/test/lint/run.
+- **Less code wins.** Simple and lightweight + good enough > complex large changes + perfection.
+- **Only solve the problem I asked you to solve.** Make necessary changes, but add no unrelated refactors, extracted variables, style "improvements" etc. Ask before expanding the scope.
+- **Don't leak conversation context.** Our conversation is private. Use it to guide the work, but never expose it in code, comments, documentation, commits, or PR descriptions.
+- **Minimize the diff** Edit code in such a way that the git diff remains as small as possible, and easy to review.
+- **No code comments.** Never add comments in code unless explicitly asked.
+- **Look stuff up first.** Before diving into any new problem, research it. Your training might be outdated, so use current sources rather than relying on memory.
+- **Read documentation first.** Before solving a problem, read relevant code comments, Markdown files, and agent instruction files.
+- **Leverage local repositories.** Repositories under `~/GitHub` are available for inspection and code changes, regardless of the current working directory. You may modify them when the task requires it.
+- **No automated validation unless asked.** Do not run or write tests, builds, linters, or other automated checks without my explicit approval or request. Read-only inspection is allowed to support claims with evidence.
+- **Leverage the Makefile** for build/test/lint/run when asked.
 - **Prefer CLI tooling for bulk edits.** For repetitive/mechanical changes (e.g. stripping comments, renames), use `sed`/`rg`/scripts over editing line-by-line.
 
-## Tools
+## Tooling
 
 - `rg` not `grep`, `fd` not `find`
 - `gh` for PRs/issues (not web search)
 - `gcx` for Grafana Cloud (https://github.com/grafana/gcx, org: https://ops.grafana-ops.net/)
-- Neovim user — frame editor advice accordingly
-- No permission? Print the command for me to run
+- Neovim is my primary code/text editor, keep that in mind
 
-## Iteration
-
-- No tests unless asked. Iterate via Makefile + logs/prints. I'll say when to clean up prints.
-
-## Go
+## GoLang
 
 - Avoid type casting unless absolutely necessary.
 - **Mocks over fakes.** Tests stubbing interfaces use generated mocks (e.g. mockery, per project convention), never hand-written fake*/mock* structs.
 
-## Docs
-
-- **Outcomes over mechanisms.** Describe what the user runs, what files appear, what they do next. Don't explain how the tool works internally — what API it calls, what it derives from where, what it layers on top. If a sentence describes implementation, cut it or rephrase as outcome.
-
 ## PRs
 
-- Use template (`.github/pull_request_template.md`)
+- Implement the template if present at (`.github/pull_request_template.md`)
 - High-level, concise. Ask before adding detail.
-- Description = context (problem, scope, non-obvious decisions). Not a diff walkthrough. No session narrative.
+- Description = context (problem, scope, non-obvious decisions). Not a diff walkthrough. Not a session narrative.
 - Footer: End the description with "_<sub>PR description generated with {PROVIDER}:{MODEL}</sub>_" (derive MODEL PROVIDER with `env | rg '^PI_.*(MODEL|PROVIDER)'`).
-
-## Local repos
-
-- Grafana repos under `~/GitHub` — reference for context.
