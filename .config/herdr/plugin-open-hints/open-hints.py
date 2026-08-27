@@ -99,12 +99,7 @@ def pick():
             [
                 "fzf",
                 "--layout=default",
-                "--prompt=Open> ",
-                "--pointer=❯",
-                "--info=inline-right",
-                "--header=Click or press Enter · Esc cancels",
                 "--bind=left-click:accept",
-                "--no-hscroll",
                 f"--preview={preview}",
                 "--preview-window=up,60%,wrap,border-bottom",
             ],
@@ -195,26 +190,7 @@ def open_in_nvim(path, line, workspace):
         command += f" | {line}"
     subprocess.run([herdr, "pane", "send-text", nvim_pane, command], check=True)
     subprocess.run([herdr, "pane", "send-keys", nvim_pane, "enter"], check=True)
-    pane = run_json([herdr, "pane", "get", nvim_pane])["result"]["pane"]
-    subprocess.run([herdr, "tab", "focus", pane["tab_id"]], check=True)
-    focus_pane(herdr, nvim_pane, workspace, pane["tab_id"])
-
-
-def focus_pane(herdr, target, workspace, tab):
-    panes = run_json([herdr, "pane", "list", "--workspace", workspace])["result"]["panes"]
-    if next(pane for pane in panes if pane["pane_id"] == target)["focused"]:
-        return
-    for pane in panes:
-        if pane["tab_id"] != tab or pane["pane_id"] == target:
-            continue
-        for direction in ("left", "right", "up", "down"):
-            result = run_json([herdr, "pane", "neighbor", "--pane", pane["pane_id"], "--direction", direction])
-            if result["result"]["neighbor"].get("neighbor_pane_id") == target:
-                subprocess.run(
-                    [herdr, "pane", "focus", "--pane", pane["pane_id"], "--direction", direction], check=True
-                )
-                return
-    raise RuntimeError(f"could not focus pane {target}")
+    subprocess.run([herdr, "pane", "zoom", nvim_pane, "--off"], check=True)
 
 
 def run_json(command):
