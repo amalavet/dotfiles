@@ -1,0 +1,20 @@
+id = "alejandromalavet.open-hints"
+name = "Open Hints"
+version = "0.1.0"
+min_herdr_version = "0.8.0"
+description = "Open visible links and file paths"
+platforms = ["linux", "macos"]
+
+[[actions]]
+id = "open"
+title = "Open visible link or file"
+contexts = ["pane"]
+command = ["python3", "open-hints.py", "start"]
+
+[[panes]]
+id = "picker"
+title = "Open"
+placement = "popup"
+width = "60%"
+height = "60%"
+command = ["python3", "open-hints.py", "pick"]

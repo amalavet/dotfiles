@@ -22,6 +22,11 @@ type = "plugin_action"
 command = "sessionizer.open"
 
 [[keys.command]]
+key = "prefix+v"
+type = "plugin_action"
+command = "alejandromalavet.open-hints.open"
+
+[[keys.command]]
 key = "prefix+up"
 type = "shell"
 command = "herdr pane resize --direction up --amount 0.05"

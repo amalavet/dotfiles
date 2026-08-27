@@ -16,3 +16,5 @@ nvim/lazy-lock.json
 /.config/herdr/*
 !/.config/herdr/config.toml
 !/.config/herdr/sessionizer.toml
+!/.config/herdr/plugin-open-hints/
+!/.config/herdr/plugin-open-hints/**
