@@ -46,7 +46,7 @@ The number one principle is: Verobosity is the death of understandability. Your 
 - Use template (`.github/pull_request_template.md`)
 - High-level, concise. Ask before adding detail.
 - Description = context (problem, scope, non-obvious decisions). Not a diff walkthrough. No session narrative.
-- Footer: End the description with `---`, then `<sub>Pull Request description was generted with Pi using <model> from <provider>.</sub>` (derive model/provider with `env | rg '^PI_.*(MODEL|PROVIDER)'`).
+- Footer: End the description with "_<sub>PR description generated with {PROVIDER}:{MODEL}</sub>_" (derive MODEL PROVIDER with `env | rg '^PI_.*(MODEL|PROVIDER)'`).
 
 ## Local repos
 
