@@ -163,31 +163,30 @@ function :ta() {
 function :herdr() {
     herdr workspace list >/dev/null 2>&1 || { (herdr server >/dev/null 2>&1 &) && sleep 1 }
 
-    local ws pane
+    local ws pane editor
     if ! herdr workspace list 2>/dev/null | jq -e '.result.workspaces[] | select(.label == "dotfiles")' >/dev/null; then
         ws=$(herdr workspace create --cwd ~/dotfiles --label dotfiles --no-focus)
+        pane=$(echo "$ws" | jq -r '.result.root_pane.pane_id')
         herdr tab rename "$(echo "$ws" | jq -r '.result.tab.tab_id')" dotfiles >/dev/null
-        herdr pane run "$(echo "$ws" | jq -r '.result.root_pane.pane_id')" lazygit >/dev/null
+        herdr pane rename "$pane" lazygit >/dev/null
+        herdr pane run "$pane" lazygit >/dev/null
         pane=$(herdr tab create --workspace "$(echo "$ws" | jq -r '.result.workspace.workspace_id')" --cwd ~/dotfiles --label nvim --no-focus | jq -r '.result.root_pane.pane_id')
-        herdr pane run "$(herdr pane split "$pane" --direction right --ratio 0.3 --cwd ~/dotfiles --no-focus | jq -r '.result.pane.pane_id')" fastfetch >/dev/null
+        editor=$(herdr pane split "$pane" --direction right --ratio 0.3 --cwd ~/dotfiles --no-focus | jq -r '.result.pane.pane_id')
+        herdr pane rename "$editor" nvim >/dev/null
+        herdr pane run "$editor" fastfetch >/dev/null
         herdr pane split "$pane" --direction down --cwd ~/dotfiles --no-focus >/dev/null
     fi
 
     if ! herdr workspace list 2>/dev/null | jq -e '.result.workspaces[] | select(.label == "Docker")' >/dev/null; then
-        herdr pane run "$(herdr workspace create --cwd ~ --label Docker --no-focus | jq -r '.result.root_pane.pane_id')" lazydocker >/dev/null
+        pane=$(herdr workspace create --cwd ~ --label Docker --no-focus | jq -r '.result.root_pane.pane_id')
+        herdr pane rename "$pane" lazydocker >/dev/null
+        herdr pane run "$pane" lazydocker >/dev/null
     fi
 
     herdr
 }
 
-# Snapshot herdr-resurrect state, then stop the server, so shutdown teardown
-# events can't clobber the snapshot before it's saved
-function :hstop() {
-    herdr plugin action invoke save --plugin ntindle.herdr-resurrect >/dev/null 2>&1
-    herdr server stop
-}
-
-# Stop herdr and wipe all of its state (workspaces, sessions, snapshots)
+# Stop herdr and wipe all of its state
 function :hpurge() {
     echo -n "\033[0;33mThis will stop herdr and delete all workspace state. Proceed? (y/N): \033[0m"
     read confirm
