@@ -16,7 +16,7 @@ label = "git"
 
 [[tabs.git.panes]]
 id = "lazygit"
-command = "herdr tab rename $HERDR_TAB_ID \"$(basename \"$PWD\")\" && lazygit"
+command = "herdr pane rename $HERDR_PANE_ID lazygit && herdr tab rename $HERDR_TAB_ID \"$(basename \"$PWD\")\" && lazygit"
 
 [tabs.nvim]
 label = "nvim"
@@ -30,7 +30,7 @@ id = "editor"
 from = "shell_top"
 split = "right"
 ratio = 0.3
-command = "nvim"
+command = "herdr pane rename $HERDR_PANE_ID nvim && nvim"
 
 [[tabs.nvim.panes]]
 id = "shell_bottom"

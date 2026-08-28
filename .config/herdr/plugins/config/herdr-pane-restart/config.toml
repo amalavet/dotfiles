@@ -1,0 +1,11 @@
+[[panes]]
+label = "nvim"
+command = "nvim"
+
+[[panes]]
+label = "lazygit"
+command = "lazygit"
+
+[[panes]]
+label = "lazydocker"
+command = "lazydocker"
