@@ -4,6 +4,7 @@
   "defaultModel": "gpt-5.6-sol",
   "defaultThinkingLevel": "medium",
   "externalEditor": "nvim",
+  "quietStartup": true,
   "packages": [
     "npm:pi-vimmode",
     "npm:pi-mcp-adapter",
@@ -13,7 +14,20 @@
     "npm:@aliou/pi-guardrails",
     "npm:@juanibiapina/pi-tokyonight@1.1.0",
     "git:github.com/grafana/ai-kit",
-    "git:github.com/grafana/skills"
+    {
+      "source": "git:github.com/grafana/skills",
+      "skills": [
+        "-skills/grafana-app-sdk/admission-control",
+        "-skills/grafana-app-sdk/app-sdk-concepts",
+        "-skills/grafana-app-sdk/cue-kind-definition",
+        "-skills/grafana-app-sdk/reconciler-logic",
+        "-skills/grafana-core/promql",
+        "-skills/grafana-k6/k6-docs",
+        "-skills/grafana-plugins/grafana-scenes",
+        "-skills/grafana-plugins/plugin-bundle-size",
+        "-skills/grafana-plugins/react-19-plugin-migration"
+      ]
+    }
   ],
   "lastChangelogVersion": "0.84.3"
 }
