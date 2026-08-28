@@ -1,0 +1,73 @@
+{
+  "$schema": "https://cdn.jsdelivr.net/npm/@aliou/pi-guardrails@0.17.1/schema.json",
+  "version": "0.17.1",
+  "enabled": true,
+  "applyBuiltinDefaults": true,
+  "onboarding": {
+    "completed": true,
+    "version": "0.17.1"
+  },
+  "features": {
+    "policies": true,
+    "permissionGate": true,
+    "pathAccess": false
+  },
+  "policies": {
+    "rules": [
+      {
+        "id": "secret-files",
+        "description": "Files containing credentials or private keys",
+        "patterns": [
+          { "pattern": ".env" },
+          { "pattern": ".env.*" },
+          { "pattern": "*.pem" },
+          { "pattern": "*.key" },
+          { "pattern": "*.p12" },
+          { "pattern": "*.pfx" },
+          { "pattern": "*.jks" },
+          { "pattern": "*.keystore" },
+          { "pattern": ".netrc" },
+          { "pattern": ".npmrc" },
+          { "pattern": ".pypirc" },
+          { "pattern": "~/.aws/credentials" },
+          { "pattern": "~/.docker/config.json" },
+          { "pattern": "~/.kube/config" },
+          { "pattern": "~/.ssh/id_*" }
+        ],
+        "protection": "noAccess",
+        "onlyIfExists": true,
+        "blockMessage": "Accessing {file} is blocked because it may contain credentials or private keys."
+      }
+    ]
+  },
+  "permissionGate": {
+    "requireConfirmation": true,
+    "patterns": [
+      { "pattern": "(^|[\\s;&|])op([\\s;&|]|$)", "description": "1Password command", "regex": true },
+      { "pattern": "\\bgit\\s+push\\b", "description": "push Git changes", "regex": true },
+      { "pattern": "\\bchmod\\b", "description": "change file permissions", "regex": true },
+      { "pattern": "\\bkill\\b", "description": "terminate a process", "regex": true },
+      { "pattern": "\\bgit\\s+reset\\b[^\\n;&|]*--hard\\b", "description": "hard Git reset", "regex": true },
+      { "pattern": "\\bgit\\s+clean\\b", "description": "remove untracked Git files", "regex": true },
+      { "pattern": "\\bgit\\s+branch\\b[^\\n;&|]*-[dD]\\b", "description": "delete a Git branch", "regex": true },
+      { "pattern": "\\brm\\s+-rf\\b", "description": "recursive force delete", "regex": true },
+      { "pattern": "\\bsudo\\b", "description": "superuser command", "regex": true },
+      { "pattern": "\\bkubectl\\s+(?:apply|delete)\\b", "description": "mutate Kubernetes resources", "regex": true },
+      { "pattern": "\\bterraform\\s+(?:apply|destroy)\\b", "description": "mutate Terraform infrastructure", "regex": true },
+      { "pattern": "\\bnpm\\s+publish\\b", "description": "publish an npm package", "regex": true },
+      { "pattern": "\\bdocker\\s+push\\b", "description": "push a container image", "regex": true },
+      { "pattern": "\\b(?:curl|wget)\\b[^|]*\\|\\s*(?:sh|bash)\\b", "description": "pipe downloaded content to a shell", "regex": true },
+      { "pattern": "\\bgh\\s+pr\\s+(?:create|close|comment|edit|lock|unlock|merge|ready|reopen|revert|review|update-branch)\\b", "description": "mutate a GitHub pull request", "regex": true },
+      { "pattern": "\\bgh\\s+issue\\s+(?:create|close|comment|delete|develop|edit|lock|unlock|pin|unpin|reopen|transfer)\\b", "description": "mutate a GitHub issue", "regex": true },
+      { "pattern": "\\bgh\\s+repo\\s+(?:create|archive|delete|edit|fork|rename|sync|unarchive)\\b", "description": "mutate a GitHub repository", "regex": true },
+      { "pattern": "\\bgh\\s+release\\s+(?:create|delete|delete-asset|edit|upload)\\b", "description": "mutate a GitHub release", "regex": true },
+      { "pattern": "\\bgh\\s+gist\\s+(?:create|delete|edit|rename)\\b", "description": "mutate a GitHub gist", "regex": true },
+      { "pattern": "\\bgh\\s+workflow\\s+(?:disable|enable|run)\\b", "description": "mutate or run a GitHub workflow", "regex": true },
+      { "pattern": "\\bgh\\s+(?:secret|variable)\\s+(?:set|delete)\\b", "description": "mutate a GitHub secret or variable", "regex": true },
+      { "pattern": "\\bgh\\s+label\\s+(?:create|delete|edit|clone)\\b", "description": "mutate a GitHub label", "regex": true },
+      { "pattern": "\\bgh\\s+project\\s+(?:create|close|copy|delete|edit|field-create|field-delete|item-add|item-archive|item-create|item-delete|item-edit|link|unlink)\\b", "description": "mutate a GitHub project", "regex": true },
+      { "pattern": "\\bgh\\s+cache\\s+delete\\b", "description": "delete a GitHub Actions cache", "regex": true },
+      { "pattern": "\\bgh\\s+api\\b[^\\n;&|]*(?:-X|--method)(?:=|\\s+)[\\\"']?(?:POST|PUT|PATCH|DELETE)\\b", "description": "write through the GitHub API", "regex": true }
+    ]
+  }
+}

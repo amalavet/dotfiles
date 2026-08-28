@@ -6,76 +6,13 @@
   "externalEditor": "nvim",
   "packages": [
     "npm:pi-vimmode",
-    {
-      "source": "git:github.com/anthropics/skills",
-      "skills": [
-        "algorithmic-art",
-        "brand-guidelines",
-        "canvas-design",
-        "claude-api",
-        "doc-coauthoring",
-        "docx",
-        "frontend-design",
-        "internal-comms",
-        "mcp-builder",
-        "pdf",
-        "pptx",
-        "skill-creator",
-        "slack-gif-creator",
-        "theme-factory",
-        "web-artifacts-builder",
-        "webapp-testing",
-        "xlsx"
-      ],
-      "extensions": [],
-      "prompts": [],
-      "themes": []
-    },
-    {
-      "source": "git:github.com/JuliusBrussee/caveman",
-      "skills": [
-        "caveman",
-        "caveman-commit",
-        "caveman-review"
-      ],
-      "extensions": [],
-      "prompts": [],
-      "themes": []
-    },
-    {
-      "source": "git:github.com/grafana/ai-kit",
-      "extensions": [],
-      "skills": [],
-      "prompts": [],
-      "themes": []
-    },
     "npm:pi-mcp-adapter",
-    "npm:@alfonzjanfrithz/pi-websearch",
-    "npm:@juanibiapina/pi-tokyonight@1.1.0"
+    "npm:pi-web-access",
+    "npm:@juanibiapina/pi-tokyonight@1.1.0",
+    "npm:@aliou/pi-guardrails",
+    "git:github.com/JuliusBrussee/caveman",
+    "git:github.com/grafana/ai-kit",
+    "git:github.com/grafana/skills"
   ],
-  "skills": [
-    "git/github.com/grafana/ai-kit/plugins/grafana-app-sdk/skills",
-    "git/github.com/grafana/ai-kit/plugins/grafana-core/skills",
-    "git/github.com/grafana/ai-kit/plugins/grafana-delegator/skills",
-    "git/github.com/grafana/ai-kit/plugins/grafana-docker-migration/skills",
-    "git/github.com/grafana/ai-kit/plugins/grafana-enghub/skills",
-    "git/github.com/grafana/ai-kit/plugins/grafana-engineering/skills",
-    "git/github.com/grafana/ai-kit/plugins/grafana-gtd/skills",
-    "git/github.com/grafana/ai-kit/plugins/grafana-k6/skills",
-    "git/github.com/grafana/ai-kit/plugins/grafana-mobile/skills",
-    "git/github.com/grafana/ai-kit/plugins/grafana-o11y/skills",
-    "git/github.com/grafana/ai-kit/plugins/grafana-o11y-pm/skills",
-    "git/github.com/grafana/ai-kit/plugins/grafana-product/skills",
-    "git/github.com/grafana/ai-kit/plugins/grafana-tech-writing/skills"
-  ],
-  "prompts": [
-    "git/github.com/grafana/ai-kit/plugins/grafana-app-sdk/commands",
-    "git/github.com/grafana/ai-kit/plugins/grafana-core/commands",
-    "git/github.com/grafana/ai-kit/plugins/grafana-docker-migration/commands",
-    "git/github.com/grafana/ai-kit/plugins/grafana-engineering/commands/self-review.md",
-    "git/github.com/grafana/ai-kit/plugins/grafana-gtd/commands",
-    "git/github.com/grafana/ai-kit/plugins/grafana-product/commands",
-    "git/github.com/grafana/ai-kit/plugins/grafana-app-sdk/agents/kind-designer.md"
-  ],
-  "lastChangelogVersion": "0.84.2"
+  "lastChangelogVersion": "0.84.3"
 }
