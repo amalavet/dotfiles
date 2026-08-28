@@ -1,6 +1,6 @@
 import type { AssistantMessage } from "@earendil-works/pi-ai";
 import type { ExtensionAPI } from "@earendil-works/pi-coding-agent";
-import { truncateToWidth } from "@earendil-works/pi-tui";
+import { wrapTextWithAnsi } from "@earendil-works/pi-tui";
 import { basename } from "node:path";
 
 function formatTokens(tokens: number): string {
@@ -57,7 +57,7 @@ export default function (pi: ExtensionAPI) {
 						dim(`${contextPercent}/${formatTokens(contextWindow)}`),
 						cavemanEnabled ? dim("🪨") : undefined,
 					];
-					return [truncateToWidth(segments.filter(Boolean).join("  "), width, "")];
+					return wrapTextWithAnsi(segments.filter(Boolean).join("  "), width);
 				},
 			};
 		});
