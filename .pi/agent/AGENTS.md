@@ -18,14 +18,7 @@ The number one principle: BE CONCISE. Verobosity is the death of understandabili
 - **Leverage local repositories.** Repositories under `~/GitHub` are available for inspection and code changes, regardless of the current working directory. You may modify them when the task requires it.
 - **No automated validation unless asked.** Do not run or write tests, builds, linters, or other automated checks without my explicit approval or request. Read-only inspection is allowed to support claims with evidence.
 - **Leverage the Makefile** for build/test/lint/run when asked.
-- **Prefer CLI tooling for bulk edits.** For repetitive/mechanical changes (e.g. stripping comments, renames), use `sed`/`rg`/scripts over editing line-by-line.
-
-## Tooling
-
-- `rg` not `grep`, `fd` not `find`
-- `gh` for PRs/issues (not web search)
-- `gcx` for Grafana Cloud (https://github.com/grafana/gcx, org: https://ops.grafana-ops.net/)
-- Neovim is my primary code/text editor, keep that in mind
+- **Prefer CLI tooling for bulk edits.** For repetitive/mechanical changes (e.g. stripping comments, renames), use `fd`/`rg`/scripts over editing line-by-line.
 
 ## GoLang
 
