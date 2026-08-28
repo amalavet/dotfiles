@@ -195,10 +195,8 @@ curl -fsSL https://herdr.dev/install.sh | sh
 install_packages bun terminal-notifier
 herdr plugin install willfish/herdr-navigator --yes
 herdr plugin install andrewchng/herdr-sessionizer --yes
-herdr plugin install ntindle/herdr-resurrect --yes
+herdr plugin install zap0xfce2/herdr-pane-restart --yes
 herdr integration install pi
-mkdir -p ~/.config/herdr/plugins/config/sessionizer
-ln -sf "$SETUP_SCRIPT_PATH/.config/herdr/sessionizer.toml" ~/.config/herdr/plugins/config/sessionizer/config.toml
 
 # Lazygit / Lazydocker
 # -------
