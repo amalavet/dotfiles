@@ -8,9 +8,10 @@
     "npm:pi-vimmode",
     "npm:pi-mcp-adapter",
     "npm:pi-web-access",
-    "npm:@juanibiapina/pi-tokyonight@1.1.0",
+    "npm:pi-subagents",
+    "npm:pi-caveman",
     "npm:@aliou/pi-guardrails",
-    "git:github.com/JuliusBrussee/caveman",
+    "npm:@juanibiapina/pi-tokyonight@1.1.0",
     "git:github.com/grafana/ai-kit",
     "git:github.com/grafana/skills"
   ],
