@@ -178,13 +178,6 @@ source ~/.zshrc
 # ------
 install_packages neovim ripgrep fzf fd
 
-# Tmux
-# ----
-install_packages tmux
-if [ ! -d ~/.tmux/plugins/tpm ]; then
-    git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-fi
-
 # Rust
 # ----
 install_packages rust

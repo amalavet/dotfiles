@@ -143,7 +143,7 @@ hl.window_rule({
 ----------
 -- BINDS
 ----------
-hl.bind(mainMod .. " + return", hl.dsp.exec_cmd("uwsm app -- alacritty -e zsh -lc 'tmux a || (source ~/.zshrc && :tmux); zsh'"))
+hl.bind(mainMod .. " + return", hl.dsp.exec_cmd("uwsm app -- alacritty -e zsh -lc 'source ~/.zshrc && :herdr; zsh'"))
 hl.bind(mainMod .. " + C", hl.dsp.window.close())
 hl.bind(mainMod .. " + space", hl.dsp.exec_cmd("uwsm app -- walker"))
 hl.bind(mainMod .. " + F", hl.dsp.window.fullscreen({ action = "toggle" }))

@@ -139,7 +139,6 @@ sudo
 sushi
 system-config-printer
 tecla
-tmux
 tree-sitter-cli
 ttf-dejavu
 ttf-iosevka-nerd
