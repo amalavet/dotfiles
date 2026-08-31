@@ -214,4 +214,8 @@ install_packages scooter
 # ---------
 install_packages fastfetch
 
+# Silicon (Code screenshot generator)
+# ---------
+install_packages silicon
+
 source ~/.zshrc
