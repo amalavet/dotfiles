@@ -27,7 +27,8 @@
         "-skills/grafana-plugins/plugin-bundle-size",
         "-skills/grafana-plugins/react-19-plugin-migration"
       ]
-    }
+    },
+    "npm:@oipsanthony/pi-session-title"
   ],
   "lastChangelogVersion": "0.84.3"
 }
