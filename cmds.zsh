@@ -231,6 +231,46 @@ function :pkgs() {
     echo "\033[0;32mWrote $(pacman -Qqe | wc -l) packages to $file\033[0m"
 }
 
+# Pick failed GitHub Actions runs from a PR and rerun their failed jobs
+function :rerun() {
+    local pr="$1"
+    local pr_url repo checks runs selected run_id run_details
+
+    if [[ -z "$pr" ]]; then
+        echo "Usage: :rerun <PR URL>"
+        return 1
+    fi
+
+    pr_url=$(gh pr view "$pr" --json url --jq .url) || return 1
+    repo="${${pr_url#*://}%/pull/*}"
+    checks=$(gh pr checks "$pr" --json bucket,link,name,workflow 2>/dev/null)
+
+    if ! echo "$checks" | jq -e 'type == "array"' >/dev/null; then
+        echo "Failed to load PR checks."
+        return 1
+    fi
+
+    runs=$(echo "$checks" | jq -r '
+        map(select(.bucket == "fail" and (.link | test("/actions/runs/[0-9]+"))))
+        | group_by(.link | capture("/actions/runs/(?<id>[0-9]+)").id)
+        | .[]
+        | (.[0].link | capture("/actions/runs/(?<id>[0-9]+)").id) as $id
+        | [$id, ([.[].workflow // empty] | unique | join(", ")), ([.[].name] | unique | join(", "))]
+        | @tsv
+    ')
+
+    if [[ -z "$runs" ]]; then
+        echo "No failed GitHub Actions runs."
+        return 0
+    fi
+
+    selected=$(echo "$runs" | fzf --multi --delimiter=$'\t' --with-nth=2,3 --header="Select runs to rerun") || return 0
+
+    while IFS=$'\t' read -r run_id run_details; do
+        gh run rerun "$run_id" --failed --repo "$repo" || return 1
+    done <<< "$selected"
+}
+
 # Fork a GitHub repository and set upstream
 function :fork() {
     local repo="$1"
