@@ -46,16 +46,12 @@ export default function (pi: ExtensionAPI) {
             context?.percent == null ? "?" : `${context.percent.toFixed(1)}%`;
           const contextWindow =
             context?.contextWindow ?? ctx.model?.contextWindow ?? 0;
-          const cavemanEnabled = Boolean(
-            footerData.getExtensionStatuses().get("caveman")?.trim(),
-          );
           const dim = (text: string) => theme.fg("dim", text);
           const segments = [
             dim(`↑${formatTokens(input)} ↓${formatTokens(output)}`),
             theme.fg("success", `$${cost.toFixed(2)}`),
             dim(`${contextPercent}/${formatTokens(contextWindow)}`),
             dim(model),
-            cavemanEnabled ? dim("🪨") : undefined,
           ];
           return wrapTextWithAnsi(segments.filter(Boolean).join("  "), width);
         },

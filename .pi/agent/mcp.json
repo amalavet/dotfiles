@@ -15,6 +15,10 @@
         "slack_create_canvas",
         "slack_update_canvas"
       ]
+    },
+    "grafana": {
+      "url": "https://mcp.grafana.com/mcp",
+      "auth": "oauth"
     }
   },
   "settings": {
