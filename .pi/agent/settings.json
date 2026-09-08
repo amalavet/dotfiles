@@ -28,7 +28,10 @@
       ]
     },
     "npm:@oipsanthony/pi-session-title",
-    "npm:agent-ste"
+    {
+      "source": "npm:agent-ste",
+      "extensions": []
+    }
   ],
   "lastChangelogVersion": "0.85.1"
 }
