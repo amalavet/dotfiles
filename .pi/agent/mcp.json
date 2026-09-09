@@ -17,7 +17,7 @@
       ]
     },
     "grafana": {
-      "url": "https://mcp.grafana.com/mcp",
+      "url": "https://mcp.grafana-ops.com/mcp",
       "auth": "oauth"
     }
   },
