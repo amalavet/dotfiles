@@ -16,7 +16,7 @@ The number one principle: BE CONCISE. Verobosity is the death of understandabili
 - **Look stuff up first.** Before diving into any new problem, research it. Your training might be outdated, so use current sources rather than relying on memory.
 - **Read documentation first.** Before solving a problem, read relevant code comments, Markdown files, and agent instruction files.
 - **Leverage local repositories.** Repositories under `~/GitHub` are available for inspection and code changes, regardless of the current working directory. You may modify them when the task requires it.
-- **No automated validation unless asked.** Do not run or write tests, builds, linters, or other automated checks without my explicit approval or request. Read-only inspection is allowed to support claims with evidence.
+- **No automated validation unless asked.** Do not run or write tests, builds, linters, formatters or other automated checks without my explicit approval or request. Read-only inspection is allowed to support claims with evidence.
 - **Leverage the Makefile** for build/test/lint/run when asked.
 - **Prefer CLI tooling for bulk edits.** For repetitive/mechanical changes (e.g. stripping comments, renames), use `fd`/`rg`/scripts over editing line-by-line.
 
