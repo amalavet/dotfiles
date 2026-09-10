@@ -44,7 +44,7 @@
     "requireConfirmation": true,
     "patterns": [
       { "pattern": "(^|[\\s;&|])op([\\s;&|]|$)", "description": "1Password command", "regex": true },
-      { "pattern": "\\bgit\\s+push\\b", "description": "push Git changes", "regex": true },
+      { "pattern": "\\bgit\\b[^\\n;&|]*\\bpush\\b", "description": "push Git changes", "regex": true },
       { "pattern": "\\bchmod\\b", "description": "change file permissions", "regex": true },
       { "pattern": "\\bkill\\b", "description": "terminate a process", "regex": true },
       { "pattern": "\\bgit\\s+reset\\b[^\\n;&|]*--hard\\b", "description": "hard Git reset", "regex": true },
