@@ -1,0 +1,7 @@
+{
+  "persistState": true,
+  "active": true,
+  "supportedModels": [
+    "openai-codex/gpt-5.6-sol"
+  ]
+}
