@@ -10,6 +10,7 @@
     "npm:pi-mcp-adapter",
     "npm:pi-web-access",
     "npm:pi-subagents",
+    "npm:pi-caveman",
     "npm:@aliou/pi-guardrails",
     "npm:@juanibiapina/pi-tokyonight@1.1.0",
     "git:github.com/grafana/ai-kit",
@@ -28,10 +29,6 @@
       ]
     },
     "npm:@oipsanthony/pi-session-title",
-    {
-      "source": "npm:agent-ste",
-      "extensions": []
-    },
     "npm:@benvargas/pi-openai-fast"
   ],
   "lastChangelogVersion": "0.85.1"

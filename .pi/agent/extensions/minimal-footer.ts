@@ -68,6 +68,9 @@ export default function (pi: ExtensionAPI) {
             context?.percent == null ? "?" : `${context.percent.toFixed(1)}%`;
           const contextWindow =
             context?.contextWindow ?? ctx.model?.contextWindow ?? 0;
+          const cavemanEnabled = Boolean(
+            footerData.getExtensionStatuses().get("caveman")?.trim(),
+          );
           const dim = (text: string) => theme.fg("dim", text);
           let fast = "?";
           if (fastConfig?.active === false) fast = "off";
@@ -81,6 +84,7 @@ export default function (pi: ExtensionAPI) {
             theme.fg("success", `$${cost.toFixed(2)}`),
             dim(`${contextPercent}/${formatTokens(contextWindow)}`),
             dim(model),
+            cavemanEnabled ? dim("🪨") : undefined,
             theme.fg(fast === "on" ? "success" : "dim", `fast:${fast}`),
           ];
           return wrapTextWithAnsi(segments.filter(Boolean).join("  "), width);
