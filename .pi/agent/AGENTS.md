@@ -30,4 +30,4 @@ The number one principle: BE CONCISE. Verobosity is the death of understandabili
 - Implement the template if present at (`.github/pull_request_template.md`)
 - High-level, concise. Ask before adding detail.
 - Description = context (problem, scope, non-obvious decisions). Not a diff walkthrough. Not a session narrative.
-- Footer: End the description with "_<sub>PR description generated with {PROVIDER}:{MODEL}</sub>_" (derive MODEL PROVIDER with `env | rg '^PI_.*(MODEL|PROVIDER)'`).
+- Footer: End the description with "_<sub>PR involved assistance from {PROVIDER}:{MODEL}</sub>_" (derive MODEL PROVIDER with `env | rg '^PI_.*(MODEL|PROVIDER)'`).

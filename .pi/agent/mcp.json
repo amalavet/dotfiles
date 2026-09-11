@@ -5,7 +5,8 @@
       "auth": "oauth",
       "oauth": {
         "clientId": "1601185624273.8899143856786",
-        "redirectUri": "http://localhost:3118/callback"
+        "redirectUri": "http://localhost:3118/callback",
+        "scope": "channels:history groups:history mpim:history im:history chat:write"
       },
       "approveTools": [
         "slack_send_message",
