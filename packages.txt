@@ -69,8 +69,6 @@ gvfs-mtp
 gvfs-nfs
 gvfs-smb
 gvfs-wsdd
-heroic-games-launcher-bin
-htop
 hypridle
 hyprland
 hyprlock
@@ -98,9 +96,7 @@ loupe
 mako
 maplemono-nf
 mesa-utils
-minecraft-launcher
 mpv
-nano
 nautilus
 neovim
 network-manager-applet
@@ -112,7 +108,6 @@ noto-fonts-emoji
 npm
 nvidia-laptop-power-cfg
 nvidia-open-dkms
-nvm
 opencode
 papers
 pi-coding-agent
@@ -126,7 +121,6 @@ polkit-gnome
 power-profiles-daemon
 poweralertd
 prismlauncher
-protonplus
 pwvucontrol
 pyenv
 ripgrep
@@ -147,9 +141,7 @@ ttf-iosevka-nerd
 ttf-jetbrains-mono
 ttf-jetbrains-mono-nerd
 ttf-liberation
-umu-launcher
 uwsm
-vim
 vulkan-radeon
 vulkan-tools
 walker

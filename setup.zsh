@@ -151,7 +151,7 @@ fi
 
 # Node.js / NPM / Yarn
 # -------
-install_packages nvm yarn
+install_packages yarn
 
 # Pi
 # --
