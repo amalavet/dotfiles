@@ -22,6 +22,7 @@ cups-pk-helper
 discord
 dkms
 docker
+duf
 efibootmgr
 elephant-1password-bin
 elephant-calc-bin
@@ -39,6 +40,7 @@ fwupd
 fzf
 gdm
 gdm-settings
+gdu
 git
 github-cli
 gnome-backgrounds
