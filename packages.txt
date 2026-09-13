@@ -60,7 +60,6 @@ gnome-tweaks
 goenv
 google-chrome
 gpu-screen-recorder
-grub
 gst-plugin-pipewire
 gst-thumbnailers
 gvfs
@@ -85,11 +84,9 @@ lib32-vulkan-radeon
 libpulse
 libratbag
 libva-nvidia-driver
-linux
 linux-firmware
 linux-g14
 linux-g14-headers
-linux-headers
 linux-lts
 linux-lts-headers
 loupe
