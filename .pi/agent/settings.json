@@ -1,7 +1,7 @@
 {
   "theme": "tokyonight",
   "defaultProvider": "openai-codex",
-  "defaultModel": "gpt-5.6-sol",
+  "defaultModel": "claude-fable-5-1",
   "defaultThinkingLevel": "medium",
   "externalEditor": "nvim",
   "quietStartup": true,

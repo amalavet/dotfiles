@@ -18,7 +18,7 @@ The number one principle: BE CONCISE. Verobosity is the death of understandabili
 - **Leverage local repositories.** Repositories under `~/GitHub` are available for inspection and code changes, regardless of the current working directory. You may modify them when the task requires it.
 - **No automated validation unless asked.** Do not run or write tests, builds, linters, formatters or other automated checks without my explicit approval or request. Read-only inspection is allowed to support claims with evidence.
 - **Leverage the Makefile** for build/test/lint/run when asked.
-- **Prefer CLI tooling for bulk edits.** For repetitive/mechanical changes (e.g. stripping comments, renames), use `fd`/`rg`/scripts over editing line-by-line.
+- Prefer using MCPs over other tooling like GIDA
 
 ## GoLang
 
@@ -27,6 +27,7 @@ The number one principle: BE CONCISE. Verobosity is the death of understandabili
 
 ## PRs
 
+- Branch names should all be named with the prefix ale/*
 - Implement the template if present at (`.github/pull_request_template.md`)
 - High-level, concise. Ask before adding detail.
 - Description = context (problem, scope, non-obvious decisions). Not a diff walkthrough. Not a session narrative.
