@@ -7,7 +7,6 @@ return {
 			vim.lsp.config("*", {
 				capabilities = cmp.default_capabilities(),
 			})
-			vim.lsp.inline_completion.enable(true)
 
 			require("lazydev").setup()
 
@@ -53,48 +52,6 @@ return {
 
 					opts.desc = "LSP: Code actions"
 					keymap.set({ "n", "v" }, "<leader>ca", lsp.code_action, opts)
-
-					vim.keymap.set("i", "<Right>", function()
-						if not vim.lsp.inline_completion.get() then
-							return "<Right>"
-						end
-					end, {
-						expr = true,
-						replace_keycodes = true,
-						desc = "Get the current inline completion",
-					})
-
-					-- Only accept first word
-					vim.keymap.set("i", "<S-Right>", function()
-						if
-							not vim.lsp.inline_completion.get({
-								on_accept = function(item)
-									local insert_text = item.insert_text
-									if type(insert_text) ~= "string" then
-										return item
-									end
-									local cursor = vim.api.nvim_win_get_cursor(0)
-									local prefix_len = item.range
-											and item.range.start_row == cursor[1] - 1
-											and math.max(0, cursor[2] - item.range.start_col)
-										or 0
-									local prefix = insert_text:sub(1, prefix_len)
-									local first_word = insert_text:sub(prefix_len + 1):match("^([ \t]*%S+)")
-									if not first_word then
-										return nil
-									end
-									item.insert_text = prefix .. first_word
-									return item
-								end,
-							})
-						then
-							return "<S-Right>"
-						end
-					end, {
-						expr = true,
-						replace_keycodes = true,
-						desc = "Accept first word of inline completion",
-					})
 				end,
 			})
 		end,
