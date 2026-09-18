@@ -7,7 +7,7 @@
   "quietStartup": true,
   "packages": [
     "npm:pi-vimmode",
-    "npm:pi-mcp-adapter",
+    "npm:pi-mcp-adapter@2.32.1",
     "npm:pi-web-access",
     "npm:pi-subagents",
     "npm:pi-caveman",
