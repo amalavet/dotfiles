@@ -1,7 +1,5 @@
-import { existsSync, readFileSync, unwatchFile, watchFile } from "node:fs";
-import { join } from "node:path";
 import type { AssistantMessage } from "@earendil-works/pi-ai";
-import { getAgentDir, type ExtensionAPI } from "@earendil-works/pi-coding-agent";
+import type { ExtensionAPI } from "@earendil-works/pi-coding-agent";
 import { wrapTextWithAnsi } from "@earendil-works/pi-tui";
 
 function formatTokens(tokens: number): string {
@@ -21,30 +19,10 @@ export default function (pi: ExtensionAPI) {
       const requestFooterRender = () => tui.requestRender();
       const unsubscribe = footerData.onBranchChange(requestFooterRender);
       requestRender = requestFooterRender;
-      const fastConfigPaths = [
-        join(getAgentDir(), "extensions", "pi-openai-fast.json"),
-        join(ctx.cwd, ".pi", "extensions", "pi-openai-fast.json"),
-      ];
-      let fastConfig: { active?: boolean; supportedModels?: string[] } | undefined;
-      const refreshFastConfig = () => {
-        try {
-          fastConfig = Object.assign({}, ...fastConfigPaths.map((path) =>
-            existsSync(path) ? JSON.parse(readFileSync(path, "utf8")) : {},
-          ));
-        } catch {
-          fastConfig = undefined;
-        }
-        requestFooterRender();
-      };
-      refreshFastConfig();
-      for (const path of fastConfigPaths) {
-        watchFile(path, { persistent: false, interval: 500 }, refreshFastConfig);
-      }
 
       return {
         dispose() {
           unsubscribe();
-          for (const path of fastConfigPaths) unwatchFile(path, refreshFastConfig);
           if (requestRender === requestFooterRender) requestRender = undefined;
         },
         invalidate() {},
@@ -71,23 +49,14 @@ export default function (pi: ExtensionAPI) {
           const cavemanEnabled = Boolean(
             footerData.getExtensionStatuses().get("caveman")?.trim(),
           );
-          const dim = (text: string) => theme.fg("dim", text);
-          let fast = "?";
-          if (fastConfig?.active === false) fast = "off";
-          if (fastConfig?.active === true && Array.isArray(fastConfig.supportedModels)) {
-            fast = fastConfig.supportedModels.includes(`${ctx.model?.provider}/${ctx.model?.id}`)
-              ? "on"
-              : "n/a";
-          }
           const segments = [
-            dim(`↑${formatTokens(input)} ↓${formatTokens(output)}`),
-            theme.fg("success", `$${cost.toFixed(2)}`),
-            dim(`${contextPercent}/${formatTokens(contextWindow)}`),
-            dim(model),
-            cavemanEnabled ? dim("🪨") : undefined,
-            theme.fg(fast === "on" ? "success" : "dim", `fast:${fast}`),
+            `↑${formatTokens(input)} ↓${formatTokens(output)}`,
+            `${cost.toFixed(2)}`,
+            `${contextPercent}/${formatTokens(contextWindow)}`,
+            model,
+            cavemanEnabled ? "🪨" : undefined,
           ];
-          return wrapTextWithAnsi(segments.filter(Boolean).join("  "), width);
+          return wrapTextWithAnsi(theme.fg("dim", segments.filter(Boolean).join("  ")), width);
         },
       };
     });
