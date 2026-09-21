@@ -29,7 +29,13 @@
       ]
     },
     "npm:@oipsanthony/pi-session-title",
-    "npm:@benvargas/pi-openai-fast"
+    "npm:@benvargas/pi-openai-fast",
+    "npm:pi-esc-steer"
   ],
-  "lastChangelogVersion": "0.85.1"
+  "lastChangelogVersion": "0.86.1",
+  "terminal": {
+    "hyperlinks": true
+  },
+  "tuiMode": "regular",
+  "outputPad": 0
 }
