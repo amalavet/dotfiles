@@ -13,7 +13,7 @@ The number one principle: BE CONCISE. Verobosity is the death of understandabili
 - **Don't leak conversation context.** Our conversation is private. Use it to guide the work, but never expose it in code, comments, documentation, commits, or PR descriptions.
 - **Minimize the diff** Edit code in such a way that the git diff remains as small as possible, and easy to review.
 - **No code comments.** Never add comments in code unless explicitly asked.
-- **Look stuff up first.** Before diving into any new problem, research it. Your training might be outdated, so use current sources rather than relying on memory.
+- **Look stuff up with ONLINE SEARCH first.** Before diving into any new problem, research it ONLINE. Your training might be outdated, so use current online sources rather than relying on your training.
 - **Read documentation first.** Before solving a problem, read relevant code comments, Markdown files, and agent instruction files.
 - **Leverage local repositories.** Repositories under `~/GitHub` are available for inspection and code changes, regardless of the current working directory. You may modify them when the task requires it.
 - **No automated validation unless asked.** Do not run or write tests, builds, linters, formatters or other automated checks without my explicit approval or request. Read-only inspection is allowed to support claims with evidence.
@@ -23,7 +23,7 @@ The number one principle: BE CONCISE. Verobosity is the death of understandabili
 ## GoLang
 
 - Avoid type casting unless absolutely necessary.
-- **Mocks over fakes.** Tests stubbing interfaces use generated mocks (e.g. mockery, per project convention), never hand-written fake*/mock* structs.
+- **Mocks over fakes.** Tests stubbing interfaces use generated mocks (e.g. mockery, per project convention), avoid hand-written fake*/mock* structs.
 
 ## PRs
 
