@@ -4,6 +4,16 @@ import = ["~/.config/alacritty/os.toml"]
 [mouse]
 hide_when_typing = true
 
+[[hints.enabled]]
+regex = '''https?://[^\s<>"'`)\]│┃▕▏]+'''
+command = { program = "sh", args = ["-c", 'exec "$HOME/.config/herdr/plugin-open-hints/open-hints.py" "$1"', "open-hints"] }
+mouse = { enabled = true, mods = "None" }
+
+[[hints.enabled]]
+regex = '(~|\.\.?)?/?[\w.@+%-]+(/[\w.@+%-]+)+(:\d+(:\d+)?)?|[\w@+-]+\.[A-Za-z]\w*(:\d+(:\d+)?)?'
+command = { program = "sh", args = ["-c", 'exec "$HOME/.config/herdr/plugin-open-hints/open-hints.py" "$1"', "open-hints"] }
+mouse = { enabled = true, mods = "None" }
+
 [window]
 decorations = "none"
 option_as_alt = "Both"
