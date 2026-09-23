@@ -25,10 +25,11 @@ The number one principle: BE CONCISE. Verobosity is the death of understandabili
 - Avoid type casting unless absolutely necessary.
 - **Mocks over fakes.** Tests stubbing interfaces use generated mocks (e.g. mockery, per project convention), avoid hand-written fake*/mock* structs.
 
-## PRs
+## GitHub
 
 - Branch names should all be named with the prefix ale/*
 - Implement the template if present at (`.github/pull_request_template.md`)
 - High-level, concise. Ask before adding detail.
 - Description = context (problem, scope, non-obvious decisions). Not a diff walkthrough. Not a session narrative.
 - Footer: End the description with "_<sub>PR involved assistance from {PROVIDER}:{MODEL}</sub>_" (derive MODEL PROVIDER with `env | rg '^PI_.*(MODEL|PROVIDER)'`).
+- Never write/respond comments/issues/prs unless I explicity ask.

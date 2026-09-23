@@ -32,10 +32,11 @@
     "npm:@benvargas/pi-openai-fast",
     "npm:pi-esc-steer"
   ],
-  "lastChangelogVersion": "0.86.1",
+  "lastChangelogVersion": "0.87.1",
   "terminal": {
     "hyperlinks": true
   },
   "tuiMode": "regular",
-  "outputPad": 0
+  "outputPad": 0,
+  "httpIdleTimeoutMs": 10000
 }
