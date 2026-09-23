@@ -38,5 +38,5 @@
   },
   "tuiMode": "regular",
   "outputPad": 0,
-  "httpIdleTimeoutMs": 10000
+  "httpIdleTimeoutMs": 30000
 }

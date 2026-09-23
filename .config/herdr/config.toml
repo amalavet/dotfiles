@@ -22,6 +22,13 @@ type = "plugin_action"
 command = "sessionizer.open"
 
 [[keys.command]]
+key = "prefix+a"
+type = "popup"
+width = "80%"
+height = "60%"
+command = '''herdr agent list | jq -r '.result.agents | sort_by({blocked:0,done:1,idle:2,working:3}[.agent_status] // 4)[] | [.pane_id, .agent_status, .agent, (.cwd|split("/")|last), (.title // "")] | @tsv' | column -t -s $'\t' | fzf --with-nth=2.. --header='STATUS  AGENT  DIR  TITLE' | awk '{print $1}' | xargs -r herdr agent focus >/dev/null'''
+
+[[keys.command]]
 key = "prefix+up"
 type = "shell"
 command = "herdr pane resize --direction up --amount 0.05"
