@@ -51,7 +51,7 @@ export default function (pi: ExtensionAPI) {
           );
           const segments = [
             `↑${formatTokens(input)} ↓${formatTokens(output)}`,
-            `${cost.toFixed(2)}`,
+            `$${cost.toFixed(2)}`,
             `${contextPercent}/${formatTokens(contextWindow)}`,
             model,
             cavemanEnabled ? "🪨" : undefined,
