@@ -24,7 +24,19 @@ return {
 					},
 					lualine_b = { "branch" },
 					lualine_c = { { "filename", path = 3 }, "diagnostics" },
-					lualine_x = {},
+					lualine_x = {
+						{
+							function()
+								if vim.g.pi_follow == false then
+									return "π off"
+								end
+								return os.time() - (vim.g.pi_follow_seen or 0) < 15 and "π ●" or "π ○"
+							end,
+							cond = function()
+								return vim.env.HERDR_TAB_ID ~= nil
+							end,
+						},
+					},
 					lualine_y = {},
 					lualine_z = {},
 				},

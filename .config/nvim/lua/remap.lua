@@ -50,5 +50,11 @@ vim.keymap.set("n", "<leader>i", function()
 	vim.notify(vim.trim(out), vim.v.shell_error ~= 0 and vim.log.levels.WARN or nil)
 end, { desc = "Toggle file in .git/info/exclude" })
 
+-- Toggle opening files edited by pi
+vim.keymap.set("n", "<leader><leader>p", function()
+	vim.g.pi_follow = vim.g.pi_follow == false
+	vim.notify("pi follow " .. (vim.g.pi_follow and "on" or "off"))
+end, { desc = "Toggle pi follow" })
+
 -- Add //nolint: to the end of the line in normal mode
 vim.keymap.set("n", "<leader>nl", "A //nolint:", { noremap = true, silent = true, desc = "Add //nolint: to end of line" })

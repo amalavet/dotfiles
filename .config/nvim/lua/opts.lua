@@ -31,6 +31,10 @@ vim.api.nvim_create_autocmd({ "BufEnter", "CursorHold", "CursorHoldI", "FocusGai
 	pattern = { "*" },
 })
 
+if vim.env.HERDR_TAB_ID then
+	pcall(vim.fn.serverstart, "/tmp/nvim-herdr-" .. vim.env.HERDR_TAB_ID:gsub("[^%w]", "_") .. ".sock")
+end
+
 vim.o.tabstop = 4
 vim.o.shiftwidth = 4
 vim.api.nvim_create_autocmd({ "BufEnter", "BufNewFile" }, {
