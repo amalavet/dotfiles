@@ -26,7 +26,7 @@ return {
 			vim.keymap.set("n", "<leader>k", function()
 					require("gitsigns").nav_hunk("prev", { target = "all" })
 			end, { desc = "Git: Prev hunk" })
-			vim.keymap.set("n", "<leader><leader>j", function()
+			vim.keymap.set("n", "<leader>J", function()
 				require("gitsigns").toggle_deleted()
 			end, { desc = "Git: Toggle deleted lines" })
 		end,
