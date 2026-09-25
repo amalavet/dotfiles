@@ -66,7 +66,15 @@ return {
 				callback = refresh_all_harpoon_tabs,
 			})
 
-			vim.keymap.set("n", "<leader>x", "<cmd>BufferCloseAllButPinned<CR>", { desc = "Close all buffers except harpoon" })
+			vim.keymap.set("n", "<leader>x", function()
+				local list = harpoon:list()
+				local bufs = vim.tbl_map(get_buffer_by_mark, list.items)
+				list:clear()
+				refresh_all_harpoon_tabs()
+				for _, buf in pairs(bufs) do
+					require("barbar.bbye").bdelete(false, buf)
+				end
+			end, { desc = "Wipe harpoon list and close its buffers" })
 		end,
 	},
 }

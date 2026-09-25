@@ -8,6 +8,24 @@ local function is_float(win)
 	return vim.api.nvim_win_get_config(win).relative ~= ""
 end
 
+local function harpoon_add(path)
+	local ok, harpoon = pcall(require, "harpoon")
+	if not ok then
+		return
+	end
+	local list = harpoon:list()
+	local item = list.config.create_list_item(list.config, vim.fn.fnamemodify(path, ":."))
+	local items = { item }
+	for i = 1, list._length do
+		local v = list.items[i]
+		if v and #items < 6 and not list.config.equals(v, item) then
+			table.insert(items, v)
+		end
+	end
+	list.items, list._length = items, #items
+	vim.cmd("doautocmd User")
+end
+
 function _G.PiFollowOpen(path)
 	if vim.g.pi_follow == false then
 		return
@@ -15,6 +33,7 @@ function _G.PiFollowOpen(path)
 	if not is_float(0) then
 		vim.cmd("drop " .. vim.fn.fnameescape(path))
 		vim.cmd("checktime")
+		harpoon_add(path)
 		return
 	end
 	local buf = vim.fn.bufadd(path)
@@ -28,6 +47,7 @@ function _G.PiFollowOpen(path)
 	end
 	vim.api.nvim_win_set_buf(target, buf)
 	vim.cmd("checktime " .. buf)
+	harpoon_add(path)
 end
 
 function _G.PiFollowSync(files)
