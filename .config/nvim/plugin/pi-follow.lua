@@ -2,7 +2,11 @@ if not vim.env.HERDR_TAB_ID then
 	return
 end
 
-pcall(vim.fn.serverstart, "/tmp/nvim-herdr-" .. vim.env.HERDR_TAB_ID:gsub("[^%w]", "_") .. ".sock")
+local sock = "/tmp/nvim-herdr-" .. vim.env.HERDR_TAB_ID:gsub("[^%w]", "_") .. ".sock"
+if not pcall(vim.fn.serverstart, sock) then
+	vim.fn.delete(sock)
+	pcall(vim.fn.serverstart, sock)
+end
 
 local function is_float(win)
 	return vim.api.nvim_win_get_config(win).relative ~= ""
