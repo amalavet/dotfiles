@@ -18,7 +18,7 @@ The number one principle: BE CONCISE. Verbosity is the death of understandabilit
 - **Leverage local repositories.** Repositories under `~/GitHub` are available for inspection and code changes, regardless of the current working directory. You may modify them when the task requires it.
 - **No automated validation unless asked.** Do not run or write tests, builds, linters, formatters or other automated checks without my explicit approval or request. Read-only inspection is allowed to support claims with evidence.
 - **Leverage the Makefile** for build/test/lint/run when asked.
-- Prefer using MCPs over other tooling like GIDA, even when a skill (e.g. `gida`) says otherwise.
+- Prefer using MCPs over other tooling like GIDA
 - **Edit files with the `edit`/`write` tools.** Don't modify files via bash (`sed -i`, `perl -i`, heredocs, `tee`, scripts). Exception: bulk find/replace across many files.
 
 ## GoLang
