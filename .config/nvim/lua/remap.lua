@@ -44,5 +44,11 @@ vim.keymap.set("v", "x", '"_x', { noremap = true, silent = true })
 -- Map <leader>c to clear highlight
 vim.keymap.set("n", "<leader>ch", "<cmd>noh<CR>", { noremap = true, silent = true, desc = "Clear search highlight" })
 
+-- Toggle current file in .git/info/exclude
+vim.keymap.set("n", "<leader>i", function()
+	local out = vim.fn.system({ vim.fn.stdpath("config") .. "/scripts/git-exclude-toggle.sh", vim.fn.expand("%:p") })
+	vim.notify(vim.trim(out), vim.v.shell_error ~= 0 and vim.log.levels.WARN or nil)
+end, { desc = "Toggle file in .git/info/exclude" })
+
 -- Add //nolint: to the end of the line in normal mode
 vim.keymap.set("n", "<leader>nl", "A //nolint:", { noremap = true, silent = true, desc = "Add //nolint: to end of line" })
