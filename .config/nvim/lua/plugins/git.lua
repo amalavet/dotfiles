@@ -20,13 +20,13 @@ return {
 				},
 			})
 
-			vim.keymap.set("n", "<leader>k", function()
+			vim.keymap.set("n", "<leader>j", function()
 					require("gitsigns").nav_hunk("next", { target = "all" })
 			end, { desc = "Git: Next hunk" })
-			vim.keymap.set("n", "<leader>K", function()
+			vim.keymap.set("n", "<leader>k", function()
 					require("gitsigns").nav_hunk("prev", { target = "all" })
 			end, { desc = "Git: Prev hunk" })
-			vim.keymap.set("n", "<leader><leader>k", function()
+			vim.keymap.set("n", "<leader><leader>j", function()
 				require("gitsigns").toggle_deleted()
 			end, { desc = "Git: Toggle deleted lines" })
 		end,
