@@ -8,18 +8,27 @@ return {
 			vim.keymap.set("n", "<leader>go", "<cmd>.GBrowse<CR>", { desc = "Git: Open in browser" })
 			vim.keymap.set("v", "<leader>go", ":GBrowse<CR>", { desc = "Git: Open in browser" })
 
-			local signs = {
-				add = { text = "" },
-				change = { text = "󰜥" },
-				delete = { text = "" },
-				topdelete = { text = "" },
-				changedelete = { text = "󰜥" },
-				untracked = { text = "" },
-			}
-
 			require("gitsigns").setup({
-				signs = signs,
+				linehl = true,
+				signs = {
+					delete = { text = "┃" },
+					topdelete = { text = "┃" },
+				},
+				signs_staged = {
+					delete = { text = "┃" },
+					topdelete = { text = "┃" },
+				},
 			})
+
+			vim.keymap.set("n", "<leader>k", function()
+					require("gitsigns").nav_hunk("next")
+			end, { desc = "Git: Next hunk" })
+			vim.keymap.set("n", "<leader>K", function()
+					require("gitsigns").nav_hunk("prev")
+			end, { desc = "Git: Prev hunk" })
+			vim.keymap.set("n", "<leader><leader>k", function()
+				require("gitsigns").toggle_deleted()
+			end, { desc = "Git: Toggle deleted lines" })
 		end,
 	},
 }
