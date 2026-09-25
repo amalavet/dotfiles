@@ -24,6 +24,6 @@ export default function (pi: ExtensionAPI) {
 	pi.on("tool_result", async (event, ctx) => {
 		if (event.isError || (event.toolName !== "edit" && event.toolName !== "write")) return;
 		const path = resolve(ctx.cwd, String(event.input.path)).replace(/'/g, "''");
-		await send(`get(g:, 'pi_follow', v:true) ? execute(['drop ' . fnameescape('${path}'), 'checktime']) : ''`);
+		await send(`v:lua.PiFollowOpen('${path}')`);
 	});
 }
