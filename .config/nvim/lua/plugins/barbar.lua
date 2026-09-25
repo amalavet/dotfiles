@@ -65,6 +65,8 @@ return {
 			vim.api.nvim_create_autocmd({ "BufEnter", "BufAdd", "BufLeave", "User" }, {
 				callback = refresh_all_harpoon_tabs,
 			})
+
+			vim.keymap.set("n", "<leader>x", "<cmd>BufferCloseAllButPinned<CR>", { desc = "Close all buffers except harpoon" })
 		end,
 	},
 }
