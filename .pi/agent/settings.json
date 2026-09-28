@@ -30,7 +30,12 @@
     },
     "npm:@oipsanthony/pi-session-title",
     "npm:@benvargas/pi-openai-fast",
-    "npm:pi-esc-steer"
+    "npm:pi-esc-steer",
+    {
+      "source": "git:github.com/redhat-et/ripwire@v0.6.5",
+      "prompts": [],
+      "skills": ["skills/ripwire-*", "!skills/ripwire-opt-remarks"]
+    }
   ],
   "skills": ["-skills/gida"],
   "lastChangelogVersion": "0.87.1",

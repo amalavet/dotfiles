@@ -19,6 +19,7 @@ The number one principle: BE CONCISE. Verbosity is the death of understandabilit
 - **No automated validation unless asked.** Do not run or write tests, builds, linters, formatters or other automated checks without my explicit approval or request. Read-only inspection is allowed to support claims with evidence.
 - **Leverage the Makefile** for build/test/lint/run when asked.
 - Prefer using MCPs over other tooling like GIDA
+- **Use ripwire for code context** (`ripwire-*` skills) over broad grep/read.
 - **Edit files with the `edit`/`write` tools.** Don't modify files via bash (`sed -i`, `perl -i`, heredocs, `tee`, scripts). Exception: bulk find/replace across many files.
 
 ## GoLang
