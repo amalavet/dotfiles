@@ -158,6 +158,11 @@ install_packages yarn
 npm install -g --ignore-scripts @earendil-works/pi-coding-agent
 pi update --extensions
 
+# Ripwire (skills loaded via pi package in settings.json)
+# --------------------------------------------------------
+RIPWIRE_REPO=redhat-et/ripwire RIPWIRE_VERSION=v0.6.5 RIPWIRE_NO_ACTIVATE=1 RIPWIRE_INSTALL_YES=1 \
+    bash -c "$(curl -fsSL https://raw.githubusercontent.com/redhat-et/ripwire/main/scripts/install.sh)"
+
 # Go
 # --
 install_packages goenv
