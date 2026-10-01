@@ -2,27 +2,21 @@
   "mcpServers": {
     "slack": {
       "url": "https://mcp.slack.com/mcp",
-      "auth": "oauth",
       "oauth": {
         "clientId": "1601185624273.8899143856786",
-        "redirectUri": "http://localhost:3118/callback",
+        "callbackUrl": "http://localhost:3118/callback",
         "scope": "channels:history groups:history mpim:history im:history chat:write"
-      },
-      "approveTools": [
-        "slack_send_message",
-        "slack_send_message_draft",
-        "slack_schedule_message",
-        "slack_add_reaction",
-        "slack_create_canvas",
-        "slack_update_canvas"
-      ]
+      }
     },
     "grafana": {
-      "url": "https://mcp.grafana-ops.com/mcp",
-      "auth": "oauth"
+      "url": "https://mcp.grafana-ops.com/mcp"
+    },
+    "github": {
+      "url": "https://api.githubcopilot.com/mcp"
+    },
+    "chrome-devtools": {
+      "command": "npx",
+      "args": ["-y", "chrome-devtools-mcp@1.6.0"]
     }
-  },
-  "settings": {
-    "autoAuth": true
   }
 }

@@ -7,7 +7,6 @@
   "quietStartup": true,
   "packages": [
     "npm:pi-vimmode",
-    "npm:pi-mcp-adapter@2.32.1",
     "npm:pi-web-access",
     "npm:pi-subagents",
     "npm:pi-caveman",
@@ -34,11 +33,16 @@
     {
       "source": "git:github.com/redhat-et/ripwire@v0.6.5",
       "prompts": [],
-      "skills": ["skills/ripwire-*", "!skills/ripwire-opt-remarks"]
+      "skills": [
+        "skills/ripwire-*",
+        "!skills/ripwire-opt-remarks"
+      ]
     }
   ],
-  "skills": ["-skills/gida"],
-  "lastChangelogVersion": "0.87.1",
+  "skills": [
+    "-skills/gida"
+  ],
+  "lastChangelogVersion": "0.99.1",
   "terminal": {
     "hyperlinks": true
   },
