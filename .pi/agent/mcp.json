@@ -13,11 +13,19 @@
     },
     "github": {
       "url": "https://api.githubcopilot.com/mcp",
-      "headers": { "Authorization": "!echo Bearer $(gh auth token)" }
+      "headers": {
+        "Authorization": "!echo Bearer $(gh auth token)"
+      }
     },
     "chrome-devtools": {
       "command": "npx",
-      "args": ["-y", "chrome-devtools-mcp@1.6.0"]
+      "args": [
+        "-y",
+        "chrome-devtools-mcp@1.6.0"
+      ]
+    },
+    "grafana-dev": {
+      "url": "https://mcp.grafana-dev.com/mcp/dev.grafana-dev.net"
     }
   }
 }
