@@ -42,7 +42,7 @@
   "skills": [
     "-skills/gida"
   ],
-  "lastChangelogVersion": "0.99.2",
+  "lastChangelogVersion": "1.0.0",
   "terminal": {
     "hyperlinks": true
   },
