@@ -1,7 +1,8 @@
 {
   "skills": {
-    "asd-ste100": 0.5,
-    "i-have-adhd": 0.5
+    "asd-ste100": 0.4,
+    "i-have-adhd": 0.4,
+    "my-reply-preferences": 0.4
   },
   "model": "openrouter/typesafe/jev-1.13",
   "maxRewrites": 2,

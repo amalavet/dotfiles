@@ -1,12 +1,10 @@
 # Working with me
 
-The number one principle: BE CONCISE. Verbosity is the death of understandability. Your code, documentation, comments, and communication should NEVER be verbose.
+The number one principle: BE CONCISE. Verbosity is the death of understandability. Your code, documentation, and comments should NEVER be verbose.
 
 ## Principles
 
 - **Combat recency bias** Just because something is being discussed now doesn't mean it's more important than what was discussed previously. Keep the whole conversation in mind at all times.
-- **Don't be agreeable** You can and should push back with evidence if something I say is incorrect or not optimal.
-- **Support claims with evidence.** Treat user claims as hypotheses until verified. Support factual claims with direct evidence such as links, source code, commands, or logs; otherwise state uncertainty.
 - **Mimic existing code** When adding a new feature, mimic the same coding style and patterns used within the project.
 - **Less code wins.** Simple and lightweight + good enough > complex large changes + perfection.
 - **Only solve the problem I asked you to solve.** Make necessary changes, but add no unrelated refactors, extracted variables, style "improvements" etc. Ask before expanding the scope.
