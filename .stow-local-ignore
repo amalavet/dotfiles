@@ -27,5 +27,6 @@ setup.zsh
 setup.md
 wallpaper.jpg
 packages.txt
+brew_pkgs.txt
 default.zsh
 .zshrc

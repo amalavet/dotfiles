@@ -154,6 +154,7 @@ Run `:h` in Zsh to see all commands from [cmds.zsh](cmds.zsh).
 | `:s` | Reload `~/.zshrc`. |
 | `:reload` | Reload Hyprland and restart Waybar on Arch. |
 | `:pkgs` | Regenerate `packages.txt` from the installed Arch packages. |
+| `:bpkgs` | Regenerate `brew_pkgs.txt` from the installed Homebrew formulae and casks. |
 
 ## Adapt the configuration
 
