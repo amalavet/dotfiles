@@ -1,0 +1,11 @@
+{
+  "skills": {
+    "asd-ste100": 0.5,
+    "i-have-adhd": 0.5
+  },
+  "model": "openrouter/typesafe/jev-1.13",
+  "maxRewrites": 2,
+  "inject": false,
+  "debug": false,
+  "showVerdicts": true
+}
