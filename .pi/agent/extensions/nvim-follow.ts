@@ -5,7 +5,7 @@ export default function (pi: ExtensionAPI) {
 	const tab = process.env.HERDR_TAB_ID;
 	if (!tab) return;
 	const sock = `/tmp/nvim-herdr-${tab.replace(/[^\w]/g, "_")}.sock`;
-	const send = (expr: string) => pi.exec("nvim", ["--server", sock, "--remote-expr", expr]).catch(() => {});
+	const send = (expr: string) => pi.exec("nvim", ["--server", sock, "--remote-expr", expr], { timeout: 2000 }).catch(() => {});
 	const quote = (s: string) => `'${s.replace(/'/g, "''")}'`;
 	const files = new Set<string>();
 	const ping = () => send(`v:lua.PiFollowSync([${[...files].map(quote).join(",")}])`);

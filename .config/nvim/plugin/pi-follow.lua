@@ -30,10 +30,7 @@ local function harpoon_add(path)
 	vim.cmd("doautocmd User")
 end
 
-function _G.PiFollowOpen(path)
-	if vim.g.pi_follow == false then
-		return
-	end
+local function open(path)
 	if not is_float(0) then
 		vim.cmd("drop " .. vim.fn.fnameescape(path))
 		vim.cmd("checktime")
@@ -52,6 +49,15 @@ function _G.PiFollowOpen(path)
 	vim.api.nvim_win_set_buf(target, buf)
 	vim.cmd("checktime " .. buf)
 	harpoon_add(path)
+end
+
+function _G.PiFollowOpen(path)
+	if vim.g.pi_follow == false then
+		return
+	end
+	vim.schedule(function()
+		pcall(open, path)
+	end)
 end
 
 function _G.PiFollowSync(files)
