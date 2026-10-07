@@ -5,7 +5,7 @@
     "my-reply-preferences": 0.3
   },
   "model": "openrouter/typesafe/jev-1.13",
-  "maxRewrites": 1,
+  "maxRewrites": 2,
   "inject": false,
   "debug": false,
   "showVerdicts": true
