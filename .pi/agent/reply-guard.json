@@ -1,8 +1,8 @@
 {
   "skills": {
-    "asd-ste100": 0.5,
-    "i-have-adhd": 0.5,
-    "my-reply-preferences": 0.5
+    "asd-ste100": 0.6,
+    "i-have-adhd": 0.6,
+    "my-reply-preferences": 0.6
   },
   "model": "openrouter/perplexity/pplx-decider-v1.1-27b",
   "maxRewrites": 2,
