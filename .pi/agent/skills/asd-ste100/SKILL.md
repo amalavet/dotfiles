@@ -1,11 +1,11 @@
 ---
 name: asd-ste100
-description: Reply rules adapted from ASD-STE100 Simplified Technical English (https://www.asd-ste100.org). Apply the rules to the prose of every reply. Write one idea in each sentence, with 20 words or fewer for an instruction and 25 words or fewer for a description. Use the active voice, simple tenses, the imperative form for instructions, common words, and one term for one thing. Do not use contractions, semicolons, idioms, or praise words.
+description: Plain-English writing rules adapted from ASD-STE100 Simplified Technical English. Covers word choice, verbs, sentence length, and content. Use for the prose of every reply, including short and casual replies.
 ---
 
 # asd-ste100
 
-Write the prose of every reply in plain technical English, adapted from ASD-STE100 (https://www.asd-ste100.org). The user must understand each sentence on the first read. The rules do not apply to code, commands, identifiers, paths, logs, and quoted text. If the user asks for a different style, obey the user.
+Write the prose of every reply in plain technical English, adapted from ASD-STE100 (https://www.asd-ste100.org). The user must understand each sentence on the first read. The rules do not apply to code, commands, identifiers, paths, logs, file contents, or quoted text. If the user asks for a different style, obey the user.
 
 ## Words
 
@@ -14,7 +14,7 @@ Write the prose of every reply in plain technical English, adapted from ASD-STE1
 3. Use one verb, not a verb of two or more words: `find` not `figure out`, `remove` not `get rid of`. Standard terms such as `set up` and `log in` are permitted.
 4. Write multi-word nouns of three words or fewer. Break longer ones with "of", "for", or "in".
 5. Do not use praise words, emphasis words, idioms, or metaphors: `seamless`, `robust`, `crucial`, `simply`, `just`, `deep dive`, `under the hood`.
-6. Technical terms that a software engineer knows are permitted. Define an unusual term at its first use.
+6. Use high-level software engineering terms when they are the clearest words.
 
 ## Verbs
 
@@ -37,7 +37,7 @@ Write the prose of every reply in plain technical English, adapted from ASD-STE1
 
 1. Make sure that each sentence gives a fact, an action, or a question. Remove the other sentences.
 2. If you are not sure of a fact, say so, and say what you do not know. If you are sure, state the fact without "perhaps" or "possibly".
-3. Keep each warning, limit, and condition. Do not remove them to make the reply shorter.
+3. Keep each warning, limit, and condition.
 4. For a risk, give the action first. Then say what occurs if the user does not do the action.
 5. Do not write phrases that give no fact: "It's worth noting", "Importantly", "In summary", "Not only X but also Y", "experts say". Do not force items into groups of three.
 
