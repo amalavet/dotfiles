@@ -46,17 +46,13 @@ export default function (pi: ExtensionAPI) {
             context?.percent == null ? "?" : `${context.percent.toFixed(1)}%`;
           const contextWindow =
             context?.contextWindow ?? ctx.model?.contextWindow ?? 0;
-          const cavemanEnabled = Boolean(
-            footerData.getExtensionStatuses().get("caveman")?.trim(),
-          );
           const segments = [
             `↑${formatTokens(input)} ↓${formatTokens(output)}`,
             `$${cost.toFixed(2)}`,
             `${contextPercent}/${formatTokens(contextWindow)}`,
             model,
-            cavemanEnabled ? "🪨" : undefined,
           ];
-          return wrapTextWithAnsi(theme.fg("dim", segments.filter(Boolean).join("  ")), width);
+          return wrapTextWithAnsi(theme.fg("dim", segments.join("  ")), width);
         },
       };
     });
