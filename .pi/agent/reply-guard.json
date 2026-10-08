@@ -1,10 +1,10 @@
 {
   "skills": {
-    "asd-ste100": 0.3,
-    "i-have-adhd": 0.3,
-    "my-reply-preferences": 0.3
+    "asd-ste100": 0.5,
+    "i-have-adhd": 0.5,
+    "my-reply-preferences": 0.5
   },
-  "model": "openrouter/typesafe/jev-1.13",
+  "model": "openrouter/perplexity/pplx-decider-v1.1-27b",
   "maxRewrites": 2,
   "inject": false,
   "preload": true,
