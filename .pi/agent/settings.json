@@ -41,7 +41,7 @@
     "npm:@aliou/pi-processes",
     "npm:@tintinweb/pi-tasks"
   ],
-  "lastChangelogVersion": "1.2.0",
+  "lastChangelogVersion": "1.3.0",
   "terminal": {
     "hyperlinks": true
   },
