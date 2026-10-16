@@ -124,6 +124,11 @@
         "regex": true
       },
       {
+        "pattern": "\\bprovisioning-api\\.sh\\b",
+        "description": "Git Sync provisioning API script",
+        "regex": true
+      },
+      {
         "pattern": "\\bterraform\\s+(?:apply|destroy)\\b",
         "description": "mutate Terraform infrastructure",
         "regex": true
