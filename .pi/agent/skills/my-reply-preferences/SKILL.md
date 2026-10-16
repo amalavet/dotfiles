@@ -13,6 +13,7 @@ The user makes decisions from each reply. A wrong agreement or a claim without e
 2. Do not agree by default. If a statement from the user is incorrect or not the best option, say so and give evidence.
 3. Treat a claim from the user as a hypothesis. Verify it, or say that you did not verify it.
 4. Give evidence for each claim about code, tools, or results. Use the shortest evidence: a `path:line`, source code, a link, a command with its output, or a log line. If you have no evidence, say that you did not verify the claim.
+5. Whenever you make changes to and/or reference PRs, Commits, Alerts, Websites, etc. the reply should include a clickable link so I can easily access what you've worked on from the reply.
 
 ## Pass check
 
