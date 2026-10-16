@@ -75,22 +75,15 @@ Install Git, Zsh, and [GNU Stow](https://www.gnu.org/software/stow/) first.
    cd "$HOME/dotfiles"
    ```
 
-2. Preview the links.
+2. Create the links. Run this before you start Pi for the first time.
 
    ```sh
-   stow --simulate --verbose --no-folding --target="$HOME" .
+   stow .
    ```
 
-3. Move any conflicting files to a backup directory. Then create the links.
+   If Stow reports a conflict, move that file to a backup directory and run `stow .` again.
 
-   ```sh
-   stow --no-folding --target="$HOME" .
-   ```
-
-   Stow links files in your home directory to this repository.
-   The `--no-folding` option prevents Stow from linking whole directories.
-
-4. Create Alacritty's `os.toml` link. Run only the command for your operating system.
+3. Create Alacritty's `os.toml` link. Run only the command for your operating system.
 
    macOS:
 
@@ -104,7 +97,7 @@ Install Git, Zsh, and [GNU Stow](https://www.gnu.org/software/stow/) first.
    ln -s "$HOME/dotfiles/.config/alacritty/linux.toml" "$HOME/.config/alacritty/os.toml"
    ```
 
-5. Add this line to your existing `~/.zshrc`.
+4. Add this line to your existing `~/.zshrc`.
 
    ```sh
    source "$HOME/dotfiles/.zshrc"
@@ -162,4 +155,4 @@ Run `:h` in Zsh to see all commands from [cmds.zsh](cmds.zsh).
 - Change editor options in [opts.lua](.config/nvim/lua/opts.lua). Change shortcuts in [remap.lua](.config/nvim/lua/remap.lua). Plugin settings live in [lua/plugins](.config/nvim/lua/plugins).
 - Change Pi's model and packages in [settings.json](.pi/agent/settings.json). Review its [external tool connections](.pi/agent/mcp.json) before use. Use `/login` inside Pi to authenticate.
 - Use [.stow-local-ignore](.stow-local-ignore) to control link exclusions. Git ignore rules do not control Stow.
-- Keep credentials and session history out of Git.
+- Stow links whole directories, so applications write runtime files into this repository. Use [.gitignore](.gitignore) to keep them out of Git.

@@ -41,9 +41,6 @@
     "npm:@aliou/pi-processes",
     "npm:@tintinweb/pi-tasks"
   ],
-  "skills": [
-    "~/dotfiles/.pi/agent/skills"
-  ],
   "lastChangelogVersion": "1.2.0",
   "terminal": {
     "hyperlinks": true

@@ -19,3 +19,14 @@ nvim/lazy-lock.json
 !/.config/herdr/plugin-open-hints/
 !/.config/herdr/plugin-open-hints/**
 **/__pycache__/**
+/.pi/*
+!/.pi/agent/
+/.pi/agent/*
+!/.pi/agent/AGENTS.md
+!/.pi/agent/extensions/
+!/.pi/agent/keybindings.json
+!/.pi/agent/mcp.json
+!/.pi/agent/reply-guard.json
+!/.pi/agent/settings.json
+!/.pi/agent/skills/
+!/.pi/agent/tasks-config.json
