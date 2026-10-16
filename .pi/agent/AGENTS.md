@@ -20,6 +20,13 @@ The number one principle: BE CONCISE. Verbosity is the death of understandabilit
 - **Use ripwire for code context** (`ripwire-*` skills) over broad grep/read.
 - **Edit files with the `edit`/`write` tools.** Don't modify files via bash (`sed -i`, `perl -i`, heredocs, `tee`, scripts). Exception: bulk find/replace across many files.
 
+## Plugin tools
+
+- **Tasks** (`@tintinweb/pi-tasks`): if I send a new request mid-work, add it to the task list. Don't drop the current work.
+- **Processes** (`@aliou/pi-processes`): run long standing processes, servers, commands and tests with the process tool.
+- **Web** (`pi-web-access`): search the web for evidence and cite links.
+- **Subagents** (`pi-subagents`): suggest them when work can be split or reviewed in parallel. Wait for my approval.
+
 ## GoLang
 
 - Avoid type casting unless absolutely necessary.
