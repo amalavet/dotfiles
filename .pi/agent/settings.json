@@ -38,7 +38,8 @@
       ]
     },
     "~/GitHub/pi-reply-guard",
-    "npm:@aliou/pi-processes"
+    "npm:@aliou/pi-processes",
+    "npm:@tintinweb/pi-tasks"
   ],
   "skills": [
     "~/dotfiles/.pi/agent/skills"
