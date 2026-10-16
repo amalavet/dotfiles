@@ -7,7 +7,7 @@
   "model": "openrouter/perplexity/pplx-decider-v1.1-27b",
   "maxRewrites": 2,
   "inject": false,
-  "reinjectBelow": 0.1,
+  "reinjectBelow": 0.3,
   "preload": true,
   "debug": false,
   "showVerdicts": true
