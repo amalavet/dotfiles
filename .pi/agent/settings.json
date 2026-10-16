@@ -37,7 +37,8 @@
         "!skills/ripwire-opt-remarks"
       ]
     },
-    "~/GitHub/pi-reply-guard"
+    "~/GitHub/pi-reply-guard",
+    "npm:@aliou/pi-processes"
   ],
   "skills": [
     "~/dotfiles/.pi/agent/skills"
@@ -48,5 +49,8 @@
   },
   "tuiMode": "regular",
   "outputPad": 0,
-  "httpIdleTimeoutMs": 30000
+  "httpIdleTimeoutMs": 30000,
+  "retry": {
+    "maxRetries": 10
+  }
 }
