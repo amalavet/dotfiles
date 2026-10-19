@@ -4,7 +4,7 @@
     "i-have-adhd": 0.6,
     "my-reply-preferences": 0.6
   },
-  "model": "openrouter/perplexity/pplx-decider-v1.1-27b",
+  "model": "openrouter/~perplexity/pplx-decider-latest",
   "maxRewrites": 2,
   "inject": false,
   "reinjectBelow": 0.3,
