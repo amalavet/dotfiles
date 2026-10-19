@@ -1,14 +1,10 @@
 return {
 	{
-		src = "https://github.com/iamcco/markdown-preview.nvim",
-		cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
+		src = "https://github.com/MeanderingProgrammer/render-markdown.nvim",
 		ft = { "markdown" },
 		config = function()
-			local app_dir = vim.fn.stdpath("data") .. "/site/pack/core/opt/markdown-preview.nvim/app"
-			if vim.fn.isdirectory(app_dir .. "/node_modules") == 0 then
-				vim.fn["mkdp#util#install"]()
-			end
-			vim.keymap.set("n", "<leader>md", "<cmd>MarkdownPreview<CR>", { desc = "MarkdownPreview" })
+			require("render-markdown").setup({})
+			vim.keymap.set("n", "<leader>md", "<cmd>RenderMarkdown toggle<CR>", { desc = "Toggle markdown render" })
 		end,
 	},
 }
