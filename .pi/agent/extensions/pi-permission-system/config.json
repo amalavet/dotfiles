@@ -135,6 +135,15 @@
       "gh workflow view *": "allow",
       "gh workflow list *": "allow",
 
+      "gh api *": "allow",
+      "gh api *-X*": "ask",
+      "gh api *--method*": "ask",
+      "gh api *-f*": "ask",
+      "gh api *-F*": "ask",
+      "gh api *--field*": "ask",
+      "gh api *--raw-field*": "ask",
+      "gh api *--input*": "ask",
+
       "kubectl *": "ask",
       "kubectl get *": "allow",
       "kubectl describe *": "allow",
