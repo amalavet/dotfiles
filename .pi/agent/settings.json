@@ -9,7 +9,6 @@
     "npm:pi-vimmode",
     "npm:pi-web-access",
     "npm:pi-subagents",
-    "npm:@aliou/pi-guardrails",
     "npm:@juanibiapina/pi-tokyonight@1.1.0",
     "git:github.com/grafana/ai-kit",
     {
@@ -39,7 +38,8 @@
     },
     "~/GitHub/pi-reply-guard",
     "npm:@aliou/pi-processes",
-    "npm:@tintinweb/pi-tasks"
+    "npm:@tintinweb/pi-tasks",
+    "npm:@gotgenes/pi-permission-system"
   ],
   "lastChangelogVersion": "1.3.0",
   "terminal": {

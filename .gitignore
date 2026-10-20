@@ -24,6 +24,7 @@ nvim/lazy-lock.json
 /.pi/agent/*
 !/.pi/agent/AGENTS.md
 !/.pi/agent/extensions/
+/.pi/agent/extensions/pi-permission-system/logs/
 !/.pi/agent/keybindings.json
 !/.pi/agent/mcp.json
 !/.pi/agent/reply-guard.json
