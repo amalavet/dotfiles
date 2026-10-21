@@ -62,6 +62,8 @@
       "git check-ignore *": "allow",
       "git range-diff *": "allow",
       "git config --get *": "allow",
+      "git config --get-all *": "allow",
+      "git config --get-regexp *": "allow",
       "git config --list *": "allow",
       "git help *": "allow",
       "git version *": "allow",
