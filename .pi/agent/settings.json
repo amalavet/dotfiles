@@ -37,6 +37,7 @@
       ]
     },
     "~/GitHub/pi-reply-guard",
+    "~/grafana_dotfiles",
     "npm:@aliou/pi-processes",
     "npm:@tintinweb/pi-tasks",
     "npm:@gotgenes/pi-permission-system",

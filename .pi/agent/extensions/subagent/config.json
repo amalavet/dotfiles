@@ -1,0 +1,8 @@
+{
+  "inlineToolDisplay": "summary",
+  "fleetView": true,
+  "asyncWidget": false,
+  "artifactDir": "session",
+  "toolDescriptionMode": "custom",
+  "scheduledRuns": { "storeRoot": "~/.pi/agent/subagent-schedules" }
+}
