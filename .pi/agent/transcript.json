@@ -1,0 +1,10 @@
+{
+  "mode": "split",
+  "side": "right",
+  "chatWidth": null,
+  "layout": "rows",
+  "chatHeight": 27,
+  "zoom": null,
+  "showTimestamps": false,
+  "showCopyButtons": false
+}

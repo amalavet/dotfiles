@@ -1,1 +1,1 @@
-{ "taskScope": "session-global" }
+{ "taskScope": "session-global", "glyphs": { "completed": "✓" } }

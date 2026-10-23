@@ -1,6 +1,7 @@
 {
   "inlineToolDisplay": "summary",
   "fleetView": true,
+  "fleetViewPlacement": "aboveEditor",
   "asyncWidget": false,
   "artifactDir": "session",
   "toolDescriptionMode": "custom",

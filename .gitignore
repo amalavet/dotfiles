@@ -31,3 +31,4 @@ nvim/lazy-lock.json
 !/.pi/agent/settings.json
 !/.pi/agent/skills/
 !/.pi/agent/tasks-config.json
+!/.pi/agent/transcript.json
