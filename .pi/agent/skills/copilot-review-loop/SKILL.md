@@ -25,6 +25,7 @@ Scripts are in `scripts/` next to this file. They work with macOS bash 3.2 and p
    gh pr edit <pr> -R <owner/repo> --add-reviewer @copilot
    ```
    The CLI and API cannot select a review mode such as "balanced". If the user needs a mode, tell them to select it in the GitHub UI.
+   Cursor Bugbot reviews each push without a request. Its status is the `Cursor Bugbot` check on the head commit. To run it again with no push, comment `bugbot run` on the PR.
 2. **Watch** with the process tool. Do not sleep or poll in the turn:
    ```json
    {"action":"start","name":"copilot-watch-round-<n>","command":"sleep 30; bash <skill>/scripts/watch-reviews.sh <owner/repo> <pr> <pr>",
@@ -33,6 +34,8 @@ Scripts are in `scripts/` next to this file. They work with macOS bash 3.2 and p
       {"pattern":"Error|Traceback|invalid option","mode":"regex","on":"turn"}]}}
    ```
    The script exits after each PR has a Copilot review newer than its last request. Check its stderr once after start: a script error must not look like "no review yet".
+   Start a second process with `scripts/watch-bugbot.sh <owner/repo> <pr> <pr>` and the pattern `BUGBOT_REVIEW`. It exits when the `Cursor Bugbot` check on each PR head is complete.
+   Triage the Copilot and the Bugbot threads the same way.
 3. **List the open threads** on each PR:
    ```bash
    bash <skill>/scripts/unresolved.sh <owner/repo> <pr>
@@ -61,7 +64,7 @@ Scripts are in `scripts/` next to this file. They work with macOS bash 3.2 and p
 
 ## Stop condition
 
-Stop when, for each PR, the latest Copilot review is newer than the last request, the body contains "No open issues", and `unresolved.sh` prints nothing. A status such as "Needs a closer look" with "No open issues" is clean.
+Stop when, for each PR, the latest Copilot review is newer than the last request, the body contains "No open issues", the `Cursor Bugbot` check on the head commit is complete, and `unresolved.sh` prints nothing. A status such as "Needs a closer look" with "No open issues" is clean.
 
 ## Report each round
 
