@@ -26,17 +26,13 @@ local function harpoon_add(path)
 	vim.cmd("doautocmd User")
 end
 
-local function open(path)
-	vim.cmd("checktime")
-	harpoon_add(path)
-end
-
 function _G.PiFollowOpen(path)
 	if vim.g.pi_follow == false then
 		return
 	end
 	vim.schedule(function()
-		pcall(open, path)
+		vim.cmd("checktime")
+		pcall(harpoon_add, path)
 	end)
 end
 
