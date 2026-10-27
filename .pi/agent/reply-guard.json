@@ -10,5 +10,5 @@
   "reinjectBelow": 0.3,
   "preload": true,
   "debug": false,
-  "showVerdicts": true
+  "showVerdicts": false
 }

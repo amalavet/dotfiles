@@ -3,7 +3,7 @@
   "side": "right",
   "chatWidth": null,
   "layout": "rows",
-  "chatHeight": 27,
+  "chatHeight": 16,
   "zoom": null,
   "showTimestamps": false,
   "showCopyButtons": false

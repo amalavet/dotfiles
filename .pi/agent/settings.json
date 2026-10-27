@@ -41,8 +41,7 @@
     "npm:@aliou/pi-processes",
     "npm:@tintinweb/pi-tasks",
     "npm:@gotgenes/pi-permission-system",
-    "npm:pi-permission-explain",
-    "npm:pi-stereo-view"
+    "npm:pi-permission-explain"
   ],
   "lastChangelogVersion": "1.4.0",
   "terminal": {
@@ -53,5 +52,6 @@
   "httpIdleTimeoutMs": 30000,
   "retry": {
     "maxRetries": 10
-  }
+  },
+  "hideThinkingBlock": false
 }
