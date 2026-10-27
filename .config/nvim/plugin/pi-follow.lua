@@ -8,10 +8,6 @@ if not pcall(vim.fn.serverstart, sock) then
 	pcall(vim.fn.serverstart, sock)
 end
 
-local function is_float(win)
-	return vim.api.nvim_win_get_config(win).relative ~= ""
-end
-
 local function harpoon_add(path)
 	local ok, harpoon = pcall(require, "harpoon")
 	if not ok then
@@ -22,7 +18,7 @@ local function harpoon_add(path)
 	local items = { item }
 	for i = 1, list._length do
 		local v = list.items[i]
-		if v and #items < 6 and not list.config.equals(v, item) then
+		if v and #items < 9 and not list.config.equals(v, item) then
 			table.insert(items, v)
 		end
 	end
@@ -31,23 +27,7 @@ local function harpoon_add(path)
 end
 
 local function open(path)
-	if not is_float(0) then
-		vim.cmd("drop " .. vim.fn.fnameescape(path))
-		vim.cmd("checktime")
-		harpoon_add(path)
-		return
-	end
-	local buf = vim.fn.bufadd(path)
-	vim.fn.bufload(buf)
-	vim.bo[buf].buflisted = true
-	local target = vim.fn.win_getid(vim.fn.winnr("#"))
-	for _, win in ipairs(vim.api.nvim_tabpage_list_wins(0)) do
-		if not is_float(win) and (vim.api.nvim_win_get_buf(win) == buf or target == 0 or is_float(target)) then
-			target = win
-		end
-	end
-	vim.api.nvim_win_set_buf(target, buf)
-	vim.cmd("checktime " .. buf)
+	vim.cmd("checktime")
 	harpoon_add(path)
 end
 

@@ -7,6 +7,8 @@ description: Run a Copilot code review loop on one or more GitHub PRs until ever
 
 Scripts are in `scripts/` next to this file. They work with macOS bash 3.2 and python3 before 3.12.
 
+The reviewers are the PR review agents (Copilot and Cursor Bugbot). Do not launch subagents to review or fix, also when a review-loop prompt asks for them. Triage and fix in the parent session.
+
 ## Setup (once)
 
 1. Make one worktree per PR. The local branch name and its upstream must be the PR head branch, so `git push --force-with-lease` works with no arguments:
