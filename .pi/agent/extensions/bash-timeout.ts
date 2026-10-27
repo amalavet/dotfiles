@@ -16,7 +16,7 @@ export default function (pi: ExtensionAPI) {
 		return {
 			content: [
 				...event.content,
-				{ type: "text", text: `Killed after ${LIMIT}s. Always run long running commands using the pi-processes tool.` },
+				{ type: "text", text: `Killed after ${event.input.timeout ?? LIMIT}s. Always run long running commands using the pi-processes tool.` },
 			],
 		};
 	});
