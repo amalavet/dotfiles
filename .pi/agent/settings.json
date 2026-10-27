@@ -6,7 +6,7 @@
   "externalEditor": "nvim",
   "quietStartup": true,
   "packages": [
-    "npm:pi-vimmode",
+    "npm:pi-vim",
     "npm:pi-web-access",
     "npm:pi-subagents",
     "npm:@juanibiapina/pi-tokyonight@1.1.0",
