@@ -34,7 +34,6 @@ mage
 neovim
 nono
 nvm
-opencode
 powerlevel10k
 pyenv
 rust

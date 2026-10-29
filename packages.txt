@@ -105,7 +105,6 @@ noto-fonts-emoji
 npm
 nvidia-laptop-power-cfg
 nvidia-open-dkms
-opencode
 papers
 pi-coding-agent
 piper

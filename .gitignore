@@ -2,11 +2,6 @@ nvim/lazy-lock.json
 .config/nvim/lazy-lock.json
 /.claude/settings.local.json
 /.config/nvim/nvim-pack-lock.json
-/.config/k9s/clusters/
-/.config/opencode/commands
-/.config/opencode/plugins
-/.github/workflows/opencode.yml
-/.github/workflows/opencode.yml
 /.config/alacritty/os.toml
 /emailscript.sh
 /.config/karabiner/assets/
@@ -32,3 +27,4 @@ nvim/lazy-lock.json
 !/.pi/agent/skills/
 !/.pi/agent/tasks-config.json
 !/.pi/agent/transcript.json
+/.config/k9s/clusters
