@@ -5,6 +5,7 @@ awscli
 azure-cli
 bash
 bat
+betterleaks
 bruno-cli
 bun
 cloudflared

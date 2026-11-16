@@ -1,0 +1,2 @@
+#!/bin/sh
+exec betterleaks git --pre-commit --staged --redact --no-banner
