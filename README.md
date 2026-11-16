@@ -104,7 +104,7 @@ Install Git, Zsh, and [GNU Stow](https://www.gnu.org/software/stow/) first.
    ```
 
    Stow excludes `.zshrc` to preserve your local shell settings.
-   The shared shell configuration requires Goenv, Pyenv, Powerlevel10k, and the Zsh plugins in [setup.zsh](setup.zsh).
+   The shared shell configuration requires Go, Pyenv, Powerlevel10k, and the Zsh plugins in [setup.zsh](setup.zsh).
    On macOS, it also expects Homebrew at `/opt/homebrew` and the NVM version manager for Node.js.
 
 Neovim requires [version 0.12 or later](https://neovim.io/doc/user/news-0.12/) for its built-in `vim.pack` plugin manager.

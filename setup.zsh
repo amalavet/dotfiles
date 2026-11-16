@@ -165,8 +165,7 @@ RIPWIRE_REPO=redhat-et/ripwire RIPWIRE_VERSION=v0.6.5 RIPWIRE_NO_ACTIVATE=1 RIPW
 
 # Go
 # --
-install_packages goenv
-goenv install latest -s
+install_packages go
 source ~/.zshrc
 
 # Install Delve (Go Debugger)

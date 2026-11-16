@@ -57,7 +57,7 @@ gnome-shell
 gnome-system-monitor
 gnome-text-editor
 gnome-tweaks
-goenv
+go
 google-chrome
 gpu-screen-recorder
 gst-plugin-pipewire

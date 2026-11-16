@@ -21,7 +21,6 @@ git
 gitleaks
 gnupg
 go-jsonnet
-goenv
 grafana/grafana/gcx
 grafanactl
 k3d
@@ -36,6 +35,7 @@ nono
 nvm
 powerlevel10k
 pyenv
+ripgrep
 rust
 scooter
 silicon
