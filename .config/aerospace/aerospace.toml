@@ -79,12 +79,8 @@ if.app-id = 'org.alacritty'
 run = 'move-node-to-workspace 3'
 
 [[on-window-detected]]
-if.app-id = 'org.jkiss.dbeaver.core.product'
-run = 'move-node-to-workspace 4'
-
-[[on-window-detected]]
 if.app-id = 'com.1password.1password'
-run = 'move-node-to-workspace 5'
+run = 'move-node-to-workspace 4'
 
 # 'main' binding mode declaration
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
