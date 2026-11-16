@@ -48,9 +48,10 @@
     "npm:@gotgenes/pi-permission-system",
     "npm:pi-permission-explain"
   ],
-  "lastChangelogVersion": "1.4.0",
+  "lastChangelogVersion": "1.5.2",
   "terminal": {
-    "hyperlinks": true
+    "hyperlinks": true,
+    "showImages": false
   },
   "tuiMode": "fullscreen",
   "outputPad": 0,
@@ -58,5 +59,12 @@
   "retry": {
     "maxRetries": 10
   },
-  "hideThinkingBlock": false
+  "hideThinkingBlock": false,
+  "extensionChangelogVersions": {
+    "{\"source\":\"npm:pi-web-access\",\"scope\":\"user\"}": "0.48.0",
+    "{\"source\":\"npm:pi-subagents\",\"scope\":\"user\"}": "0.88.1",
+    "{\"source\":\"npm:@tintinweb/pi-tasks\",\"scope\":\"user\"}": "0.9.1",
+    "{\"source\":\"npm:@gotgenes/pi-permission-system\",\"scope\":\"user\"}": "42.0.2",
+    "{\"source\":\"npm:@aliou/pi-processes\",\"scope\":\"user\"}": "0.13.6"
+  }
 }
