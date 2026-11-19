@@ -1,6 +1,6 @@
 {
   "theme": "tokyonight-custom",
-  "defaultProvider": "anthropic",
+  "defaultProvider": "openai-codex",
   "defaultModel": "gpt-6.2-astra",
   "defaultThinkingLevel": "medium",
   "externalEditor": "nvim",
