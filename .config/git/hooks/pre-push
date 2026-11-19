@@ -1,9 +1,5 @@
 #!/bin/sh
-while read -r _ local_sha _ remote_sha; do
+while read -r _ local_sha _ _; do
   case "$local_sha" in *[!0]*) ;; *) continue ;; esac
-  case "$remote_sha" in
-    *[!0]*) range="$remote_sha..$local_sha" ;;
-    *) range="$local_sha --not --remotes" ;;
-  esac
-  betterleaks git --log-opts="$range" --redact --verbose --no-banner || exit 1
+  betterleaks git --log-opts="$local_sha --not --remotes" --redact --verbose --no-banner || exit 1
 done
