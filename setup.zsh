@@ -95,6 +95,11 @@ fi
 
 git config --global core.editor "nvim"
 
+install_packages betterleaks
+if [[ -z "$(git config --global --get core.hooksPath)" ]]; then
+    git config --global core.hooksPath '~/.config/git/hooks'
+fi
+
 source ~/.zshrc
 
 # Curl
