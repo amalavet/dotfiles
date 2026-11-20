@@ -5,7 +5,7 @@ The number one principle: BE CONCISE. Verbosity is the death of understandabilit
 ## Principles
 
 - **Combat recency bias** Just because something is being discussed now doesn't mean it's more important than what was discussed previously. Keep the whole conversation in mind at all times.
-- **Mimic existing code** When adding a new feature, mimic the same coding style and patterns used within the project.
+- **Mimic existing code** When adding a new feature, mimic the same coding style and patterns used within the project. UNLESS a change will improve or reduce complexity relative to the existing code.
 - **Less code wins.** Simple and lightweight + good enough > complex large changes + perfection.
 - **Only solve the problem I asked you to solve.** Make necessary changes, but add no unrelated refactors, extracted variables, style "improvements" etc. Ask before expanding the scope.
 - **Don't leak conversation context.** Our conversation is private. Use it to guide the work, but never expose it in code, comments, documentation, commits, or PR descriptions.
