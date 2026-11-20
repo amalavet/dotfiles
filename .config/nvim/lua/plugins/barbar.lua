@@ -49,7 +49,6 @@ return {
 			local function refresh_all_harpoon_tabs()
 				local list = harpoon:list()
 				unpin_all()
-				local bufs = {}
 				for _, mark in ipairs(list.items) do
 					local buf = get_buffer_by_mark(mark)
 					if buf == nil then
@@ -57,18 +56,12 @@ return {
 						buf = get_buffer_by_mark(mark)
 					end
 					if buf ~= nil then
+						state.buffers = vim.tbl_filter(function(b) return b ~= buf end, state.buffers)
+						table.insert(state.buffers, buf)
 						state.toggle_pin(buf)
-						table.insert(bufs, buf)
 					end
 				end
-				state.get_updated_buffers()
-				for i = #bufs, 1, -1 do
-					local j = vim.fn.index(state.buffers, bufs[i]) + 1
-					if j > 0 then
-						table.insert(state.buffers, 1, table.remove(state.buffers, j))
-					end
-				end
-				render.update()
+				render.update(true)
 			end
 
 			vim.api.nvim_create_autocmd({ "BufEnter", "BufAdd", "BufLeave", "User" }, {
