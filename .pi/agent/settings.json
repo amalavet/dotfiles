@@ -2,7 +2,7 @@
   "theme": "tokyonight-custom",
   "defaultProvider": "anthropic",
   "defaultModel": "claud-opus-5-5",
-  "defaultThinkingLevel": "xhigh",
+  "defaultThinkingLevel": "high",
   "externalEditor": "nvim",
   "quietStartup": true,
   "packages": [
@@ -48,7 +48,7 @@
     "npm:@gotgenes/pi-permission-system",
     "npm:pi-permission-explain"
   ],
-  "lastChangelogVersion": "1.5.2",
+  "lastChangelogVersion": "1.6.0",
   "terminal": {
     "hyperlinks": true,
     "showImages": false
@@ -62,9 +62,12 @@
   "hideThinkingBlock": false,
   "extensionChangelogVersions": {
     "{\"source\":\"npm:pi-web-access\",\"scope\":\"user\"}": "0.48.0",
-    "{\"source\":\"npm:pi-subagents\",\"scope\":\"user\"}": "0.89.1",
+    "{\"source\":\"npm:pi-subagents\",\"scope\":\"user\"}": "0.90.0",
     "{\"source\":\"npm:@tintinweb/pi-tasks\",\"scope\":\"user\"}": "0.9.1",
     "{\"source\":\"npm:@gotgenes/pi-permission-system\",\"scope\":\"user\"}": "42.2.0",
-    "{\"source\":\"npm:@aliou/pi-processes\",\"scope\":\"user\"}": "0.13.6"
+    "{\"source\":\"npm:@aliou/pi-processes\",\"scope\":\"user\"}": "0.13.8"
+  },
+  "warnings": {
+    "anthropicExtraUsage": false
   }
 }

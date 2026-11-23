@@ -154,6 +154,15 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
     install_packages karabiner-elements
 fi
 
+# Apps
+# ----
+install_packages google-chrome docker-desktop
+if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+    install_packages slack-desktop
+elif [[ "$OSTYPE" == "darwin"* ]]; then
+    install_packages slack
+fi
+
 # Node.js / NPM / Yarn
 # -------
 install_packages yarn
